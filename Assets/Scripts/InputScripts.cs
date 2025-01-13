@@ -21,6 +21,7 @@ public class InputScript : MonoBehaviour
     Rigidbody2D myRB;
     bool moving=false;
     bool isFiring=false;
+    bool dashing = false;
     float currentInterval;
     float interval = 0.2f;
     void Start()
@@ -39,17 +40,23 @@ public class InputScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (moving)
         {
             myRB.AddForce (new Vector2(moveDirection.x*baseSpeed, moveDirection.y*baseSpeed)); 
         }
-        print(moving);
         if (isFiring==true && Time.time>currentInterval)
         {
             GameObject bullet = Instantiate(normalBullet, aimReticle.position, aimReticle.rotation);
             Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
             rigidbodyB.linearVelocity=20*aimReticle.transform.up;
             currentInterval = Time.time + interval;
+        }
+        if (dashing==true)
+        {
+            baseSpeed=100;
+        }
+        else
+        {
+            baseSpeed=50;
         }
     }
 
@@ -79,5 +86,10 @@ public class InputScript : MonoBehaviour
     public void OnFire(InputValue inputValue)
     {   
         isFiring = inputValue.isPressed;
+    }
+
+    public void OnDash(InputValue inputValue)
+    {
+        dashing = inputValue.isPressed;
     }
 }
