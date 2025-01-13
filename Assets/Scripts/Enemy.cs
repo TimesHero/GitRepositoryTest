@@ -21,11 +21,21 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
     }
-    public void TakeDamage(int damage){
+    public void TakeDamage(int damage)
+    {
         HP-= damage;
         if (HP==0)
         {
             Destroy(gameObject);
         }
+    }
+     private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+                Destroy(gameObject);//destroys itself
+                other.gameObject.GetComponent<PlayerHPManager>().DamageModifier(1);//goes into the player perams and runs the take dmg function. 
+
+        }        
     }
 }
