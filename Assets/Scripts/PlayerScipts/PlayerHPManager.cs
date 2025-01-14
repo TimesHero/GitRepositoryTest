@@ -14,10 +14,10 @@ public class PlayerHPManager : MonoBehaviour
     {
         
     }
-    public void DamageModifier(int damage)
+    public void DamageOrHeal(int damage)
     // If something needs to heal the player instead, use this function still but make the int variable passed a negative number
     {
-        HP-= damage;//Deals damage to the player.
+        HP-= damage;
         if (HP==0)
         {
             Destroy(gameObject);

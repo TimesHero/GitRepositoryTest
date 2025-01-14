@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Player")
         {
                 Destroy(gameObject);//destroys itself
-                other.gameObject.GetComponent<PlayerHPManager>().DamageModifier(1);//goes into the player perams and runs the take dmg function. 
+                other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(1);//goes into the player perams and runs the take dmg function. 
 
         }        
     }

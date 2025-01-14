@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
 
     Rigidbody2D myRB;
@@ -21,10 +21,10 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Player")
         {
-                Destroy(gameObject);//destroys itself
-                other.gameObject.GetComponent<Enemy>().TakeDamage(1);//goes into the player perams and runs the take dmg function. 
+                Destroy(gameObject);
+                other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(1);
 
         }        
     }

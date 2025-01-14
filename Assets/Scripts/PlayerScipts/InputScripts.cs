@@ -26,7 +26,6 @@ public class InputScript : MonoBehaviour
     float interval = 0.2f;
     void Start()
     {
-
         myPI = GetComponent<PlayerInput>();
         myRB = GetComponent<Rigidbody2D>();
         currentInterval = Time.time;
@@ -40,10 +39,11 @@ public class InputScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (moving)
         {
             myRB.AddForce (new Vector2(moveDirection.x*baseSpeed, moveDirection.y*baseSpeed)); 
         }
-        if (isFiring==true && Time.time>currentInterval)
+        if (isFiring==true && Time.time>currentInterval)//Player Shooting
         {
             GameObject bullet = Instantiate(normalBullet, aimReticle.position, aimReticle.rotation);
             Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
