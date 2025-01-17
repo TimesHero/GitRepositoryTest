@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f1eb198c4e9763d47aefb2dd054c61bd
+guid: 8b19e9fccce4ee349b8816d1c613f538
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1203071752668406728
-    second: ArrowEnemy_0
+      213: -6226224513933120563
+    second: Staff Placeholder_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ArrowEnemy_0
+      name: Staff Placeholder_0
       rect:
         serializedVersion: 2
-        x: 35
-        y: 4
-        width: 130
-        height: 196
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 242
+        y: 127
+        width: 125
+        height: 1527
+      alignment: 9
+      pivot: {x: 0.4871675, y: 0.03}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8c36b19826b22b010800000000000000
-      internalID: 1203071752668406728
+      spriteID: dcbef23eac10899a0800000000000000
+      internalID: -6226224513933120563
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0fc1874bf6fdd824982d2dda0af3f64d
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ArrowEnemy_0: 1203071752668406728
+      Staff Placeholder_0: -6226224513933120563
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

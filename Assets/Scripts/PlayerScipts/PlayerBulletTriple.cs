@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class PlayerBulletTriple : MonoBehaviour
 {
 
     Rigidbody2D myRB;
@@ -15,7 +15,7 @@ public class PlayerBullet : MonoBehaviour
      
     private IEnumerator killTimer()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
 
