@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 3
+  player: {fileID: 3116551283906856616, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+  MovementSpeed: 3
 --- !u!50 &7652239197698359599
 Rigidbody2D:
   serializedVersion: 5

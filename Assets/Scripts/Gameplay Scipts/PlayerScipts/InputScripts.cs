@@ -19,6 +19,7 @@ public class InputScript : MonoBehaviour
     public GameObject tripleBullet;
     public GameObject pierceBullet;
     public GameObject meleeWeapon;
+    public GameObject logicManager;
     public Transform lookTransform;
     public Transform aimReticle;
     public Transform aimReticleL;
@@ -29,6 +30,8 @@ public class InputScript : MonoBehaviour
     bool dashing = false;
     float currentInterval;
     float interval = 0.3f;
+
+    public GameObject pausePanel;
 
     public int bulletType = 0;
     void Start()
@@ -142,7 +145,6 @@ public class InputScript : MonoBehaviour
     public void OnMeleeWeapon(InputValue inputValue)
     {
         meleeWeapon.gameObject.GetComponent<MeleeSwing>().Attack();
-        print("nlah");
     }
     public void OnLeftBumper(InputValue inputValue)
     {
@@ -165,6 +167,19 @@ public class InputScript : MonoBehaviour
     public void OnDash(InputValue inputValue)
     {
         dashing = inputValue.isPressed;
+    }
+
+    public void OnPause(InputValue inputValue)
+    {
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            pausePanel.SetActive(false);
+        }
+        logicManager.gameObject.GetComponent<GameHandler>().PauseGame();
+        Time.timeScale = 0;
+        print("paused");
+        
     }
 
     

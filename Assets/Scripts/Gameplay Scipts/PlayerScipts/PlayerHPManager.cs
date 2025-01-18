@@ -22,5 +22,7 @@ public class PlayerHPManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        print("hit");
+        print(HP);
     }
 }

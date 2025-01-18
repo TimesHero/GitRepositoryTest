@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public GameObject player;
     public float MovementSpeed;
     Rigidbody2D myRB;
+    public bool stationary;
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
@@ -15,10 +16,15 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (stationary==false)
+        {
         float step = MovementSpeed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, step);
-        float angle = Mathf.Atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg;
+        }
+        Vector2 direction = player.transform.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        
 
     }
     public void TakeDamage(int damage)
@@ -29,7 +35,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-     private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {

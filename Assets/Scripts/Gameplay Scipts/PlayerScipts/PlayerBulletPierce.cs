@@ -23,9 +23,7 @@ public class PlayerBulletPierce : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-                Destroy(gameObject);
                 other.gameObject.GetComponent<Enemy>().TakeDamage(1);
-
         }        
     }
 

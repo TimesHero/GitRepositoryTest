@@ -15,17 +15,17 @@ public class MeleeSwing : MonoBehaviour
     {
         if (attacking==true)
         {
-            rotationTotal-=12;
+            rotationTotal-=6;
             if (rotationTotal>0)
             {
-                transform.Rotate(transform.rotation.x,transform.rotation.y,-12f );
+                transform.Rotate(transform.rotation.x,transform.rotation.y,-6f );
             }
             if (rotationTotal<0)
             {
                 attacking=false;
                 rotationTotal=120;
                 gameObject.SetActive(false);
-                transform.Rotate(transform.rotation.x,transform.rotation.y,108f );
+                transform.Rotate(transform.rotation.x,transform.rotation.y,114f );
             }
         }
     }
@@ -38,9 +38,7 @@ public class MeleeSwing : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-                Destroy(gameObject);
                 other.gameObject.GetComponent<Enemy>().TakeDamage(1);
-
         }        
     }
 }
