@@ -8,8 +8,10 @@ public class GameHandler : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject firstButtonToSelect;
+    public GameObject firstButtonToSelectGameOver;
     private EventSystem input;
     public GameObject pausePanel;
+    public GameObject endPanel;
     void Start()
     {
         input = FindAnyObjectByType<EventSystem>();
@@ -29,6 +31,10 @@ public class GameHandler : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void Retry()
+    {
+        SceneManager.LoadScene("TestScene");
+    }
     public void QuitGame()
     {
         Application.Quit();
@@ -37,5 +43,12 @@ public class GameHandler : MonoBehaviour
     {
         pausePanel.SetActive(true);
         input.SetSelectedGameObject(firstButtonToSelect);
+    }
+
+    public void GameOver()
+    {
+        endPanel.SetActive(true);
+        input.SetSelectedGameObject(firstButtonToSelectGameOver);
+        Time.timeScale = 0;
     }
 }

@@ -176,9 +176,12 @@ public class InputScript : MonoBehaviour
             Time.timeScale = 1;
             pausePanel.SetActive(false);
         }
+        else 
+        {
         logicManager.gameObject.GetComponent<GameHandler>().PauseGame();
         Time.timeScale = 0;
         print("paused");
+        }
         
     }
 
