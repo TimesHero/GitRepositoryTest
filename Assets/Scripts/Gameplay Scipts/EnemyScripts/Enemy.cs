@@ -4,13 +4,14 @@ public class Enemy : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public int HP;
-    public GameObject player;
+    GameObject player;
     public float MovementSpeed;
     Rigidbody2D myRB;
     public bool stationary;
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
