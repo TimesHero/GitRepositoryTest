@@ -19,7 +19,7 @@ public class PlayerHPManager : MonoBehaviour
     // If something needs to heal the player instead, use this function still but make the int variable passed a negative number
     {
         HP-= damage;
-        if (HP==0)
+        if (HP<=0)
         {
             Destroy(gameObject);
             logicManager.gameObject.GetComponent<GameHandler>().GameOver();
