@@ -5,12 +5,16 @@ public class Enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public int HP;
     GameObject player;
+    GameObject movementTarget;
     public float MovementSpeed;
     Rigidbody2D myRB;
     public bool stationary;
+
+    public string target;
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
+        movementTarget = GameObject.FindGameObjectWithTag(target);
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -20,7 +24,7 @@ public class Enemy : MonoBehaviour
         if (stationary==false)
         {
         float step = MovementSpeed * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, step);
+        transform.position = Vector2.MoveTowards(transform.position, movementTarget.transform.position, step);
         }
         Vector2 direction = player.transform.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

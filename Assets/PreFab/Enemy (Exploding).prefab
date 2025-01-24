@@ -451,6 +451,7 @@ MonoBehaviour:
   HP: 3
   MovementSpeed: 2
   stationary: 0
+  target: Player
 --- !u!50 &2431350157837925911
 Rigidbody2D:
   serializedVersion: 5

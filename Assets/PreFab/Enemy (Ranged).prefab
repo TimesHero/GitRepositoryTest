@@ -283,6 +283,7 @@ MonoBehaviour:
   HP: 3
   MovementSpeed: 3
   stationary: 0
+  target: Zone
 --- !u!114 &5700086589126428136
 MonoBehaviour:
   m_ObjectHideFlags: 0

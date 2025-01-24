@@ -107,6 +107,7 @@ MonoBehaviour:
   HP: 5
   MovementSpeed: 3
   stationary: 1
+  target: Player
 --- !u!114 &746431515714524099
 MonoBehaviour:
   m_ObjectHideFlags: 0

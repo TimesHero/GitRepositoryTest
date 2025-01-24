@@ -5,6 +5,7 @@ public class EnemyRangedAttack : MonoBehaviour
     float currentInterval;
     float interval = 1.0f;
     public GameObject enemyBullet;
+    GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,6 +15,8 @@ public class EnemyRangedAttack : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
+
+        
         if (Time.time>currentInterval)//Player Shooting
         {
         GameObject bullet = Instantiate(enemyBullet,  transform.position, transform.rotation);

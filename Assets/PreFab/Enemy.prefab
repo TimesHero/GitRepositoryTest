@@ -105,6 +105,7 @@ MonoBehaviour:
   HP: 3
   MovementSpeed: 3
   stationary: 0
+  target: Zone
 --- !u!50 &7652239197698359599
 Rigidbody2D:
   serializedVersion: 5
