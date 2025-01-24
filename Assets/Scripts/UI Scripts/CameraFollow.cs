@@ -12,12 +12,6 @@ public class CameraFollow : MonoBehaviour
     {
         offset = transform.position - target.position;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void FixedUpdate()
     {
         Vector3 targetCamPos = target.position + offset;

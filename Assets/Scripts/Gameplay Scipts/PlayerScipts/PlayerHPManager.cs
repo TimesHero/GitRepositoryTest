@@ -24,7 +24,5 @@ public class PlayerHPManager : MonoBehaviour
             Destroy(gameObject);
             logicManager.gameObject.GetComponent<GameHandler>().GameOver();
         }
-        print("hit");
-        print(HP);
     }
 }

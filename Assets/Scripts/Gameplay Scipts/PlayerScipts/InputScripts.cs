@@ -57,6 +57,7 @@ public class InputScript : MonoBehaviour
             if (bulletType==1) shootTriple();
             if (bulletType==2) shootPierce();
         }
+
         if (dashing==true)
         {
             baseSpeed=100;
@@ -182,6 +183,4 @@ public class InputScript : MonoBehaviour
         }
         
     }
-
-    
 }
