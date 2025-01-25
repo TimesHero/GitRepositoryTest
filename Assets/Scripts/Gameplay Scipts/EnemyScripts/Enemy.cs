@@ -41,7 +41,8 @@ public class Enemy : MonoBehaviour
             int doDrop = Random.Range(0,9);
             if (doDrop==1)
             {
-                int pickupType = Random.Range(0,2);
+                print("drop");
+                int pickupType = Random.Range(0,3);
                 Instantiate(pickups[pickupType],transform.position, Quaternion.identity);
             }
             Destroy(gameObject);
