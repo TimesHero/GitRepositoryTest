@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         HP-= damage;
-        if (HP==0)
+        if (HP<=0)
         {
             int doDrop = Random.Range(0,9);
             if (doDrop==1)
