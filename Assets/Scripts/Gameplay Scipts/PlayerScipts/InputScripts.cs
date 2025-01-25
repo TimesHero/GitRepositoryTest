@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
 
 public class InputScript : MonoBehaviour
@@ -26,13 +27,17 @@ public class InputScript : MonoBehaviour
     bool moving=false;
     bool isFiring=false;
     bool dashing = false;
+    public bool runSpeedPickup = false;
+    public bool atkSpeedPickup = false;
+    bool reloading;
     float currentInterval;
     float interval = 0.3f;
     float dashSpeed = 5;
     private float dashTime = 0f;   
     public float dashDuration = 0.2f;
-    public bool runSpeedPickup = false;
-    public bool atkSpeedPickup = false;
+    public float mana = 100;
+    public float reloadTimer;
+    public Slider MPBar;
 
     public GameObject pausePanel;
 
@@ -49,6 +54,9 @@ public class InputScript : MonoBehaviour
         if (dashing && Time.time > dashTime)
         {
             dashing = false;
+            gameObject.GetComponent<PlayerHPManager>().invincible = false;
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f); // Blue with 50% transparency
+
         }
     }
 
@@ -58,22 +66,38 @@ public class InputScript : MonoBehaviour
         {
             myRB.AddForce (new Vector2(moveDirection.x*baseSpeed, moveDirection.y*baseSpeed)); 
         }
-        if (isFiring==true && Time.time>currentInterval)//Player Shooting
+        if (isFiring==true && Time.time>currentInterval && mana>0)//Player Shooting
         {
+            reloadTimer=0;
             if (bulletType==0) shoot();
             if (bulletType==1) shootTriple();
             if (bulletType==2) shootPierce();
+            MPBar.value=mana;
+        }
+
+        if (isFiring==false)
+        {
+            reloadTimer+=1;
+            if (reloadTimer>=120)
+            {
+                mana+=0.25f;
+                MPBar.value=mana;
+            }
         }
 
         if (dashing==true)
         {
             myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
+            gameObject.GetComponent<PlayerHPManager>().invincible = true;
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f); // Blue with 50% transparency
+
         }
 
     }
 
     public void shoot()
     {
+        mana-=4;
         GameObject bullet = Instantiate(normalBullet, aimReticle.position, aimReticle.rotation);
         Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
         rigidbodyB.linearVelocity=30*aimReticle.transform.up;
@@ -82,6 +106,7 @@ public class InputScript : MonoBehaviour
 
     public void shootTriple()
     {
+        mana-=5;
         GameObject bullet = Instantiate(tripleBullet, aimReticle.position, aimReticle.rotation);
         GameObject bulletL = Instantiate(tripleBullet, aimReticleL.position, aimReticleL.rotation);
         GameObject bulletR = Instantiate(tripleBullet, aimReticleR.position, aimReticleR.rotation);
@@ -95,6 +120,7 @@ public class InputScript : MonoBehaviour
     }
     public void shootPierce()
     {
+        mana-=10;
         GameObject bullet = Instantiate(pierceBullet, aimReticle.position, aimReticle.rotation);
         Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
         rigidbodyB.linearVelocity=40*aimReticle.transform.up;

@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnTimer()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(8);
         SpawnFunction();
         StartCoroutine(SpawnTimer());
     }
