@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: -6358018874647013455}
   - component: {fileID: 3169775870526729311}
   - component: {fileID: 5801210343225177998}
-  - component: {fileID: -6940791595084063693}
+  - component: {fileID: -8026248958716437187}
   m_Layer: 0
-  m_Name: EnemyBullet
+  m_Name: PlayerBullet(Pierce)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -4346244404228752641, guid: fa0cb114b5a587748b402d5b11b0c9b5, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.650167, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -154,7 +154,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1.98}
   m_Direction: 0
---- !u!114 &-6940791595084063693
+--- !u!114 &-8026248958716437187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,6 +163,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9016828709344966979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db956e9a32bc8644a9da49fbc1751812, type: 3}
+  m_Script: {fileID: 11500000, guid: 80cfc67476612e34086ed19100657e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

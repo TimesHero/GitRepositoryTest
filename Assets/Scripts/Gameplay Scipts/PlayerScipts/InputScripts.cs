@@ -28,6 +28,11 @@ public class InputScript : MonoBehaviour
     bool dashing = false;
     float currentInterval;
     float interval = 0.3f;
+    float dashSpeed = 5;
+    private float dashTime = 0f;   
+    public float dashDuration = 0.2f;
+    public bool runSpeedPickup = false;
+    public bool atkSpeedPickup = false;
 
     public GameObject pausePanel;
 
@@ -39,10 +44,12 @@ public class InputScript : MonoBehaviour
         currentInterval = Time.time;
     }
 
-    // Update is called once per frame
     void Update()
     {
-         
+        if (dashing && Time.time > dashTime)
+        {
+            dashing = false;
+        }
     }
 
     private void FixedUpdate()
@@ -60,12 +67,9 @@ public class InputScript : MonoBehaviour
 
         if (dashing==true)
         {
-            baseSpeed=100;
+            myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
         }
-        else
-        {
-            baseSpeed=50;
-        }
+
     }
 
     public void shoot()
@@ -101,16 +105,66 @@ public class InputScript : MonoBehaviour
     {
         if (bulletType==0)
         {
-            interval=0.3f;
+            if (atkSpeedPickup==true)
+            {
+                interval=0.2f;
+                print("FAST");
+            }
+            else
+            {
+                interval=0.4f;
+            }
         }
         if (bulletType==1)
         {
-            interval=0.2f;
+            if (atkSpeedPickup==true)
+            {
+                interval=0.15f;
+            }
+            else
+            {
+                interval=0.3f;
+            }
         }
         if (bulletType==2)
         {
-            interval=1f;
+            if (atkSpeedPickup==true)
+            {
+                interval=0.5f;
+            }
+            else
+            {
+                interval=1f;
+            }
         }
+    }
+
+    public void AtkSpeedPickupTrigger()
+    {
+        StartCoroutine(atkSpeedTimer());
+    }
+    private IEnumerator atkSpeedTimer()
+    {
+        atkSpeedPickup=true;
+        ChangeShootCooldown();
+        yield return new WaitForSeconds(8f);
+        atkSpeedPickup=false;
+        ChangeShootCooldown();
+        
+        
+    }
+    public void RunSpeedPickupTrigger()
+    {
+        StartCoroutine(runTimer());
+    }
+
+    private IEnumerator runTimer()
+    {
+        baseSpeed=150;
+        dashSpeed=7;
+        yield return new WaitForSeconds(8f);
+        baseSpeed=50;
+        dashSpeed=5;
     }
 
     //PLAYER CONTROLS--------------------------------------------------------------------------------------
@@ -165,7 +219,11 @@ public class InputScript : MonoBehaviour
     }
     public void OnDash(InputValue inputValue)
     {
-        dashing = inputValue.isPressed;
+         if (inputValue.isPressed && !dashing) // Dash only if the button is pressed and we're not already dashing
+        {
+            dashing = true;
+            dashTime = Time.time + dashDuration; // Set when to stop dashing
+        }
     }
 
     public void OnPause(InputValue inputValue)

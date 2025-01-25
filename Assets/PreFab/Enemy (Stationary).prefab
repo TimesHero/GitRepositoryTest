@@ -107,6 +107,10 @@ MonoBehaviour:
   HP: 5
   MovementSpeed: 3
   stationary: 1
+  pickups:
+  - {fileID: 5523732995992176972, guid: 4eebb1cf6752e624aa45e024771abc3e, type: 3}
+  - {fileID: 1346549242457926981, guid: bf45de15bde00a64c8893bbfe8cb8005, type: 3}
+  - {fileID: 671500980237249953, guid: ea3e20989eb2b6f41b4cf8ab334bd2d9, type: 3}
   target: Player
 --- !u!114 &746431515714524099
 MonoBehaviour:

@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float MovementSpeed;
     Rigidbody2D myRB;
     public bool stationary;
+    public GameObject[] pickups;
 
     public string target;
     void Start()
@@ -37,6 +38,12 @@ public class Enemy : MonoBehaviour
         HP-= damage;
         if (HP==0)
         {
+            int doDrop = Random.Range(0,2);
+            if (doDrop==1)
+            {
+                int pickupType = Random.Range(0,9);
+                Instantiate(pickups[pickupType],transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }
