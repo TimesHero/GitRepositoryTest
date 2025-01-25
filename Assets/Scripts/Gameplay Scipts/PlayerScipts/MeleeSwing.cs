@@ -38,7 +38,10 @@ public class MeleeSwing : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-                other.gameObject.GetComponent<Enemy>().TakeDamage(1);
+                //other.gameObject.GetComponent<Enemy>().TakeDamage(1);
+                Vector2 knockbackDirection = transform.position - other.transform.position;
+                knockbackDirection.Normalize();
+                other.gameObject.GetComponent<Enemy>().ApplyKnockback(knockbackDirection,35f);
         }        
     }
 }

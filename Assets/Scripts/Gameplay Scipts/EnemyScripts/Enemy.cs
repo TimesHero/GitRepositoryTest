@@ -11,6 +11,12 @@ public class Enemy : MonoBehaviour
     public bool stationary;
     public GameObject[] pickups;
     public string target;
+    public bool knockback;
+    private float knockbackTime = 0f;   
+    public float knockbackDuration = 0.2f;
+    public Vector2 knockbackDirection;
+    public float knockbackAmount;
+
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
@@ -30,6 +36,20 @@ public class Enemy : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         
+               if (knockback)
+        {
+            myRB.AddForce(knockbackDirection * -knockbackAmount, ForceMode2D.Impulse);
+            knockback = false;
+        }
+        if (Time.time > knockbackTime)
+        {
+            knockback = false;  
+            myRB.linearVelocity = Vector2.zero;  
+            print("KNOCKBACK STOPPED");
+        }
+
+
+        
 
     }
     public void TakeDamage(int damage)
@@ -47,6 +67,14 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+        public void ApplyKnockback(Vector2 direction, float knockbackForce)
+    {
+        knockback = true;  
+        knockbackDirection = direction.normalized;  
+        knockbackAmount = knockbackForce;
+        knockbackTime = Time.time + knockbackDuration;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")

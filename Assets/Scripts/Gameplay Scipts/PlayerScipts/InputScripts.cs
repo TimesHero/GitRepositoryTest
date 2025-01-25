@@ -78,7 +78,7 @@ public class InputScript : MonoBehaviour
         if (isFiring==false)
         {
             reloadTimer+=1;
-            if (reloadTimer>=120)
+            if (reloadTimer>=120&&mana<100)
             {
                 mana+=0.25f;
                 MPBar.value=mana;
@@ -134,7 +134,6 @@ public class InputScript : MonoBehaviour
             if (atkSpeedPickup==true)
             {
                 interval=0.2f;
-                print("FAST");
             }
             else
             {
