@@ -38,10 +38,10 @@ public class Enemy : MonoBehaviour
         HP-= damage;
         if (HP==0)
         {
-            int doDrop = Random.Range(0,2);
+            int doDrop = Random.Range(0,9);
             if (doDrop==1)
             {
-                int pickupType = Random.Range(0,9);
+                int pickupType = Random.Range(0,2);
                 Instantiate(pickups[pickupType],transform.position, Quaternion.identity);
             }
             Destroy(gameObject);
