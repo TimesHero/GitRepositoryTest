@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
     Rigidbody2D myRB;
     public bool stationary;
     public GameObject[] pickups;
-
     public string target;
     void Start()
     {

@@ -56,7 +56,7 @@ void Update()
         }
         if (enemyColliding ==false && playerColliding==false)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         }
         percentageText.text = "Capture Percentage: " + capturePercentage;
     }
