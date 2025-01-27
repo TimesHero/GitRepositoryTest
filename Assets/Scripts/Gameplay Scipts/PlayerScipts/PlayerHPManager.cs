@@ -37,9 +37,13 @@ public class PlayerHPManager : MonoBehaviour
         HPBar.value=HP;
         if (HP<=0)
         {
-            Destroy(gameObject);
+            MakeDead();
             logicManager.gameObject.GetComponent<GameHandler>().GameOver();
         }
+    }
+    public void MakeDead()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
     }
 
     private IEnumerator iFrameTick()

@@ -47,9 +47,6 @@ public class Enemy : MonoBehaviour
             myRB.linearVelocity = Vector2.zero;  
         }
 
-
-        
-
     }
     public void TakeDamage(int damage)
     {
