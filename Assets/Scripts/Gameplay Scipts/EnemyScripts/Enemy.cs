@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -51,6 +53,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         HP-= damage;
+        StartCoroutine(DmgFlash());
         if (HP<=0)
         {
             int doDrop = Random.Range(0,9);
@@ -62,6 +65,13 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private IEnumerator DmgFlash()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0f, 0f, 1f); 
+        yield return new WaitForSeconds(0.1f);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+    }
+    
         public void ApplyKnockback(Vector2 direction, float knockbackForce)
     {
         knockback = true;  

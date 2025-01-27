@@ -9,7 +9,7 @@ public class EnemyMeleeAttack : MonoBehaviour
     public bool canAttack = false;
     void Start()
     {
-        
+        nextAttack=Time.time;
     }
 
     // Update is called once per frame
@@ -17,7 +17,8 @@ public class EnemyMeleeAttack : MonoBehaviour
     {
         if (canAttack && Time.time > nextAttack)
         {
-
+            //Attack();
+            nextAttack = Time.time + attackRate;
         }
     }
 
