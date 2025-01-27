@@ -55,7 +55,7 @@ public class InputScript : MonoBehaviour
         {
             dashing = false;
             gameObject.GetComponent<PlayerHPManager>().invincible = false;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f); // Blue with 50% transparency
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f); 
 
         }
     }
@@ -89,12 +89,11 @@ public class InputScript : MonoBehaviour
         {
             myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
             gameObject.GetComponent<PlayerHPManager>().invincible = true;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f); // Blue with 50% transparency
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
 
         }
 
     }
-
     public void shoot()
     {
         mana-=4;
@@ -262,7 +261,6 @@ public class InputScript : MonoBehaviour
         {
         logicManager.gameObject.GetComponent<GameHandler>().PauseGame();
         Time.timeScale = 0;
-        print("paused");
         }
         
     }

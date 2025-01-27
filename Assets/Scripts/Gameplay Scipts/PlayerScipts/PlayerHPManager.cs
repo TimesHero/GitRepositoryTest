@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
 public class PlayerHPManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +32,7 @@ public class PlayerHPManager : MonoBehaviour
         else
         {
             HP-= damage;
+            StartCoroutine(iFrameTick());
         }
         HPBar.value=HP;
         if (HP<=0)
@@ -37,8 +42,12 @@ public class PlayerHPManager : MonoBehaviour
         }
     }
 
-    public void invincibleTrigger()
+    private IEnumerator iFrameTick()
     {
-
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f); 
+        invincible=true;
+        yield return new WaitForSeconds(0.5f);
+        invincible=false;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
     }
 }

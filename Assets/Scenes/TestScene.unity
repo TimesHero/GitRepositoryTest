@@ -1178,7 +1178,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3086,6 +3086,22 @@ PrefabInstance:
     - target: {fileID: 3832070142329501343, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741143279553384090, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741143279553384090, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.000000014901161
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741143279553384090, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741143279553384090, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4941623809043853001, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
       propertyPath: m_LocalPosition.x

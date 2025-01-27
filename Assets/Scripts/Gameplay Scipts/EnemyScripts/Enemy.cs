@@ -45,7 +45,6 @@ public class Enemy : MonoBehaviour
         {
             knockback = false;  
             myRB.linearVelocity = Vector2.zero;  
-            print("KNOCKBACK STOPPED");
         }
 
 
@@ -60,7 +59,6 @@ public class Enemy : MonoBehaviour
             int doDrop = Random.Range(0,9);
             if (doDrop==1)
             {
-                print("drop");
                 int pickupType = Random.Range(0,3);
                 Instantiate(pickups[pickupType],transform.position, Quaternion.identity);
             }
