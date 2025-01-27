@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12.802422, y: 12.802422, z: 12.802422}
+  m_LocalScale: {x: 0.61390173, y: 0.61390173, z: 0.61390173}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -3113891522707939479, guid: 37a1bc1fee69d514c9fede2432af293c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,6 +110,10 @@ MonoBehaviour:
   - {fileID: 1346549242457926981, guid: bf45de15bde00a64c8893bbfe8cb8005, type: 3}
   - {fileID: 671500980237249953, guid: ea3e20989eb2b6f41b4cf8ab334bd2d9, type: 3}
   target: Zone
+  knockback: 0
+  knockbackDuration: 0.2
+  knockbackDirection: {x: 0, y: 0}
+  knockbackAmount: 0
 --- !u!50 &7652239197698359599
 Rigidbody2D:
   serializedVersion: 5
@@ -136,7 +140,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7793343781520314204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -167,19 +171,19 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 3.62, y: 2.34}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 3.62, y: 2.34}
   m_EdgeRadius: 0

@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.005223, y: 9.005223, z: 9.005223}
+  m_LocalScale: {x: 1.2682732, y: 1.5101665, z: 1.7094934}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3027372072193262089}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 4160125629343730266, guid: 36c5eb7811ccc954bbd4c7e661886fe4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,6 +112,10 @@ MonoBehaviour:
   - {fileID: 1346549242457926981, guid: bf45de15bde00a64c8893bbfe8cb8005, type: 3}
   - {fileID: 671500980237249953, guid: ea3e20989eb2b6f41b4cf8ab334bd2d9, type: 3}
   target: Player
+  knockback: 0
+  knockbackDuration: 0.2
+  knockbackDirection: {x: 0, y: 0}
+  knockbackAmount: 0
 --- !u!114 &746431515714524099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +144,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -188,15 +192,15 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.86, y: 2.47}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1.86, y: 2.47}
   m_EdgeRadius: 0
 --- !u!1 &7235813053435633016
 GameObject:
