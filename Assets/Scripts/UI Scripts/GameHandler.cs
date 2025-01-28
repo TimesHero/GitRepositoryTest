@@ -40,6 +40,7 @@ public class GameHandler : MonoBehaviour
     }
     public void PauseGame()
     {
+        Time.timeScale = 0;
         pausePanel.SetActive(true);
         input.SetSelectedGameObject(firstButtonToSelect);
     }

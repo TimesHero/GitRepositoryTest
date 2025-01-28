@@ -3124,9 +3124,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1529056361}
     - target: {fileID: 6592850982773679375, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+      propertyPath: normalBullet
+      value: 
+      objectReference: {fileID: 9016828709344966979, guid: 2481094c75a68ee4a909192fdcce2b13, type: 3}
+    - target: {fileID: 6592850982773679375, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
       propertyPath: lookTransform
       value: 
       objectReference: {fileID: 1604861273}
+    - target: {fileID: 6592850982773679375, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+      propertyPath: pierceProjectile
+      value: 
+      objectReference: {fileID: 11400000, guid: 4bebf13bb6864d34a8e2d5a0f7c39a25, type: 2}
+    - target: {fileID: 6592850982773679375, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+      propertyPath: tripleProjectile
+      value: 
+      objectReference: {fileID: 11400000, guid: b7682bfc108fa1b49a0ea20827f6ba66, type: 2}
+    - target: {fileID: 6592850982773679375, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+      propertyPath: regularProjectile
+      value: 
+      objectReference: {fileID: 11400000, guid: 7a628c6ae6efc2e4cb5dde796592bf6b, type: 2}
     - target: {fileID: 8229479911054743392, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.183
@@ -3454,6 +3470,8 @@ MonoBehaviour:
   - {fileID: 652990289}
   - {fileID: 450249544}
   percentageText: {fileID: 889595961}
+  logicManager: {fileID: 1529056361}
+  zoneLossGameOverCount: -20
 --- !u!61 &1706825675
 BoxCollider2D:
   m_ObjectHideFlags: 0

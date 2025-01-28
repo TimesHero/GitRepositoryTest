@@ -5,7 +5,9 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class InputScript : MonoBehaviour
 {
@@ -15,38 +17,37 @@ public class InputScript : MonoBehaviour
     Vector2 moveDirection;
     Vector2 lookDirection;
     public GameObject normalBullet;
-    public GameObject tripleBullet;
-    public GameObject pierceBullet;
     public GameObject meleeWeapon;
     public GameObject logicManager;
     public Transform lookTransform;
     public Transform aimReticle;
-    public Transform aimReticleL;
-    public Transform aimReticleR;
     Rigidbody2D myRB;
     bool moving=false;
     bool isFiring=false;
     bool dashing = false;
-    public bool runSpeedPickup = false;
-    public bool atkSpeedPickup = false;
+    bool runSpeedPickup = false;
+    bool atkSpeedPickup = false;
     bool reloading;
     float currentInterval;
-    float interval = 0.3f;
+    float interval;
     float dashSpeed = 5;
     private float dashTime = 0f;   
     public float dashDuration = 0.2f;
     public float mana = 100;
-    public float reloadTimer;
+    float reloadTimer;
     public Slider MPBar;
-
-    public GameObject pausePanel;
-
-    public int bulletType = 0;
+    int bulletType = 0;
+    public Projectile regularProjectile;
+    public Projectile tripleProjectile;
+    public Projectile pierceProjectile;
+    Projectile currentProjectile;
     void Start()
     {
         myPI = GetComponent<PlayerInput>();
         myRB = GetComponent<Rigidbody2D>();
         currentInterval = Time.time;
+        currentProjectile=regularProjectile;
+        ChangeBulletType();
     }
 
     void Update()
@@ -69,10 +70,7 @@ public class InputScript : MonoBehaviour
         if (isFiring==true && Time.time>currentInterval && mana>0)//Player Shooting
         {
             reloadTimer=0;
-            if (bulletType==0) shoot();
-            if (bulletType==1) shootTriple();
-            if (bulletType==2) shootPierce();
-            MPBar.value=mana;
+            shoot();
         }
 
         if (isFiring==false)
@@ -80,7 +78,7 @@ public class InputScript : MonoBehaviour
             reloadTimer+=1;
             if (reloadTimer>=120&&mana<100)
             {
-                mana+=0.25f;
+                mana+=0.3f;
                 MPBar.value=mana;
             }
         }
@@ -96,71 +94,45 @@ public class InputScript : MonoBehaviour
     }
     public void shoot()
     {
-        mana-=4;
-        GameObject bullet = Instantiate(normalBullet, aimReticle.position, aimReticle.rotation);
-        Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
-        rigidbodyB.linearVelocity=30*aimReticle.transform.up;
+        mana-=currentProjectile.manaCost;
+        MPBar.value=mana;
+        if (currentProjectile.triple == true) {
+            float spreadAngle = 25f; 
+            for (int i = -1; i <= 1; i++) 
+            {
+                GameObject bullet = Instantiate(normalBullet, aimReticle.position, aimReticle.rotation);
+                Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
+                rigidbodyB.linearVelocity = currentProjectile.velocity * 
+                (Quaternion.Euler(0, 0, i * spreadAngle) * aimReticle.transform.up).normalized;
+                bullet.gameObject.GetComponent<BulletBase>().PeramPass(currentProjectile);
+            }
+        } 
+        else 
+        {
+            GameObject bullet = Instantiate(normalBullet, aimReticle.position, aimReticle.rotation);
+            Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
+            rigidbodyB.linearVelocity=currentProjectile.velocity*aimReticle.transform.up;
+            bullet.gameObject.GetComponent<BulletBase>().PeramPass(currentProjectile);
+        }
         currentInterval = Time.time + interval;
     }
 
-    public void shootTriple()
-    {
-        mana-=5;
-        GameObject bullet = Instantiate(tripleBullet, aimReticle.position, aimReticle.rotation);
-        GameObject bulletL = Instantiate(tripleBullet, aimReticleL.position, aimReticleL.rotation);
-        GameObject bulletR = Instantiate(tripleBullet, aimReticleR.position, aimReticleR.rotation);
-        Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
-        Rigidbody2D rigidbodyBL = bulletL.GetComponent<Rigidbody2D>();
-        Rigidbody2D rigidbodyBR = bulletR.GetComponent<Rigidbody2D>();
-        rigidbodyB.linearVelocity=20*aimReticle.transform.up;
-        rigidbodyBL.linearVelocity=20*aimReticleL.transform.up;
-        rigidbodyBR.linearVelocity=20*aimReticleR.transform.up;
-        currentInterval = Time.time + interval;
-    }
-    public void shootPierce()
-    {
-        mana-=10;
-        GameObject bullet = Instantiate(pierceBullet, aimReticle.position, aimReticle.rotation);
-        Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
-        rigidbodyB.linearVelocity=40*aimReticle.transform.up;
-        currentInterval = Time.time + interval;
-    }
-
-    public void ChangeShootCooldown()
+    public void ChangeBulletType()
     {
         if (bulletType==0)
         {
-            if (atkSpeedPickup==true)
-            {
-                interval=0.2f;
-            }
-            else
-            {
-                interval=0.4f;
-            }
+            currentProjectile=regularProjectile;
         }
         if (bulletType==1)
         {
-            if (atkSpeedPickup==true)
-            {
-                interval=0.15f;
-            }
-            else
-            {
-                interval=0.3f;
-            }
+            currentProjectile=tripleProjectile;
         }
         if (bulletType==2)
         {
-            if (atkSpeedPickup==true)
-            {
-                interval=0.5f;
-            }
-            else
-            {
-                interval=1f;
-            }
+            currentProjectile=pierceProjectile;
         }
+        interval=currentProjectile.timeBetweenShots;
+        
     }
 
     public void AtkSpeedPickupTrigger()
@@ -170,10 +142,12 @@ public class InputScript : MonoBehaviour
     private IEnumerator atkSpeedTimer()
     {
         atkSpeedPickup=true;
-        ChangeShootCooldown();
+        interval=currentProjectile.atkSpeedUpTimeBetweenShots;
+        ChangeBulletType();
         yield return new WaitForSeconds(8f);
         atkSpeedPickup=false;
-        ChangeShootCooldown();
+        interval=currentProjectile.timeBetweenShots;
+        ChangeBulletType();
         
         
     }
@@ -230,7 +204,7 @@ public class InputScript : MonoBehaviour
         {
             bulletType=2;
         }
-        ChangeShootCooldown();
+        ChangeBulletType();
     }
     public void OnRightBumper(InputValue inputValue)
     {
@@ -239,11 +213,11 @@ public class InputScript : MonoBehaviour
         {
             bulletType=0;
         }
-        ChangeShootCooldown();
+        ChangeBulletType();
     }
     public void OnDash(InputValue inputValue)
     {
-         if (inputValue.isPressed && !dashing) // Dash only if the button is pressed and we're not already dashing
+         if (inputValue.isPressed && !dashing) 
         {
             dashing = true;
             dashTime = Time.time + dashDuration; // Set when to stop dashing
@@ -254,13 +228,11 @@ public class InputScript : MonoBehaviour
     {
         if (Time.timeScale == 0)
         {
-            Time.timeScale = 1;
-            pausePanel.SetActive(false);
+            logicManager.gameObject.GetComponent<GameHandler>().Unpause();
         }
         else 
         {
-        logicManager.gameObject.GetComponent<GameHandler>().PauseGame();
-        Time.timeScale = 0;
+            logicManager.gameObject.GetComponent<GameHandler>().PauseGame();
         }
         
     }

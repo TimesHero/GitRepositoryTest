@@ -11,6 +11,8 @@ public class ZoneController : MonoBehaviour
     public GameObject spawnPortal;
     public Transform[] portalSpawnPoints;
     public TextMeshProUGUI percentageText;
+    public GameObject logicManager;
+    public int zoneLossGameOverCount;
 void Start()
 {
     currentTime = 0f;
@@ -50,7 +52,7 @@ void Update()
         if (enemyColliding && playerColliding==false)
         {
             capturePercentage -= 1;
-            capturePercentage = Mathf.Clamp(capturePercentage, 0, 100); // Ensure it stays within 0-100
+            capturePercentage = Mathf.Clamp(capturePercentage, -20, 100); 
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
             Debug.Log(capturePercentage);
         }
@@ -59,6 +61,11 @@ void Update()
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         }
         percentageText.text = "Capture Percentage: " + capturePercentage;
+
+        if (capturePercentage==zoneLossGameOverCount)
+        {
+            logicManager.gameObject.GetComponent<GameHandler>().GameOver();
+        }
     }
 }
     
