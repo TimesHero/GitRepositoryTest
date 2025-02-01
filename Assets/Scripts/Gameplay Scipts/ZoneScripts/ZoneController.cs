@@ -3,8 +3,8 @@ using TMPro;
 public class ZoneController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    int capturePercentage = 0;
-    bool playerColliding = false;
+    public int capturePercentage = 90;
+    public bool playerColliding = false;
     bool enemyColliding = false; 
     float currentTime = 0f;  
     float tickInterval = 1f; 
@@ -13,6 +13,7 @@ public class ZoneController : MonoBehaviour
     public TextMeshProUGUI percentageText;
     public GameObject logicManager;
     public int zoneLossGameOverCount;
+    public bool Captured;
 void Start()
 {
     currentTime = 0f;
@@ -30,7 +31,6 @@ void Update()
         {
             if (enemyColliding)
             {
-                Debug.Log("contested");
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255);
             }
             else
@@ -38,14 +38,14 @@ void Update()
                 capturePercentage += 1;
                 capturePercentage = Mathf.Clamp(capturePercentage, 0, 100); // Ensure it stays within 0-100
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
-                Debug.Log(capturePercentage);
                 
             }
 
-            if (capturePercentage==25)
+            if (capturePercentage==100)
             {
-                int spawnPosition = Random.Range(0,3);
-                GameObject portal = Instantiate(spawnPortal, portalSpawnPoints[spawnPosition].position, Quaternion.identity);
+                percentageText.text = "Move to next Zone";
+                Captured=true;
+                //gameObject.SetActive(false);
             }
         }
 
@@ -54,7 +54,6 @@ void Update()
             capturePercentage -= 1;
             capturePercentage = Mathf.Clamp(capturePercentage, -20, 100); 
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
-            Debug.Log(capturePercentage);
         }
         if (enemyColliding ==false && playerColliding==false)
         {

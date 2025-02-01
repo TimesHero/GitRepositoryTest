@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
     private Vector3 originalScale;
     float explodeCooldown = 0;
     private float Steptimer = 0f;
-
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
@@ -90,7 +89,7 @@ public class Enemy : MonoBehaviour
             explodeCooldown ++;
             if (explodeCooldown==240)
             {
-                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(2);
+                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(10);
                 Destroy(gameObject);
             }
         }
@@ -152,6 +151,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(DmgFlash());
         if (HP<=0)
         {
+            player.gameObject.GetComponent<PlayerHPManager>().ComboTrigger();
             int doDrop = Random.Range(0,9);
             if (doDrop==1)
             {

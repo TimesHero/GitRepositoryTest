@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
   m_Name: Bullet
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   velocity: 25
   manaCost: 4
   timeBetweenShots: 0.4

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
   m_Name: BulletPierce
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 5
   velocity: 40
   manaCost: 10
   timeBetweenShots: 1

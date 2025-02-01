@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     bool dead = false;
     public bool temporary;
     private int spawnCount;
-    public int spawnLimit=8;
+    public int spawnLimit;
 
     void Start()
     {
@@ -40,17 +40,16 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnTimerNormal()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         SpawnFunction();
         StartCoroutine(SpawnTimerNormal());
     }
 
      private IEnumerator SpawnTimerClumps()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         SpawnFunction();
         spawnCount++;
-        print(spawnCount);
         if (spawnCount==spawnLimit)
         {
            dead=true;
