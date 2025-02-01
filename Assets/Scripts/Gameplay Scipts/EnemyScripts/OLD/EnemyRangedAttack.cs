@@ -16,7 +16,6 @@ public class EnemyRangedAttack : MonoBehaviour
     void Update()
     {
 
-        
         if (Time.time>currentInterval)//Player Shooting
         {
         GameObject bullet = Instantiate(enemyBullet,  transform.position, transform.rotation);

@@ -22,4 +22,4 @@ MonoBehaviour:
   enemyProjectile: 0
   pierce: 0
   triple: 1
-  img: {fileID: 2074888276220378696, guid: 66fd5beea0fbb1642b90eaf26cdb9592, type: 3}
+  bulletSprite: {fileID: 2074888276220378696, guid: 66fd5beea0fbb1642b90eaf26cdb9592, type: 3}

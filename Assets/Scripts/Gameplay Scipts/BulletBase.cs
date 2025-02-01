@@ -20,7 +20,8 @@ public class BulletBase : MonoBehaviour
         damage = currentProjectile.damage;
         killTime = currentProjectile.timeUntilDeath; 
         pierce = currentProjectile.pierce;
-        gameObject.GetComponent<SpriteRenderer>().sprite = currentProjectile.img;
+        enemyProjectile = currentProjectile.enemyProjectile;
+        gameObject.GetComponent<SpriteRenderer>().sprite = currentProjectile.bulletSprite;
         StartCoroutine(killTimer());
     }
     private IEnumerator killTimer()
@@ -31,7 +32,7 @@ public class BulletBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (enemyProjectile)
+        if (enemyProjectile==true)
         {
             if (other.tag == "Player")
             {
@@ -40,7 +41,7 @@ public class BulletBase : MonoBehaviour
 
             }        
         }
-        else
+        if (enemyProjectile==false)
         {
             if (other.tag == "Enemy")
             {
@@ -49,7 +50,14 @@ public class BulletBase : MonoBehaviour
                         Destroy(gameObject);
                     }
                     other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
-
+            }
+            if (other.tag == "Portal")
+            {
+                    if (pierce==false)
+                    {
+                        Destroy(gameObject);
+                    }
+                    other.gameObject.GetComponent<EnemySpawner>().TakeDamage(damage);
             }   
         }     
     }

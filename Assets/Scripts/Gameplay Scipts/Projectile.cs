@@ -14,6 +14,6 @@ public class Projectile : ScriptableObject
     public bool enemyProjectile;
     public bool pierce;
     public bool triple;
-    public Sprite img; 
+    public Sprite bulletSprite; 
     
 }

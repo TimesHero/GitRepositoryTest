@@ -31,6 +31,15 @@ public class PickupManager : MonoBehaviour
                 {
                     other.gameObject.GetComponent<InputScript>().RunSpeedPickupTrigger();
                 }
+                if (powerType=="mana")
+                {
+                    other.gameObject.GetComponent<InputScript>().mana+=20;
+                    if(other.gameObject.GetComponent<InputScript>().mana>100)
+                    {
+                        other.gameObject.GetComponent<InputScript>().mana=100;
+                    }
+                    other.gameObject.GetComponent<InputScript>().MPBar.value=other.gameObject.GetComponent<InputScript>().mana;
+                }
                 Destroy(gameObject);//destroys the power up
             }        
         }
