@@ -15,12 +15,12 @@ MonoBehaviour:
   HP: 10
   moveSpeed: 3
   target: Zone
-  meleeAttack: 0
+  meleeAttack: 1
   rangedAttack: 0
   explodingAttack: 0
   eightWayAttack: 0
   stationary: 0
-  attackInterval: 0
-  attackRange: 0
+  attackInterval: 2
+  attackRange: 3
   enemySprite: {fileID: -3113891522707939479, guid: 37a1bc1fee69d514c9fede2432af293c, type: 3}
-  bulletType: {fileID: 0}
+  bulletType: {fileID: 11400000, guid: 69bd9f424daa09748a8c32b466477ab8, type: 2}

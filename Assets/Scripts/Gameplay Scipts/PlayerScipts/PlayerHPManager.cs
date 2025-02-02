@@ -17,16 +17,18 @@ public class PlayerHPManager : MonoBehaviour
     public int comboCount=0;
     public bool combo;
     public TextMeshProUGUI comboText;
+    AudioSource sound;
     void Start()
     {
         HPBar.value = HP;
         HPBar.maxValue = HP;
+        sound = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (combo==true)
+        if (combo==true && Time.time>0)
         {
             comboTimer-=0.2f;
             comboBar.value=comboTimer;
@@ -49,6 +51,10 @@ public class PlayerHPManager : MonoBehaviour
         else
         {
             HP-= damage;
+            if (damage>0)
+            {
+                sound.Play();
+            }
             StartCoroutine(iFrameTick());
         }
         HPBar.value=HP;
@@ -66,7 +72,7 @@ public class PlayerHPManager : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f); 
         invincible=true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         invincible=false;
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
     }

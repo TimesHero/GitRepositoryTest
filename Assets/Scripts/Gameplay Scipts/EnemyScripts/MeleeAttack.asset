@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
-  m_Name: BulletTriple
+  m_Name: MeleeAttack
   m_EditorClassIdentifier: 
-  damage: 3
-  velocity: 30
-  manaCost: 5
-  timeBetweenShots: 0.3
-  atkSpeedUpTimeBetweenShots: 0.15
-  timeUntilDeath: 0.2
+  damage: 5
+  velocity: 20
+  manaCost: 0
+  timeBetweenShots: 0
+  atkSpeedUpTimeBetweenShots: 0
+  timeUntilDeath: 0.3
   VFx: {fileID: 0}
-  enemyProjectile: 0
+  enemyProjectile: 1
   pierce: 0
-  triple: 1
-  bulletSprite: {fileID: 2074888276220378696, guid: 66fd5beea0fbb1642b90eaf26cdb9592, type: 3}
+  triple: 0
+  bulletSprite: {fileID: 1203071752668406728, guid: f1eb198c4e9763d47aefb2dd054c61bd, type: 3}

@@ -27,11 +27,13 @@ public class Enemy : MonoBehaviour
     private Vector3 originalScale;
     float explodeCooldown = 0;
     private float Steptimer = 0f;
+    AudioSource sound;
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         currentInterval = Time.time;
+        sound = gameObject.GetComponent<AudioSource>();
     }
      public void PeramPass(EnemyBase enemytype)
     {
@@ -89,7 +91,7 @@ public class Enemy : MonoBehaviour
             explodeCooldown ++;
             if (explodeCooldown==240)
             {
-                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(10);
+                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(12);
                 Destroy(gameObject);
             }
         }
@@ -149,6 +151,7 @@ public class Enemy : MonoBehaviour
     {
         HP-= damage;
         StartCoroutine(DmgFlash());
+        sound.Play();
         if (HP<=0)
         {
             player.gameObject.GetComponent<PlayerHPManager>().ComboTrigger();
@@ -182,7 +185,8 @@ public class Enemy : MonoBehaviour
         {
                 if (other.gameObject.GetComponent<PlayerHPManager>().invincible == false)
                     //Destroy(gameObject);//destroys itself
-                    other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(1);//goes into the player perams and runs the take dmg function. 
+                    other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(3);//goes into the player perams and runs the take dmg function. 
+                    print("hurt");
 
         }        
     }

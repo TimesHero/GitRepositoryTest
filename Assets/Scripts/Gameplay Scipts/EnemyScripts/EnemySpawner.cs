@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnTimerNormal()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4f);
         SpawnFunction();
         StartCoroutine(SpawnTimerNormal());
     }

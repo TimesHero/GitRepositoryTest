@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ExplodingEnemy
   m_EditorClassIdentifier: 
   HP: 20
-  moveSpeed: 2
+  moveSpeed: 1.5
   target: Player
   meleeAttack: 0
   rangedAttack: 0
