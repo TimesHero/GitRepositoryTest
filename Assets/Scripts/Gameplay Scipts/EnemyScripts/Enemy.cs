@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private int HP;
+    private float HP;
     GameObject player;
     GameObject movementTarget;
     public GameObject enemyBullet;
@@ -147,7 +147,7 @@ public class Enemy : MonoBehaviour
     currentInterval = Time.time + interval;
     }
   
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         HP-= damage;
         StartCoroutine(DmgFlash());
@@ -158,7 +158,7 @@ public class Enemy : MonoBehaviour
             int doDrop = Random.Range(0,9);
             if (doDrop==1)
             {
-                int pickupType = Random.Range(0,3);
+                int pickupType = Random.Range(0,4);
                 Instantiate(pickups[pickupType],transform.position, Quaternion.identity);
             }
             Destroy(gameObject);

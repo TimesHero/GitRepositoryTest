@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyBase", menuName = "Scriptable Objects/EnemyBase")]
 public class EnemyBase : ScriptableObject
 {
-    public int HP;
+    public float HP;
     public float moveSpeed;
     public string target;
     public bool meleeAttack;

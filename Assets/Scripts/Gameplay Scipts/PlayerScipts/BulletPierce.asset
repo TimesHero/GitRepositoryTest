@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
   m_Name: BulletPierce
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
   damage: 5
   velocity: 40
   manaCost: 10
@@ -23,3 +24,4 @@ MonoBehaviour:
   pierce: 1
   triple: 0
   bulletSprite: {fileID: -894095381526335850, guid: 141ae61dc37dc3f4087c1fd8a57025ed, type: 3}
+  shootSound: {fileID: 8300000, guid: 03af812ad3ff9de49a0b90bce960afab, type: 3}

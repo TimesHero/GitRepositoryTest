@@ -5,15 +5,18 @@ public class MeleeSwing : MonoBehaviour
     Rigidbody2D myRB;
     public float rotationTotal = 120;
     public bool attacking =false;
+    float currentInterval;
+    float interval=0.5f;
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
+        currentInterval = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (attacking==true)
+        if (attacking==true && Time.time>currentInterval)
         {
             rotationTotal-=6;
             if (rotationTotal>0)
@@ -26,7 +29,13 @@ public class MeleeSwing : MonoBehaviour
                 rotationTotal=120;
                 gameObject.SetActive(false);
                 transform.Rotate(transform.rotation.x,transform.rotation.y,114f );
+                currentInterval = Time.time + interval;
             }
+        }
+        else
+        {
+            attacking=false;
+            gameObject.SetActive(false);
         }
     }
     public void Attack()

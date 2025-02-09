@@ -21,7 +21,7 @@ public class PickupManager : MonoBehaviour
             if (other.tag == "Player"){//runs if the obstacle runs into the player
                 if (powerType=="heal")
                 {
-                    other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(-1);
+                    other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(-5);
                 }
                 if (powerType=="atk")
                 {

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
   m_Name: RangedEnemyBullet
   m_EditorClassIdentifier: 
-  damage: 8
+  projectilePrefab: {fileID: 0}
+  damage: 5
   velocity: 15
   manaCost: 0
   timeBetweenShots: 0
@@ -23,3 +24,4 @@ MonoBehaviour:
   pierce: 0
   triple: 0
   bulletSprite: {fileID: 1203071752668406728, guid: f1eb198c4e9763d47aefb2dd054c61bd, type: 3}
+  shootSound: {fileID: 0}

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
   m_Name: Bullet
   m_EditorClassIdentifier: 
-  damage: 2
+  projectilePrefab: {fileID: 9016828709344966979, guid: 2481094c75a68ee4a909192fdcce2b13, type: 3}
+  damage: 3
   velocity: 25
   manaCost: 4
   timeBetweenShots: 0.4
@@ -23,3 +24,4 @@ MonoBehaviour:
   pierce: 0
   triple: 0
   bulletSprite: {fileID: 1098286324429101383, guid: d3013361f3d8f644f8229ed4c881bf8f, type: 3}
+  shootSound: {fileID: 8300000, guid: a559b6b0be106d242be7672ae9823b3c, type: 3}

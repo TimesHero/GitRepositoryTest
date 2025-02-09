@@ -19,6 +19,8 @@ public class InputScript : MonoBehaviour
     public GameObject normalBullet;
     public GameObject meleeWeapon;
     public GameObject logicManager;
+    public GameObject rotaryMenu;
+    public GameObject reticle;
     public Transform lookTransform;
     public Transform aimReticle;
     Rigidbody2D myRB;
@@ -30,10 +32,13 @@ public class InputScript : MonoBehaviour
     bool reloading;
     float currentInterval;
     float interval;
-    float dashSpeed = 5;
+    float dashSpeed = 60;
     private float dashTime = 0f;   
     public float dashDuration = 0.2f;
+    float dashInterval = 0.8f;
+    float currentDashInterval; 
     public float mana = 100;
+    public float maxMana = 100;
     float reloadTimer;
     public Slider MPBar;
     int bulletType = 0;
@@ -41,11 +46,14 @@ public class InputScript : MonoBehaviour
     public Projectile tripleProjectile;
     public Projectile pierceProjectile;
     Projectile currentProjectile;
+    public AudioSource failedCast;
+
     void Start()
     {
         myPI = GetComponent<PlayerInput>();
         myRB = GetComponent<Rigidbody2D>();
         currentInterval = Time.time;
+        currentDashInterval = Time.time;
         currentProjectile=regularProjectile;
         ChangeBulletType();
     }
@@ -57,7 +65,6 @@ public class InputScript : MonoBehaviour
             dashing = false;
             gameObject.GetComponent<PlayerHPManager>().invincible = false;
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f); 
-
         }
     }
 
@@ -67,30 +74,49 @@ public class InputScript : MonoBehaviour
         {
             myRB.AddForce (new Vector2(moveDirection.x*baseSpeed, moveDirection.y*baseSpeed)); 
         }
-        if (isFiring==true && Time.time>currentInterval && mana>0)//Player Shooting
+        if (isFiring == true && Time.time > currentInterval) // Player Shooting
         {
-            reloadTimer=0;
-            shoot();
+            reloadTimer = 0;
+            
+            if (mana > 0) // Check if the player has mana
+            {
+                shoot();
+            }
+            else
+            {
+                failedCast.Play();
+                
+            }
         }
+
+        Debug.Log(mana);
+
 
         if (isFiring==false)
         {
             reloadTimer+=1;
-            if (reloadTimer>=120&&mana<100)
+            if (reloadTimer>=120 && mana<maxMana)
             {
                 mana+=0.3f;
                 MPBar.value=mana;
             }
         }
 
-        if (dashing==true)
+        if (dashing==true&& Time.time>currentDashInterval)
         {
             myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
             gameObject.GetComponent<PlayerHPManager>().invincible = true;
             gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
-
+            currentDashInterval = Time.time + dashInterval;
+            StartCoroutine(EnablePlayerCollider());
         }
 
+    }
+    private IEnumerator EnablePlayerCollider()
+    {
+        gameObject.GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(0.5f); // Time invincible
+        gameObject.GetComponent<Collider2D>().enabled = true;
     }
     public void shoot()
     {
@@ -102,8 +128,7 @@ public class InputScript : MonoBehaviour
             {
                 GameObject bullet = Instantiate(normalBullet, aimReticle.position, aimReticle.rotation);
                 Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
-                rigidbodyB.linearVelocity = currentProjectile.velocity * 
-                (Quaternion.Euler(0, 0, i * spreadAngle) * aimReticle.transform.up).normalized;
+                rigidbodyB.linearVelocity = currentProjectile.velocity * (Quaternion.Euler(0, 0, i * spreadAngle) * aimReticle.transform.up).normalized;
                 bullet.gameObject.GetComponent<BulletBase>().PeramPass(currentProjectile);
             }
         } 
@@ -122,14 +147,17 @@ public class InputScript : MonoBehaviour
         if (bulletType==0)
         {
             currentProjectile=regularProjectile;
+            reticle.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.5f, 0f);
         }
         if (bulletType==1)
         {
             currentProjectile=tripleProjectile;
+            reticle.gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0.5f, 0f);
         }
         if (bulletType==2)
         {
             currentProjectile=pierceProjectile;
+            reticle.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f);
         }
         interval=currentProjectile.timeBetweenShots;
         
@@ -205,6 +233,10 @@ public class InputScript : MonoBehaviour
             bulletType=2;
         }
         ChangeBulletType();
+        rotaryMenu.gameObject.GetComponent<RotaryMenu>().right=false;
+        rotaryMenu.gameObject.GetComponent<RotaryMenu>().left=true;
+        rotaryMenu.gameObject.GetComponent<RotaryMenu>().bulletType=bulletType;
+
     }
     public void OnRightBumper(InputValue inputValue)
     {
@@ -214,6 +246,9 @@ public class InputScript : MonoBehaviour
             bulletType=0;
         }
         ChangeBulletType();
+        rotaryMenu.gameObject.GetComponent<RotaryMenu>().left=false;
+        rotaryMenu.gameObject.GetComponent<RotaryMenu>().right=true;
+        rotaryMenu.gameObject.GetComponent<RotaryMenu>().bulletType=bulletType;
     }
     public void OnDash(InputValue inputValue)
     {

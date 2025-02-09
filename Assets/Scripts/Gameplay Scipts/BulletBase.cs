@@ -7,26 +7,38 @@ using Unity.Mathematics;
 public class BulletBase : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    int damage;
+    float damage;
     float killTime;
     bool pierce; 
     bool enemyProjectile;
+    Projectile bullet;
+    Rigidbody2D myRB;
+    public AudioSource sound;
+    GameObject player; 
+
     void Start()
     {
-        
+
     }
     public void PeramPass(Projectile currentProjectile)
     {
-        damage = currentProjectile.damage;
-        killTime = currentProjectile.timeUntilDeath; 
-        pierce = currentProjectile.pierce;
+        bullet = currentProjectile;
+        player = GameObject.FindGameObjectWithTag("Player");
         enemyProjectile = currentProjectile.enemyProjectile;
+        if (enemyProjectile==false)
+        {
+            damage = currentProjectile.damage * player.GetComponent<PlayerHPManager>().damageMultiplier;
+        }
         gameObject.GetComponent<SpriteRenderer>().sprite = currentProjectile.bulletSprite;
+        sound = GetComponent<AudioSource>();
+        AudioClip clip = bullet.shootSound;
+        sound.clip = clip;
+        sound.Play();
         StartCoroutine(killTimer());
     }
     private IEnumerator killTimer()
     {
-        yield return new WaitForSeconds(killTime);
+        yield return new WaitForSeconds(bullet.timeUntilDeath);
         Destroy(gameObject);
     }
 
@@ -37,7 +49,7 @@ public class BulletBase : MonoBehaviour
             if (other.tag == "Player")
             {
                 Destroy(gameObject);
-                other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(1);
+                other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(bullet.damage);
 
             }        
         }
@@ -45,7 +57,7 @@ public class BulletBase : MonoBehaviour
         {
             if (other.tag == "Enemy")
             {
-                    if (pierce==false)
+                    if (bullet.pierce==false)
                     {
                         Destroy(gameObject);
                     }
@@ -53,7 +65,7 @@ public class BulletBase : MonoBehaviour
             }
             if (other.tag == "Portal")
             {
-                    if (pierce==false)
+                    if (bullet.pierce==false)
                     {
                         Destroy(gameObject);
                     }

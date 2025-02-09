@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject enemyBase;
     public EnemyBase[] enemyTypes;
-    public int HP;
+    public float HP;
     bool dead = false;
     public bool temporary;
     private int spawnCount;
@@ -66,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
         enemy.gameObject.GetComponent<Enemy>().PeramPass(enemyTypes[enemySpawnType]);
     }
 
-     public void TakeDamage(int damage)
+     public void TakeDamage(float damage)
     {
         HP-= damage;
         StartCoroutine(DmgFlash());

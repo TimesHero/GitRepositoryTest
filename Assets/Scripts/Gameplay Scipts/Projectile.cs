@@ -4,6 +4,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Projectile", menuName = "Scriptable Objects/Projectile")]
 public class Projectile : ScriptableObject
 {
+    public GameObject projectilePrefab;
     public int damage;
     public int velocity;
     public float manaCost; 
@@ -15,5 +16,6 @@ public class Projectile : ScriptableObject
     public bool pierce;
     public bool triple;
     public Sprite bulletSprite; 
+    public AudioClip shootSound;
     
 }

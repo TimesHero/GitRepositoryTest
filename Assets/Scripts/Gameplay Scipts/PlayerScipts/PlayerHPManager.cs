@@ -8,21 +8,31 @@ using TMPro;
 public class PlayerHPManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public int HP;
+    public float HP;
+    public float HPMax=50;
+    public float manaMax=100;
+    public float damageMultiplier; 
+    public float defValue; 
     public GameObject logicManager;
     public Slider HPBar;
+    public Slider manaBar;
     public Slider comboBar;
     public bool invincible = false; 
     public float comboTimer=0;
     public int comboCount=0;
     public bool combo;
     public TextMeshProUGUI comboText;
+    public int HPLevel;
+    public int defLevel;
+    public int atkLevel;
+    public int manaLevel;
     AudioSource sound;
     void Start()
     {
         HPBar.value = HP;
         HPBar.maxValue = HP;
         sound = gameObject.GetComponent<AudioSource>();
+        LevelUp();
     }
 
     // Update is called once per frame
@@ -34,14 +44,60 @@ public class PlayerHPManager : MonoBehaviour
             comboBar.value=comboTimer;
             if (comboTimer<=0)
             {
-                print("comboEnd");
                 comboCount=0;
                 comboText.text = comboCount + "X";
                 combo=false;
             }
         }
     }
-    public void DamageOrHeal(int damage)
+
+    void LevelUp()
+    {
+        if (HPLevel == 0)
+        {
+            HPMax=50;
+        }
+        else if (HPLevel > 0 && HPLevel <= 5)
+        {
+            HPMax = 50 + (HPLevel * 10);  // Add 10 HP for each level up
+            HP=HPMax;
+        }
+        if (HPLevel == 0)
+        {
+            manaMax=100;
+        }
+        else if (manaLevel > 0 && manaLevel <= 5)
+        {
+            manaMax = 100 + (manaLevel * 10);  // Add 10 HP for each level up
+            gameObject.GetComponent<InputScript>().maxMana=manaMax;
+            gameObject.GetComponent<InputScript>().mana=manaMax;
+        }
+
+        if (atkLevel == 0)
+        {
+            damageMultiplier = 1;
+        }
+        else if (atkLevel > 0 && atkLevel <= 5)
+        {
+             damageMultiplier = 1 + (atkLevel * 0.2f);  // 2x at max damage
+        }
+
+        if (defLevel == 0)
+        {
+            defValue = 1;
+        }
+        else if (defLevel > 0 && defLevel <= 5)
+        {
+             defValue = 1 + (defLevel * 0.1f);  // 2x at max damage
+             Debug.Log(defValue);
+        }
+
+        HPBar.maxValue = HP;
+        HPBar.value = HP;
+        manaBar.maxValue = manaMax;
+        manaBar.value = manaMax;
+    }
+    public void DamageOrHeal(float damage)
     // If something needs to heal the player instead, use this function still but make the int variable passed a negative number
     {
         if (invincible==true)
@@ -50,11 +106,13 @@ public class PlayerHPManager : MonoBehaviour
         }
         else
         {
-            HP-= damage;
-            if (damage>0)
-            {
-                sound.Play();
-            }
+        float effectiveDamage = damage / defValue;
+        effectiveDamage = Mathf.Max(0, effectiveDamage);
+        HP -= effectiveDamage;
+        if (effectiveDamage > 0)
+        {
+            sound.Play();
+        }
             StartCoroutine(iFrameTick());
         }
         HPBar.value=HP;
@@ -81,7 +139,6 @@ public class PlayerHPManager : MonoBehaviour
         combo=true;
         comboTimer=120;
         comboCount++;
-        print(comboCount);
         comboText.text = comboCount + "X";
     }
 
