@@ -32,7 +32,7 @@ public class InputScript : MonoBehaviour
     bool reloading;
     float currentInterval;
     float interval;
-    float dashSpeed = 60;
+    public float dashSpeed = 60;
     private float dashTime = 0f;   
     public float dashDuration = 0.2f;
     float dashInterval = 0.8f;
@@ -88,10 +88,6 @@ public class InputScript : MonoBehaviour
                 
             }
         }
-
-        Debug.Log(mana);
-
-
         if (isFiring==false)
         {
             reloadTimer+=1;
@@ -102,7 +98,7 @@ public class InputScript : MonoBehaviour
             }
         }
 
-        if (dashing==true&& Time.time>currentDashInterval)
+        if (dashing==true)
         {
             myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
             gameObject.GetComponent<PlayerHPManager>().invincible = true;

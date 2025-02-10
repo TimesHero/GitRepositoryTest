@@ -28,12 +28,16 @@ public class Enemy : MonoBehaviour
     float explodeCooldown = 0;
     private float Steptimer = 0f;
     AudioSource sound;
+    //TESTING
+    public EnemyBase testMask; 
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         currentInterval = Time.time;
         sound = gameObject.GetComponent<AudioSource>();
+        //TESTING PURPOSE
+        PeramPass(testMask);
     }
      public void PeramPass(EnemyBase enemytype)
     {

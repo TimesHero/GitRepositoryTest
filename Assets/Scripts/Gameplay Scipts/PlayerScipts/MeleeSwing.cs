@@ -7,6 +7,7 @@ public class MeleeSwing : MonoBehaviour
     public bool attacking =false;
     float currentInterval;
     float interval=0.5f;
+    public AudioSource swingSound;
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
@@ -41,6 +42,7 @@ public class MeleeSwing : MonoBehaviour
     public void Attack()
     {
         attacking=true;
+        swingSound.Play();
         gameObject.SetActive(true);
     }
      private void OnTriggerEnter2D(Collider2D other)

@@ -47,7 +47,7 @@ public class RotaryMenu : MonoBehaviour
             }
             if (currentRotation==-30)
             {
-                currentRotation=360;
+                currentRotation=330;
             }
         }
     }

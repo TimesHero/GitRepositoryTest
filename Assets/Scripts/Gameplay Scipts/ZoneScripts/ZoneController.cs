@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class ZoneController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -12,6 +13,7 @@ public class ZoneController : MonoBehaviour
     public Transform[] portalSpawnPoints;
     public TextMeshProUGUI percentageText;
     public GameObject logicManager;
+    public GameObject uiColour; 
     public int zoneLossGameOverCount;
     public bool Captured;
 void Start()
@@ -32,12 +34,14 @@ void Update()
             if (enemyColliding)
             {
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255);
+                uiColour.gameObject.GetComponent<Image>().color = new Color(0, 0, 255);
             }
             else
             {
                 capturePercentage += 1;
                 capturePercentage = Mathf.Clamp(capturePercentage, 0, 100); // Ensure it stays within 0-100
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
+                uiColour.gameObject.GetComponent<Image>().color = new Color(0, 255, 0);
                 
             }
 
@@ -54,12 +58,14 @@ void Update()
             capturePercentage -= 1;
             capturePercentage = Mathf.Clamp(capturePercentage, -20, 100); 
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+            uiColour.gameObject.GetComponent<Image>().color = new Color(255, 0 , 0);
         }
         if (enemyColliding ==false && playerColliding==false)
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            uiColour.gameObject.GetComponent<Image>().color = new Color(120, 120, 120);
         }
-        percentageText.text = "Capture Percentage: " + capturePercentage;
+        percentageText.text = capturePercentage + "%";
 
         if (capturePercentage==zoneLossGameOverCount)
         {
