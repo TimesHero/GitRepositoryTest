@@ -11,6 +11,8 @@ public class GameHandler : MonoBehaviour
     private EventSystem input;
     public GameObject pausePanel;
     public GameObject endPanel;
+    public AudioClip sound;
+    public AudioClip backSound;
     void Start()
     {
         input = FindAnyObjectByType<EventSystem>();
@@ -25,24 +27,30 @@ public class GameHandler : MonoBehaviour
     {
         Time.timeScale = 1;
         pausePanel.SetActive(false);
+        AudioManager.Instance.PlaySound(sound); 
     }
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        AudioManager.Instance.PlaySound(backSound); 
     }
     public void Retry()
     {
         SceneManager.LoadScene("TestScene");
+        AudioManager.Instance.PlaySound(sound); 
+
     }
     public void QuitGame()
     {
         Application.Quit();
+        AudioManager.Instance.PlaySound(backSound); 
     }
     public void PauseGame()
     {
         Time.timeScale = 0;
         pausePanel.SetActive(true);
         input.SetSelectedGameObject(firstButtonToSelect);
+        AudioManager.Instance.PlaySound(sound); 
     }
 
     public void GameOver()

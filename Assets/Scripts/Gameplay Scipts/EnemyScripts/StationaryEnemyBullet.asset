@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: StationaryEnemyBullet
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 0}
-  damage: 7
-  velocity: 15
+  damage: 5
+  velocity: 12
   manaCost: 0
   timeBetweenShots: 0
   atkSpeedUpTimeBetweenShots: 0
-  timeUntilDeath: 1
+  timeUntilDeath: 1.2
   VFx: {fileID: 0}
   enemyProjectile: 1
   pierce: 0
   triple: 0
-  bulletSprite: {fileID: 1203071752668406728, guid: f1eb198c4e9763d47aefb2dd054c61bd, type: 3}
-  shootSound: {fileID: 0}
+  bulletSprite: {fileID: -5984585191463628165, guid: 0ae4f3fad77b7ee43b3b746454fc4223, type: 3}
+  particleEffect: {fileID: 8890977160480423543, guid: 5c5141f54a36510499ce7a90911376b4, type: 3}
+  collideEffect: {fileID: 685122633663980915, guid: ebd60dc9e8b6f844b9b70bf062062a32, type: 3}
+  shootSound: {fileID: 8300000, guid: 10f600e5536e0074ebcdd36bed6f9dcf, type: 3}
+  collideSound: {fileID: 8300000, guid: 0a7f3bf3ecea3cc42a9798d58940b92d, type: 3}

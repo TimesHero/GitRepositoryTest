@@ -3,7 +3,7 @@ using UnityEngine;
 public class MeleeSwing : MonoBehaviour
 {
     Rigidbody2D myRB;
-    public float rotationTotal = 120;
+    public float rotationTotal = 360;
     public bool attacking =false;
     float currentInterval;
     float interval=0.5f;
@@ -22,14 +22,14 @@ public class MeleeSwing : MonoBehaviour
             rotationTotal-=6;
             if (rotationTotal>0)
             {
-                transform.Rotate(transform.rotation.x,transform.rotation.y,-6f );
+                transform.Rotate(transform.rotation.x,transform.rotation.y,-6f);
             }
             if (rotationTotal<0)
             {
                 attacking=false;
-                rotationTotal=120;
+                rotationTotal=360;
                 gameObject.SetActive(false);
-                transform.Rotate(transform.rotation.x,transform.rotation.y,114f );
+                transform.Rotate(transform.rotation.x,transform.rotation.y,114f);
                 currentInterval = Time.time + interval;
             }
         }
@@ -52,7 +52,8 @@ public class MeleeSwing : MonoBehaviour
                 //other.gameObject.GetComponent<Enemy>().TakeDamage(1);
                 Vector2 knockbackDirection = transform.position - other.transform.position;
                 knockbackDirection.Normalize();
-                other.gameObject.GetComponent<Enemy>().ApplyKnockback(knockbackDirection,35f);
+                other.gameObject.GetComponent<Enemy>().ApplyKnockback(knockbackDirection,40f);
+                other.gameObject.GetComponent<Enemy>().TakeDamage(3);
         }        
     }
 }

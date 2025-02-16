@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BulletTriple
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 0}
-  damage: 3
+  damage: 2
   velocity: 30
   manaCost: 5
   timeBetweenShots: 0.3
@@ -23,5 +23,8 @@ MonoBehaviour:
   enemyProjectile: 0
   pierce: 0
   triple: 1
-  bulletSprite: {fileID: 2074888276220378696, guid: 66fd5beea0fbb1642b90eaf26cdb9592, type: 3}
+  bulletSprite: {fileID: 2096220127547100144, guid: 5815fe715cfc97a458ef6c60dc965e6b, type: 3}
+  particleEffect: {fileID: 7675344393094051541, guid: 54388f924c4e6e344b6165b751b8a141, type: 3}
+  collideEffect: {fileID: 4958334319428401307, guid: a2ec44e2c7827124795ae14975077d2a, type: 3}
   shootSound: {fileID: 8300000, guid: e5d702c7f2ad3804fa145ad28410f2a7, type: 3}
+  collideSound: {fileID: 8300000, guid: 94456a6a37ff2124fa1156ff555c745c, type: 3}

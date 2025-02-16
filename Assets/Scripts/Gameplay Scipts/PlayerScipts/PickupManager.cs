@@ -21,7 +21,7 @@ public class PickupManager : MonoBehaviour
             if (other.tag == "Player"){//runs if the obstacle runs into the player
                 if (powerType=="heal")
                 {
-                    other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(-5);
+                    other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(-10);
                 }
                 if (powerType=="atk")
                 {
@@ -33,12 +33,7 @@ public class PickupManager : MonoBehaviour
                 }
                 if (powerType=="mana")
                 {
-                    other.gameObject.GetComponent<InputScript>().mana+=20;
-                    if(other.gameObject.GetComponent<InputScript>().mana>100)
-                    {
-                        other.gameObject.GetComponent<InputScript>().mana=100;
-                    }
-                    other.gameObject.GetComponent<InputScript>().MPBar.value=other.gameObject.GetComponent<InputScript>().mana;
+                    other.gameObject.GetComponent<PlayerHPManager>().UseMana(20);
                 }
                 Destroy(gameObject);//destroys the power up
             }        

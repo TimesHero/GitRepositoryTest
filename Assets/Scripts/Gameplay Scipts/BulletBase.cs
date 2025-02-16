@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEngine.Audio;
 
 public class BulletBase : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class BulletBase : MonoBehaviour
     bool enemyProjectile;
     Projectile bullet;
     Rigidbody2D myRB;
-    public AudioSource sound;
+    private AudioSource sound;
+    public AudioMixer audioMixer;
     GameObject player; 
 
     void Start()
@@ -30,10 +32,11 @@ public class BulletBase : MonoBehaviour
             damage = currentProjectile.damage * player.GetComponent<PlayerHPManager>().damageMultiplier;
         }
         gameObject.GetComponent<SpriteRenderer>().sprite = currentProjectile.bulletSprite;
-        sound = GetComponent<AudioSource>();
-        AudioClip clip = bullet.shootSound;
-        sound.clip = clip;
-        sound.Play();
+        AudioManager.Instance.PlaySound(currentProjectile.shootSound);
+
+        GameObject particles = Instantiate(currentProjectile.particleEffect, transform.position, transform.rotation);
+        particles.transform.SetParent(transform);
+
         StartCoroutine(killTimer());
     }
     private IEnumerator killTimer()
@@ -44,12 +47,20 @@ public class BulletBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
+        {
+            Instantiate(bullet.collideEffect, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+        
         if (enemyProjectile==true)
         {
             if (other.tag == "Player")
             {
                 Destroy(gameObject);
                 other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(bullet.damage);
+                Instantiate(bullet.collideEffect, transform.position, transform.rotation);
+                AudioManager.Instance.PlaySound(bullet.collideSound); 
 
             }        
         }
@@ -57,6 +68,8 @@ public class BulletBase : MonoBehaviour
         {
             if (other.tag == "Enemy")
             {
+                    Instantiate(bullet.collideEffect, transform.position, transform.rotation);
+                    AudioManager.Instance.PlaySound(bullet.collideSound); 
                     if (bullet.pierce==false)
                     {
                         Destroy(gameObject);
@@ -65,12 +78,15 @@ public class BulletBase : MonoBehaviour
             }
             if (other.tag == "Portal")
             {
+                    Instantiate(bullet.collideEffect, transform.position, transform.rotation);
+                    AudioManager.Instance.PlaySound(bullet.collideSound); 
                     if (bullet.pierce==false)
                     {
                         Destroy(gameObject);
                     }
                     other.gameObject.GetComponent<EnemySpawner>().TakeDamage(damage);
-            }   
+            }  
+            
         }     
     }
 }

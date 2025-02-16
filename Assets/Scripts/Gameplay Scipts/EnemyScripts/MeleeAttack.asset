@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
   m_Name: MeleeAttack
   m_EditorClassIdentifier: 
-  damage: 5
+  projectilePrefab: {fileID: 0}
+  damage: 3
   velocity: 20
   manaCost: 0
   timeBetweenShots: 0
@@ -23,3 +24,7 @@ MonoBehaviour:
   pierce: 0
   triple: 0
   bulletSprite: {fileID: 1203071752668406728, guid: f1eb198c4e9763d47aefb2dd054c61bd, type: 3}
+  particleEffect: {fileID: 7675344393094051541, guid: 54388f924c4e6e344b6165b751b8a141, type: 3}
+  collideEffect: {fileID: 685122633663980915, guid: ebd60dc9e8b6f844b9b70bf062062a32, type: 3}
+  shootSound: {fileID: 8300000, guid: a9a5261b7eb34e24887478ddb2a094ad, type: 3}
+  collideSound: {fileID: 8300000, guid: 0a7f3bf3ecea3cc42a9798d58940b92d, type: 3}

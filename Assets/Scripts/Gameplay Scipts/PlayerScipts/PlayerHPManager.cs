@@ -10,6 +10,7 @@ public class PlayerHPManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float HP;
     public float HPMax=50;
+    public float mana;
     public float manaMax=100;
     public float damageMultiplier; 
     public float defValue; 
@@ -26,6 +27,11 @@ public class PlayerHPManager : MonoBehaviour
     public int defLevel;
     public int atkLevel;
     public int manaLevel;
+    float effectiveDamage;
+
+    public TextMeshProUGUI HPtext;
+    public TextMeshProUGUI manaText;
+
     AudioSource sound;
     void Start()
     {
@@ -51,9 +57,9 @@ public class PlayerHPManager : MonoBehaviour
         }
     }
 
-    void LevelUp()
+    public void LevelUp()
     {
-        if (HPLevel == 0)
+        if (HPLevel == 0)//HPLVL--------------------------------------------------------------------------
         {
             HPMax=50;
         }
@@ -62,18 +68,23 @@ public class PlayerHPManager : MonoBehaviour
             HPMax = 50 + (HPLevel * 10);  // Add 10 HP for each level up
             HP=HPMax;
         }
-        if (HPLevel == 0)
+
+        HP=HPMax;
+        HPtext.text = "" + HP + "/" + HPMax;
+
+        if (manaLevel == 0)//MANALVL--------------------------------------------------------------------------
         {
             manaMax=100;
         }
         else if (manaLevel > 0 && manaLevel <= 5)
         {
-            manaMax = 100 + (manaLevel * 10);  // Add 10 HP for each level up
-            gameObject.GetComponent<InputScript>().maxMana=manaMax;
-            gameObject.GetComponent<InputScript>().mana=manaMax;
+            manaMax = 100 + (manaLevel * 10);
         }
 
-        if (atkLevel == 0)
+        mana = manaMax;
+        manaText.text = "" + mana + "/" + manaMax;
+
+        if (atkLevel == 0)//ATKLVL--------------------------------------------------------------------------
         {
             damageMultiplier = 1;
         }
@@ -82,7 +93,7 @@ public class PlayerHPManager : MonoBehaviour
              damageMultiplier = 1 + (atkLevel * 0.2f);  // 2x at max damage
         }
 
-        if (defLevel == 0)
+        if (defLevel == 0)//DEFLVL--------------------------------------------------------------------------
         {
             defValue = 1;
         }
@@ -102,25 +113,47 @@ public class PlayerHPManager : MonoBehaviour
     {
         if (invincible==true)
         {
-
         }
         else
         {
-        float effectiveDamage = damage / defValue;
-        effectiveDamage = Mathf.Max(0, effectiveDamage);
-        HP -= effectiveDamage;
+        if (damage>0)
+        {
+            float effectiveDamage = damage / defValue;
+            effectiveDamage = Mathf.Max(0, effectiveDamage);
+            HP -= effectiveDamage;
+        }
+        else
+        {
+            HP -=damage;
+            sound.Play();
+        }
+        HPtext.text = "" + HP + "/" + HPMax;
         if (effectiveDamage > 0)
         {
-            sound.Play();
         }
             StartCoroutine(iFrameTick());
         }
         HPBar.value=HP;
+        Debug.Log(HP);
         if (HP<=0)
         {
             MakeDead();
             logicManager.gameObject.GetComponent<GameHandler>().GameOver();
         }
+    }
+    public void UseMana(float consumption)
+    {
+        mana-=consumption;
+        if(mana>manaMax)
+        {
+            mana=manaMax;
+        }
+        if(mana<0)
+        {
+            mana=0;
+        }
+        manaBar.value=mana;
+        manaText.text = mana.ToString("0") + "/" + manaMax.ToString("0");
     }
     public void MakeDead()
     {
@@ -140,6 +173,8 @@ public class PlayerHPManager : MonoBehaviour
         comboTimer=120;
         comboCount++;
         comboText.text = comboCount + "X";
+        mana+=3;
+        manaBar.value = mana;
     }
 
 }

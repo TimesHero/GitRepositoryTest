@@ -9,8 +9,6 @@ public class ZoneController : MonoBehaviour
     bool enemyColliding = false; 
     float currentTime = 0f;  
     float tickInterval = 1f; 
-    public GameObject spawnPortal;
-    public Transform[] portalSpawnPoints;
     public TextMeshProUGUI percentageText;
     public GameObject logicManager;
     public GameObject uiColour; 
@@ -33,15 +31,15 @@ void Update()
         {
             if (enemyColliding)
             {
-                gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255);
-                uiColour.gameObject.GetComponent<Image>().color = new Color(0, 0, 255);
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1);
+                uiColour.gameObject.GetComponent<Image>().color = new Color(0, 0, 1);
             }
             else
             {
                 capturePercentage += 1;
                 capturePercentage = Mathf.Clamp(capturePercentage, 0, 100); // Ensure it stays within 0-100
-                gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
-                uiColour.gameObject.GetComponent<Image>().color = new Color(0, 255, 0);
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 1, 0);
+                uiColour.gameObject.GetComponent<Image>().color = new Color(0, 1, 0);
                 
             }
 
@@ -57,13 +55,13 @@ void Update()
         {
             capturePercentage -= 1;
             capturePercentage = Mathf.Clamp(capturePercentage, -20, 100); 
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
-            uiColour.gameObject.GetComponent<Image>().color = new Color(255, 0 , 0);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0);
+            uiColour.gameObject.GetComponent<Image>().color = new Color(1, 0 , 0);
         }
         if (enemyColliding ==false && playerColliding==false)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-            uiColour.gameObject.GetComponent<Image>().color = new Color(120, 120, 120);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1);
+            uiColour.gameObject.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f);
         }
         percentageText.text = capturePercentage + "%";
 

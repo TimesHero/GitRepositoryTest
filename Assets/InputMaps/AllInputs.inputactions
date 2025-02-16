@@ -585,15 +585,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightBumper",
-                    "type": "Button",
-                    "id": "d9ca2ca7-e0a9-4df3-9eb8-27c6f891e8e0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "MeleeWeapon",
                     "type": "Button",
                     "id": "f259ee7d-0979-42a9-ab46-a69d8e2ff3de",
@@ -606,6 +597,15 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "c1f3c606-fa9a-4aa5-a4cf-a4d857d28139",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Debug",
+                    "type": "Button",
+                    "id": "1b4919f2-b14b-4eab-af09-85d0a18fb696",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -913,7 +913,7 @@
                 {
                     "name": "",
                     "id": "27c69c52-9fe9-42c8-b5e6-bb5858ed906f",
-                    "path": "<Gamepad>/leftStickPress",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -934,19 +934,8 @@
                 },
                 {
                     "name": "",
-                    "id": "f159c239-c80b-4090-8f6b-89d7fb2f6e82",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RightBumper",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "52e6ab1b-a292-4226-8cff-c8369f46517f",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -962,6 +951,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "966fc62e-2b46-45c0-9b6a-9e5767998d96",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Debug",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

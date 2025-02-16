@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3236637839185238635}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.46, y: 6.38903, z: -0.022200108}
+  m_LocalPosition: {x: -10.46, y: 6.38903, z: 0}
   m_LocalScale: {x: 7.285097, y: 7.285097, z: 7.285097}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b05fdf53b733b4cbd5479187bf93f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  capturePercentage: 90
+  playerColliding: 0
   spawnPortal: {fileID: 4054645455270616602, guid: cec10f051373f40468f30cfd94bb786a, type: 3}
   portalSpawnPoints:
   - {fileID: 0}
@@ -154,5 +156,6 @@ MonoBehaviour:
   - {fileID: 0}
   percentageText: {fileID: 0}
   logicManager: {fileID: 0}
+  uiColour: {fileID: 0}
   zoneLossGameOverCount: -20
   Captured: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using Pathfinding;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,9 +9,7 @@ public class Enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float HP;
     GameObject player;
-    GameObject movementTarget;
     public GameObject enemyBullet;
-    private float movementSpeed;
     Rigidbody2D myRB;
     public GameObject[] pickups;
     private string target;
@@ -27,6 +26,10 @@ public class Enemy : MonoBehaviour
     private Vector3 originalScale;
     float explodeCooldown = 0;
     private float Steptimer = 0f;
+    private float distanceToPlayer;
+    private Transform targetTransform;
+    public GameObject explosionParticles; 
+    public GameObject deathParticles; 
     AudioSource sound;
     //TESTING
     public EnemyBase testMask; 
@@ -41,9 +44,17 @@ public class Enemy : MonoBehaviour
     }
      public void PeramPass(EnemyBase enemytype)
     {
-        movementTarget =  GameObject.FindGameObjectWithTag(enemytype.target);
+        targetTransform = GameObject.FindGameObjectWithTag(enemytype.target).transform;
+        gameObject.GetComponent<AIDestinationSetter>().target = targetTransform;
+
+        gameObject.GetComponent<AIPath>().slowdownDistance = enemytype.attackRange + 0.6f;
+        gameObject.GetComponent<AIPath>().endReachedDistance = enemytype.attackRange-3;
+        
+        gameObject.GetComponent<AIPath>().maxSpeed = enemytype.moveSpeed;
+        gameObject.GetComponent<AIPath>().canMove =!enemytype.stationary;
+
         HP = enemytype.HP;
-        movementSpeed = enemytype.moveSpeed;
+
         gameObject.GetComponent<SpriteRenderer>().sprite = enemytype.enemySprite;
         interval = enemytype.attackInterval;
         stationary=enemytype.stationary;
@@ -55,16 +66,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //movement
-        if (stationary==false)
-        {
-        float step = movementSpeed * Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, movementTarget.transform.position, step);
-        }
         Vector2 direction = player.transform.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         lookTransform.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
         //Stationary Enemy Movement
         if (stationary==true && currentEnemy.eightWayAttack==true && distanceToPlayer >= 10)
@@ -78,6 +83,8 @@ public class Enemy : MonoBehaviour
                 Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
                 //last number is distance from the player
                 transform.position = (Vector2)player.transform.position - directionToPlayer * 6f;
+                Vector3 currentPosition = transform.position;
+                transform.position = new Vector3(currentPosition.x, currentPosition.y);
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
                 Steptimer = 0f;
             }
@@ -88,28 +95,9 @@ public class Enemy : MonoBehaviour
             Shoot();
         }
         //exploding attack
-        if (currentEnemy.explodingAttack==true &&distanceToPlayer <= currentEnemy.attackRange)
+        if (currentEnemy.explodingAttack==true)
         {
-            stationary=true;
-            transform.localScale = new Vector3(transform.localScale.x + 0.001f,transform.localScale.y + 0.001f,transform.localScale.z);
-            explodeCooldown ++;
-            if (explodeCooldown==240)
-            {
-                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(12);
-                Destroy(gameObject);
-            }
-        }
-        else
-        {
-            if (transform.localScale.x > originalScale.x)
-            {
-                transform.localScale = new Vector3(transform.localScale.x - 0.001f,transform.localScale.y -  0.001f,transform.localScale.z);
-                explodeCooldown --;
-                if (transform.localScale.x == originalScale.x)
-                    {
-                    stationary=false;
-                    }
-            }
+            Explode();
         }
         
         //Knockback
@@ -124,6 +112,35 @@ public class Enemy : MonoBehaviour
             myRB.linearVelocity = Vector2.zero;  
         }
     }
+    public void Explode()
+    {
+        if (distanceToPlayer <= currentEnemy.attackRange)
+        {
+            stationary=true;
+            gameObject.GetComponent<AIPath>().canMove = !stationary;
+            transform.localScale = new Vector3(transform.localScale.x + 0.001f,transform.localScale.y + 0.001f,transform.localScale.z);
+            explodeCooldown ++;
+            if (explodeCooldown==240)
+            {
+                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(12);
+                Instantiate(explosionParticles, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            if (transform.localScale.x > originalScale.x)
+            {
+                transform.localScale = new Vector3(transform.localScale.x - 0.001f,transform.localScale.y -  0.001f,transform.localScale.z);
+                explodeCooldown --;
+                if (transform.localScale.x == originalScale.x)
+                    {
+                    stationary=false;
+                    gameObject.GetComponent<AIPath>().canMove = !stationary;
+                    }
+            }
+        }
+    }
     public void Shoot()
     {
     // Loop to shoot in 8 directions (Up, Down, Left, Right, and 4 diagonals)
@@ -133,17 +150,21 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             float angle = i * spreadAngle;
-            GameObject bullet = Instantiate(enemyBullet, transform.position, transform.rotation);
+            GameObject bullet = Instantiate(enemyBullet, lookTransform.position, lookTransform.rotation * Quaternion.Euler(0, 0, -90));
             Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
             Vector2 direction = Quaternion.Euler(0, 0, angle) * transform.transform.up;
 
             rigidbodyB.linearVelocity = currentEnemy.bulletType.velocity * direction.normalized;
+
+             float bulletAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle - 90)); 
+
             bullet.gameObject.GetComponent<BulletBase>().PeramPass(currentEnemy.bulletType);
         }
     }
     else
         {
-            GameObject bullet = Instantiate(enemyBullet,  transform.position, transform.rotation);
+            GameObject bullet = Instantiate(enemyBullet, lookTransform.position, lookTransform.rotation * Quaternion.Euler(0, 0, -90));
             Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
             rigidbodyB.linearVelocity=currentEnemy.bulletType.velocity*lookTransform.transform.right;
             bullet.gameObject.GetComponent<BulletBase>().PeramPass(currentEnemy.bulletType);
@@ -155,7 +176,6 @@ public class Enemy : MonoBehaviour
     {
         HP-= damage;
         StartCoroutine(DmgFlash());
-        sound.Play();
         if (HP<=0)
         {
             player.gameObject.GetComponent<PlayerHPManager>().ComboTrigger();
@@ -165,6 +185,7 @@ public class Enemy : MonoBehaviour
                 int pickupType = Random.Range(0,4);
                 Instantiate(pickups[pickupType],transform.position, Quaternion.identity);
             }
+            Instantiate(deathParticles, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
@@ -178,11 +199,22 @@ public class Enemy : MonoBehaviour
     
     public void ApplyKnockback(Vector2 direction, float knockbackForce)
     {
-        knockback = true;  
+        knockback = true; 
         knockbackDirection = direction.normalized;  
         knockbackAmount = knockbackForce;
         knockbackTime = Time.time + knockbackDuration;
+        StartCoroutine(ColliderDisable());
+
     }
+    private IEnumerator ColliderDisable()
+    {
+        gameObject.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
+        yield return new WaitForSeconds(0.5f); // Time invincible
+        gameObject.GetComponent<Collider2D>().enabled = true;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")

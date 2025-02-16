@@ -32,21 +32,22 @@ public class InputScript : MonoBehaviour
     bool reloading;
     float currentInterval;
     float interval;
-    public float dashSpeed = 60;
+    public float dashSpeed = 1;
     private float dashTime = 0f;   
     public float dashDuration = 0.2f;
     float dashInterval = 0.8f;
     float currentDashInterval; 
-    public float mana = 100;
-    public float maxMana = 100;
     float reloadTimer;
     public Slider MPBar;
     int bulletType = 0;
     public Projectile regularProjectile;
     public Projectile tripleProjectile;
     public Projectile pierceProjectile;
+    bool ableToDash = true;
     Projectile currentProjectile;
     public AudioSource failedCast;
+    public GameObject lvlUpScreen;
+    public GameObject lvlUpScript;
 
     void Start()
     {
@@ -58,16 +59,6 @@ public class InputScript : MonoBehaviour
         ChangeBulletType();
     }
 
-    void Update()
-    {
-        if (dashing && Time.time > dashTime)
-        {
-            dashing = false;
-            gameObject.GetComponent<PlayerHPManager>().invincible = false;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f); 
-        }
-    }
-
     private void FixedUpdate()
     {
         if (moving)
@@ -76,11 +67,11 @@ public class InputScript : MonoBehaviour
         }
         if (isFiring == true && Time.time > currentInterval) // Player Shooting
         {
-            reloadTimer = 0;
             
-            if (mana > 0) // Check if the player has mana
+            if (gameObject.GetComponent<PlayerHPManager>().mana > 0) // Check if the player has mana
             {
                 shoot();
+                reloadTimer = 0;
             }
             else
             {
@@ -88,36 +79,47 @@ public class InputScript : MonoBehaviour
                 
             }
         }
-        if (isFiring==false)
+
         {
             reloadTimer+=1;
-            if (reloadTimer>=120 && mana<maxMana)
+            if (reloadTimer>=80 && gameObject.GetComponent<PlayerHPManager>().mana < gameObject.GetComponent<PlayerHPManager>().manaMax)
             {
-                mana+=0.3f;
-                MPBar.value=mana;
+                gameObject.GetComponent<PlayerHPManager>().UseMana(-0.3f);
             }
         }
 
-        if (dashing==true)
-        {
-            myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
-            gameObject.GetComponent<PlayerHPManager>().invincible = true;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
-            currentDashInterval = Time.time + dashInterval;
-            StartCoroutine(EnablePlayerCollider());
-        }
+    }
 
+     private IEnumerator Dash()
+    {
+        dashing = true;
+
+        myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
+        gameObject.GetComponent<PlayerHPManager>().invincible = true;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
+
+        StartCoroutine(EnablePlayerCollider());
+        yield return new WaitForSeconds(dashDuration);
+        gameObject.GetComponent<PlayerHPManager>().invincible = false;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+
+        StopCoroutine(EnablePlayerCollider()); 
+
+        dashing = false;
     }
     private IEnumerator EnablePlayerCollider()
     {
         gameObject.GetComponent<Collider2D>().enabled = false;
+        ableToDash=false;
         yield return new WaitForSeconds(0.5f); // Time invincible
         gameObject.GetComponent<Collider2D>().enabled = true;
+        ableToDash=true;
+        dashing = false;
     }
     public void shoot()
     {
-        mana-=currentProjectile.manaCost;
-        MPBar.value=mana;
+        gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost);
+
         if (currentProjectile.triple == true) {
             float spreadAngle = 25f; 
             for (int i = -1; i <= 1; i++) 
@@ -183,10 +185,8 @@ public class InputScript : MonoBehaviour
     private IEnumerator runTimer()
     {
         baseSpeed=150;
-        dashSpeed=7;
         yield return new WaitForSeconds(8f);
-        baseSpeed=50;
-        dashSpeed=5;
+        baseSpeed=100;
     }
 
     //PLAYER CONTROLS--------------------------------------------------------------------------------------
@@ -234,24 +234,11 @@ public class InputScript : MonoBehaviour
         rotaryMenu.gameObject.GetComponent<RotaryMenu>().bulletType=bulletType;
 
     }
-    public void OnRightBumper(InputValue inputValue)
-    {
-        bulletType+=1;
-        if (bulletType==3)
-        {
-            bulletType=0;
-        }
-        ChangeBulletType();
-        rotaryMenu.gameObject.GetComponent<RotaryMenu>().left=false;
-        rotaryMenu.gameObject.GetComponent<RotaryMenu>().right=true;
-        rotaryMenu.gameObject.GetComponent<RotaryMenu>().bulletType=bulletType;
-    }
     public void OnDash(InputValue inputValue)
     {
-         if (inputValue.isPressed && !dashing) 
+         if (inputValue.isPressed && !dashing &&ableToDash==true) 
         {
-            dashing = true;
-            dashTime = Time.time + dashDuration; // Set when to stop dashing
+            StartCoroutine(Dash());
         }
     }
 
@@ -266,5 +253,21 @@ public class InputScript : MonoBehaviour
             logicManager.gameObject.GetComponent<GameHandler>().PauseGame();
         }
         
+    }
+    public void OnDebug(InputValue inputValue)
+    {
+        bool isActive = !lvlUpScreen.activeSelf;
+        lvlUpScreen.SetActive(isActive);
+        Debug.Log(isActive);
+
+        if (!isActive)
+        {
+            Time.timeScale = 1; 
+        }
+        else
+        {
+            Time.timeScale = 0; 
+        }
+        lvlUpScript.GetComponent<LevelUpButtons>().SetInput();
     }
 }

@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
     public bool temporary;
     private int spawnCount;
     public int spawnLimit;
+    public AudioSource spawnSound;
 
     void Start()
     {
@@ -31,7 +32,6 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, 100 * Time.deltaTime);
         if (dead==true)
         {
             transform.localScale = new Vector3(transform.localScale.x - 0.01f,transform.localScale.y - 0.01f,transform.localScale.z);
@@ -41,12 +41,16 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnTimerNormal()
     {
         yield return new WaitForSeconds(4f);
+        spawnSound.Play();
+        yield return new WaitForSeconds(1f);
         SpawnFunction();
         StartCoroutine(SpawnTimerNormal());
     }
 
      private IEnumerator SpawnTimerClumps()
     {
+        yield return new WaitForSeconds(1f);
+        spawnSound.Play();
         yield return new WaitForSeconds(1f);
         SpawnFunction();
         spawnCount++;
@@ -62,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
         int enemySpawnType = Random.Range(0,enemyTypes.Length);//grabs a random object from the array
         GameObject enemy = Instantiate(enemyBase, transform.position, Quaternion.identity);
         enemy.transform.localScale = enemyBase.transform.localScale;
-        enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.transform.position.z - 1f);
+        enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.transform.position.z);
         enemy.gameObject.GetComponent<Enemy>().PeramPass(enemyTypes[enemySpawnType]);
     }
 

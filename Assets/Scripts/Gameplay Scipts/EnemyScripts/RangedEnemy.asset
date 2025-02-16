@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 10
   moveSpeed: 2
-  target: Zone
+  target: Player
   meleeAttack: 0
   rangedAttack: 1
   explodingAttack: 0

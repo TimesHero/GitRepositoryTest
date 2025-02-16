@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 0}
   damage: 5
-  velocity: 40
+  velocity: 30
   manaCost: 10
   timeBetweenShots: 1
   atkSpeedUpTimeBetweenShots: 0.5
@@ -23,5 +23,8 @@ MonoBehaviour:
   enemyProjectile: 0
   pierce: 1
   triple: 0
-  bulletSprite: {fileID: -894095381526335850, guid: 141ae61dc37dc3f4087c1fd8a57025ed, type: 3}
+  bulletSprite: {fileID: 1368065605741851854, guid: bd35909aa7de99d4a9005a9d826b8cc3, type: 3}
+  particleEffect: {fileID: 2421919668298140488, guid: a2bf53c6976bcaf459b23ced74ccd7c3, type: 3}
+  collideEffect: {fileID: 460300925032659985, guid: ce58eb7da8b219f47a53f76bdd787915, type: 3}
   shootSound: {fileID: 8300000, guid: 03af812ad3ff9de49a0b90bce960afab, type: 3}
+  collideSound: {fileID: 8300000, guid: 7d5056b022acea945b3b59636565e152, type: 3}

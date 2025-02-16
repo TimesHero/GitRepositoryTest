@@ -16,6 +16,9 @@ public class Projectile : ScriptableObject
     public bool pierce;
     public bool triple;
     public Sprite bulletSprite; 
+    public GameObject particleEffect;
+    public GameObject collideEffect;
     public AudioClip shootSound;
+    public AudioClip collideSound;
     
 }

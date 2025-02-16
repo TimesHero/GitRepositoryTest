@@ -23,5 +23,8 @@ MonoBehaviour:
   enemyProjectile: 0
   pierce: 0
   triple: 0
-  bulletSprite: {fileID: 1098286324429101383, guid: d3013361f3d8f644f8229ed4c881bf8f, type: 3}
+  bulletSprite: {fileID: 5138658485865420424, guid: c15c5693402a54c43b1668503dc5286f, type: 3}
+  particleEffect: {fileID: 3365040856511148079, guid: 4b236b3acd6237a459ae4443e3d2d5c3, type: 3}
+  collideEffect: {fileID: 3951221505095334044, guid: a9273f601d83fe64aa63638fe9932741, type: 3}
   shootSound: {fileID: 8300000, guid: a559b6b0be106d242be7672ae9823b3c, type: 3}
+  collideSound: {fileID: 8300000, guid: 5c4ae0f7e26fb00408e380359fcf6e35, type: 3}
