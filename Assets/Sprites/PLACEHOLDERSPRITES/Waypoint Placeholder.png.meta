@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Waypoint Placeholder_0: -30250390236199644
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

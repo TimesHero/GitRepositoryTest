@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ranged_stalker_0: -509484030962229846
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      grass-player-beta_0: 4389440502564682124
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

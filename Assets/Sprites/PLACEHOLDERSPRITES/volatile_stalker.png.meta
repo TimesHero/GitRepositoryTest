@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      volatile_stalker_0: 6822781727630274498
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

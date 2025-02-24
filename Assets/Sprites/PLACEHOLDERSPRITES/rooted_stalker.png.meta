@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rooted_stalker_0: 4160125629343730266
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
