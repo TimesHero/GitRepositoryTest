@@ -123,6 +123,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8229479911054743392}
+  - {fileID: 3832070142329501343}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &121628882417650235
@@ -224,22 +225,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 50
   normalBullet: {fileID: 9016828709344966979, guid: 8288bd3b831e3fd4794c27f17a31b09a, type: 3}
-  tripleBullet: {fileID: 9016828709344966979, guid: 56a1e7fc8f1915840b8101c1b8df374e, type: 3}
-  pierceBullet: {fileID: 9016828709344966979, guid: fd20ab23c84cb884fbb828abfa6655b4, type: 3}
   meleeWeapon: {fileID: 6330678340575669996}
   logicManager: {fileID: 0}
+  rotaryMenu: {fileID: 0}
+  reticle: {fileID: 0}
   lookTransform: {fileID: 8950698660457806435}
   aimReticle: {fileID: 3053461944102891261}
-  aimReticleL: {fileID: 3787998188338925795}
-  aimReticleR: {fileID: 4941623809043853001}
-  runSpeedPickup: 0
-  atkSpeedPickup: 0
+  dashSpeed: 1
   dashDuration: 0.2
-  mana: 100
-  reloadTimer: 0
   MPBar: {fileID: 0}
-  pausePanel: {fileID: 0}
-  bulletType: 0
+  regularProjectile: {fileID: 0}
+  tripleProjectile: {fileID: 0}
+  pierceProjectile: {fileID: 0}
+  failedCast: {fileID: 0}
+  lvlUpScreen: {fileID: 0}
+  lvlUpScript: {fileID: 0}
 --- !u!114 &2372420043655128444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,9 +253,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 5
+  HPMax: 50
+  mana: 0
+  manaMax: 100
+  damageMultiplier: 0
+  defValue: 0
   logicManager: {fileID: 0}
   HPBar: {fileID: 0}
+  manaBar: {fileID: 0}
+  comboBar: {fileID: 0}
   invincible: 0
+  comboTimer: 0
+  comboCount: 0
+  combo: 0
+  comboText: {fileID: 0}
+  HPLevel: 0
+  defLevel: 0
+  atkLevel: 0
+  manaLevel: 0
+  HPtext: {fileID: 0}
+  manaText: {fileID: 0}
+  dmgSound: {fileID: 0}
 --- !u!50 &9127451425977289907
 Rigidbody2D:
   serializedVersion: 5
@@ -348,7 +366,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3832070142329501343}
   - {fileID: 3053461944102891261}
   - {fileID: 3787998188338925795}
   - {fileID: 4941623809043853001}
@@ -470,11 +487,11 @@ Transform:
   m_GameObject: {fileID: 6330678340575669996}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.5, w: 0.8660254}
-  m_LocalPosition: {x: -0.0015800236, y: 0.020280043, z: -1.41541}
-  m_LocalScale: {x: 0.045687348, y: 0.019024301, z: 0.4492465}
+  m_LocalPosition: {x: -0.0015800236, y: 0.02028324, z: -1.41541}
+  m_LocalScale: {x: 0.045687344, y: 0.019024301, z: 0.4492465}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8229479911054743392}
+  m_Father: {fileID: 8950698660457806435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
 --- !u!212 &3382090350604771464
 SpriteRenderer:
@@ -616,8 +633,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33f83d8c409c9243a563b8ce2533957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationTotal: 120
+  rotationSpeed: 360
   attacking: 0
+  swingSound: {fileID: 0}
 --- !u!1 &8272780789125630466
 GameObject:
   m_ObjectHideFlags: 0

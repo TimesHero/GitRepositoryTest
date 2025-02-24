@@ -70,7 +70,7 @@ public class LevelController : MonoBehaviour
             zones[0].SetActive(false);
             foreach (var portal in zone1Portals)
             {
-                portal.SetActive(false);
+                Destroy(portal);
             }
             capturedZones++;
             zones[capturedZones].SetActive(true);

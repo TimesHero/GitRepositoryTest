@@ -47,10 +47,11 @@ public class BulletBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Obstacles") && !other.CompareTag("Void"))
         {
             Instantiate(bullet.collideEffect, transform.position, transform.rotation);
             Destroy(gameObject);
+            AudioManager.Instance.PlaySound(bullet.collideSound); 
         }
         
         if (enemyProjectile==true)

@@ -33,7 +33,7 @@ public class PickupManager : MonoBehaviour
                 }
                 if (powerType=="mana")
                 {
-                    other.gameObject.GetComponent<PlayerHPManager>().UseMana(20);
+                    other.gameObject.GetComponent<PlayerHPManager>().UseMana(-20);
                 }
                 Destroy(gameObject);//destroys the power up
             }        

@@ -29,8 +29,17 @@ public class Enemy : MonoBehaviour
     private float distanceToPlayer;
     private Transform targetTransform;
     public GameObject explosionParticles; 
-    public GameObject deathParticles; 
-    AudioSource sound;
+    public GameObject deathParticles;
+    public AudioClip explosionSound; 
+    public AudioClip knockBackSound; 
+    public AudioClip[] hurtSound; 
+    public AudioClip dieSound; 
+
+    public AudioSource fuseSound;
+    public AudioClip startFuse;
+    public AudioClip stopFuse;
+    private bool startSound = false;
+    private bool startSound2 = false;
     //TESTING
     public EnemyBase testMask; 
     void Start()
@@ -38,9 +47,8 @@ public class Enemy : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         currentInterval = Time.time;
-        sound = gameObject.GetComponent<AudioSource>();
         //TESTING PURPOSE
-        PeramPass(testMask);
+        //PeramPass(testMask);
     }
      public void PeramPass(EnemyBase enemytype)
     {
@@ -116,6 +124,13 @@ public class Enemy : MonoBehaviour
     {
         if (distanceToPlayer <= currentEnemy.attackRange)
         {
+            startSound2=false;
+            if (startSound==false)
+            {
+            fuseSound.clip = startFuse;
+            fuseSound.Play();
+            }
+            startSound=true;
             stationary=true;
             gameObject.GetComponent<AIPath>().canMove = !stationary;
             transform.localScale = new Vector3(transform.localScale.x + 0.001f,transform.localScale.y + 0.001f,transform.localScale.z);
@@ -124,6 +139,7 @@ public class Enemy : MonoBehaviour
             {
                 player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(12);
                 Instantiate(explosionParticles, transform.position, transform.rotation);
+                AudioManager.Instance.PlaySound(explosionSound);
                 Destroy(gameObject);
             }
         }
@@ -131,6 +147,13 @@ public class Enemy : MonoBehaviour
         {
             if (transform.localScale.x > originalScale.x)
             {
+                startSound=false;
+                if (startSound2==false)
+                {
+                fuseSound.clip = stopFuse;
+                fuseSound.Play();
+                }
+                startSound2=true;
                 transform.localScale = new Vector3(transform.localScale.x - 0.001f,transform.localScale.y -  0.001f,transform.localScale.z);
                 explodeCooldown --;
                 if (transform.localScale.x == originalScale.x)
@@ -175,6 +198,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         HP-= damage;
+        int hurtSoundType = Random.Range(0, hurtSound.Length);
+        AudioManager.Instance.PlaySound(hurtSound[hurtSoundType]);
         StartCoroutine(DmgFlash());
         if (HP<=0)
         {
@@ -186,6 +211,7 @@ public class Enemy : MonoBehaviour
                 Instantiate(pickups[pickupType],transform.position, Quaternion.identity);
             }
             Instantiate(deathParticles, transform.position, transform.rotation);
+            AudioManager.Instance.PlaySound(dieSound);
             Destroy(gameObject);
         }
     }
@@ -196,9 +222,9 @@ public class Enemy : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
     }
     
-    
     public void ApplyKnockback(Vector2 direction, float knockbackForce)
     {
+        AudioManager.Instance.PlaySound(knockBackSound);
         knockback = true; 
         knockbackDirection = direction.normalized;  
         knockbackAmount = knockbackForce;

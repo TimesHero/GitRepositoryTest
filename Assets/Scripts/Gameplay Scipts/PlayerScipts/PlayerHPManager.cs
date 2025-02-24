@@ -31,13 +31,11 @@ public class PlayerHPManager : MonoBehaviour
 
     public TextMeshProUGUI HPtext;
     public TextMeshProUGUI manaText;
-
-    AudioSource sound;
+    public AudioClip dmgSound; 
     void Start()
     {
         HPBar.value = HP;
         HPBar.maxValue = HP;
-        sound = gameObject.GetComponent<AudioSource>();
         LevelUp();
     }
 
@@ -121,11 +119,11 @@ public class PlayerHPManager : MonoBehaviour
             float effectiveDamage = damage / defValue;
             effectiveDamage = Mathf.Max(0, effectiveDamage);
             HP -= effectiveDamage;
+            AudioManager.Instance.PlaySound(dmgSound);
         }
         else
         {
-            HP -=damage;
-            sound.Play();
+            HP -= damage;
         }
         HPtext.text = "" + HP + "/" + HPMax;
         if (effectiveDamage > 0)

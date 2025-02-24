@@ -11,7 +11,6 @@ public class Teleporter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, 100 * Time.deltaTime);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
