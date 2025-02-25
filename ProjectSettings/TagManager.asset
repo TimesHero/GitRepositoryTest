@@ -8,6 +8,7 @@ TagManager:
   - Zone
   - Portal
   - Void
+  - Test
   layers:
   - Default
   - TransparentFX
