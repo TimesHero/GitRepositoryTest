@@ -75,7 +75,7 @@ public class BulletBase : MonoBehaviour
                     {
                         Destroy(gameObject);
                     }
-                    other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                    other.gameObject.GetComponent<EnemyHPManager>().TakeDamage(damage);
             }
             if (other.tag == "Portal")
             {
