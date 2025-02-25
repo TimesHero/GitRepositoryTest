@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Thorn proj_0: -1379336621745123672
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

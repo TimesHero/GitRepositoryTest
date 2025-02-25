@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      grass-enemy-beta_0: -6353619890097014059
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

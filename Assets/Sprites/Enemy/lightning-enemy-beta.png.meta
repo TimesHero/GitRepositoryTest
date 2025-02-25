@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lightning-enemy-beta_0: -2463798891126475965
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
