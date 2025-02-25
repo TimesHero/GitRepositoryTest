@@ -33,6 +33,7 @@ public class RangedEnemy : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        gameObject.GetComponent<AIDestinationSetter>().target = player.transform;
         zone = GameObject.FindGameObjectWithTag("Zone");
         myAnim = GetComponent<Animator>();
         myRenderer = GetComponent<SpriteRenderer>();
