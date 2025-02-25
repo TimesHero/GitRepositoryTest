@@ -132,7 +132,6 @@ public class PlayerHPManager : MonoBehaviour
             StartCoroutine(iFrameTick());
         }
         HPBar.value=HP;
-        Debug.Log(HP);
         if (HP<=0)
         {
             MakeDead();
