@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      whisper-weapon_0: 2651600450327382373
+      whisper-weapon_1: -3689926712164146807
+      whisper-weapon_2: -8268891388826846409
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
