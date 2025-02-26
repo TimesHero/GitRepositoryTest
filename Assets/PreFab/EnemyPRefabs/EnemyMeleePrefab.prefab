@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 4433656929221914189}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.8, y: 53.4, z: 0}
+  m_LocalPosition: {x: 4.54, y: -133.76, z: 0}
   m_LocalScale: {x: 0.61390173, y: 0.61390173, z: 0.61390173}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -272,7 +272,7 @@ MonoBehaviour:
   radius: 2
   height: 3.83
   canMove: 1
-  maxSpeed: 6
+  maxSpeed: 5
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2

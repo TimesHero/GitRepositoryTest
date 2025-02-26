@@ -8,7 +8,8 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public  GameObject[] enemies;
+    public GameObject enemyBase;
+    public EnemyBase[] enemyTypes;
     public float HP;
     bool dead = false;
     public bool temporary;
@@ -39,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnTimerNormal()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         spawnSound.Play();
         yield return new WaitForSeconds(1f);
         SpawnFunction();
@@ -48,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
 
      private IEnumerator SpawnTimerClumps()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         spawnSound.Play();
         yield return new WaitForSeconds(1f);
         SpawnFunction();
@@ -62,10 +63,11 @@ public class EnemySpawner : MonoBehaviour
     }
     public void SpawnFunction()
     {
-        int enemySpawnType = Random.Range(0,enemies.Length);//grabs a random object from the array
-        GameObject enemy = Instantiate(enemies[enemySpawnType], transform.position, Quaternion.identity);
-        enemy.transform.localScale = enemies[enemySpawnType].transform.localScale;
+        int enemySpawnType = Random.Range(0,enemyTypes.Length);//grabs a random object from the array
+        GameObject enemy = Instantiate(enemyBase, transform.position, Quaternion.identity);
+        enemy.transform.localScale = enemyBase.transform.localScale;
         enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.transform.position.z);
+        enemy.gameObject.GetComponent<Enemy>().PeramPass(enemyTypes[enemySpawnType]);
     }
 
      public void TakeDamage(float damage)

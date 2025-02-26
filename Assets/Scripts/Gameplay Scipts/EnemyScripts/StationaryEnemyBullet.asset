@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:db0f417a6c36da87eb63d8fe13f380d9ed80f85f29a541ba015b91659fe0340b
-size 1105
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
+  m_Name: StationaryEnemyBullet
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  damage: 5
+  velocity: 12
+  manaCost: 0
+  timeBetweenShots: 0
+  atkSpeedUpTimeBetweenShots: 0
+  timeUntilDeath: 1.2
+  VFx: {fileID: 0}
+  enemyProjectile: 1
+  pierce: 0
+  triple: 0
+  bulletSprite: {fileID: -5984585191463628165, guid: 0ae4f3fad77b7ee43b3b746454fc4223, type: 3}
+  particleEffect: {fileID: 8890977160480423543, guid: 5c5141f54a36510499ce7a90911376b4, type: 3}
+  collideEffect: {fileID: 685122633663980915, guid: ebd60dc9e8b6f844b9b70bf062062a32, type: 3}
+  shootSound: {fileID: 8300000, guid: 10f600e5536e0074ebcdd36bed6f9dcf, type: 3}
+  collideSound: {fileID: 8300000, guid: 0a7f3bf3ecea3cc42a9798d58940b92d, type: 3}

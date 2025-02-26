@@ -48,7 +48,6 @@ public class InputScript : MonoBehaviour
     public AudioSource failedCast;
     public GameObject lvlUpScreen;
     public GameObject lvlUpScript;
-    public List<GameObject> interactables;
 
     void Start()
     {
@@ -85,7 +84,7 @@ public class InputScript : MonoBehaviour
             reloadTimer+=1;
             if (reloadTimer>=80 && gameObject.GetComponent<PlayerHPManager>().mana < gameObject.GetComponent<PlayerHPManager>().manaMax)
             {
-                gameObject.GetComponent<PlayerHPManager>().UseMana(-0.8f);
+                gameObject.GetComponent<PlayerHPManager>().UseMana(-0.3f);
             }
         }
 
@@ -270,12 +269,5 @@ public class InputScript : MonoBehaviour
             Time.timeScale = 0; 
         }
         lvlUpScript.GetComponent<LevelUpButtons>().SetInput();
-    }
-    public void OnInteract(InputValue inputValue)
-    {
-        foreach (GameObject obj in interactables)
-                {
-                    obj.SendMessage("OnUse");
-                }
     }
 }
