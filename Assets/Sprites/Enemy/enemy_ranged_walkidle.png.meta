@@ -46,7 +46,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 1
+=======
+    filterMode: 0
+>>>>>>> parent of fcd1d022 (Merge branch 'main' into Jyden-Backup)
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -60,7 +64,11 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
   spritePixelsToUnits: 100
+=======
+  spritePixelsToUnits: 5
+>>>>>>> parent of fcd1d022 (Merge branch 'main' into Jyden-Backup)
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +92,11 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
     textureCompression: 1
+=======
+    textureCompression: 0
+>>>>>>> parent of fcd1d022 (Merge branch 'main' into Jyden-Backup)
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,10 +124,17 @@ TextureImporter:
       name: enemy_ranged_walkidle_0
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 3
         y: 0
         width: 26
         height: 31
+=======
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+>>>>>>> parent of fcd1d022 (Merge branch 'main' into Jyden-Backup)
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,9 +153,15 @@ TextureImporter:
       name: enemy_ranged_walkidle_1
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 36
         y: 0
         width: 25
+=======
+        x: 32
+        y: 0
+        width: 32
+>>>>>>> parent of fcd1d022 (Merge branch 'main' into Jyden-Backup)
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -156,9 +181,15 @@ TextureImporter:
       name: enemy_ranged_walkidle_2
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 69
         y: 0
         width: 26
+=======
+        x: 64
+        y: 0
+        width: 32
+>>>>>>> parent of fcd1d022 (Merge branch 'main' into Jyden-Backup)
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -178,10 +209,17 @@ TextureImporter:
       name: enemy_ranged_walkidle_3
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 101
         y: 0
         width: 25
         height: 31
+=======
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+>>>>>>> parent of fcd1d022 (Merge branch 'main' into Jyden-Backup)
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,7 +238,11 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
+<<<<<<< HEAD
     spriteID: 
+=======
+    spriteID: 1ff14c868b0e5284893ac62814807be2
+>>>>>>> parent of fcd1d022 (Merge branch 'main' into Jyden-Backup)
     internalID: 0
     vertices: []
     indices: 
@@ -209,7 +251,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
+<<<<<<< HEAD
     nameFileIdTable: {}
+=======
+    nameFileIdTable:
+      enemy_ranged_walkidle_0: -3194421003735880861
+      enemy_ranged_walkidle_1: -4444851219362656104
+      enemy_ranged_walkidle_2: -5542769092386594306
+      enemy_ranged_walkidle_3: -1046803188162165544
+>>>>>>> parent of fcd1d022 (Merge branch 'main' into Jyden-Backup)
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
