@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 0}
   damage: 2
-  velocity: 30
+  velocity: 50
   manaCost: 5
   timeBetweenShots: 0.3
   atkSpeedUpTimeBetweenShots: 0.15

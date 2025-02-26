@@ -24,7 +24,7 @@ public class MenuHandler : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("MainLevelScene");
         AudioManager.Instance.PlaySound(sound); 
     }
     public void QuitGame()

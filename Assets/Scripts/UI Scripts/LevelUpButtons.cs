@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.Audio;
+using Fungus;
 public class LevelUpButtons : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -14,7 +15,8 @@ public class LevelUpButtons : MonoBehaviour
     public TextMeshProUGUI DEFtext;
     public AudioClip sound;
     public AudioClip backSound;
-    
+    public Flowchart fungusFlowchart;
+    public GameObject panel;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -70,6 +72,12 @@ public class LevelUpButtons : MonoBehaviour
         DEFtext.text = "LVL " + playerHPManager.defLevel + ":" + playerHPManager.defValue + "X DEF";
         if (increment==1) AudioManager.Instance.PlaySound(sound); 
         else AudioManager.Instance.PlaySound(backSound); 
+    }
+    public void Exit()
+    {
+        fungusFlowchart.ExecuteBlock("EndLevelUp");
+        panel.SetActive(false);
+
     }
 
 

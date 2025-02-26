@@ -36,7 +36,7 @@ public class GameHandler : MonoBehaviour
     }
     public void Retry()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("MainLevelScene");
         AudioManager.Instance.PlaySound(sound); 
 
     }
