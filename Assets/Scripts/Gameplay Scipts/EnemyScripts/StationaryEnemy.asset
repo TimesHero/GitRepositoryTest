@@ -1,3 +1,26 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:181a37c497a6362cb64f18bf2c1e8cd2d41f3180436aaa39d3daee540fa466e3
-size 777
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d196b0eb459cdb546a998f3f1c57282f, type: 3}
+  m_Name: StationaryEnemy
+  m_EditorClassIdentifier: 
+  HP: 15
+  moveSpeed: 4
+  target: Player
+  meleeAttack: 0
+  rangedAttack: 0
+  explodingAttack: 0
+  eightWayAttack: 1
+  stationary: 1
+  attackInterval: 4
+  attackRange: 20
+  enemySprite: {fileID: 4160125629343730266, guid: 36c5eb7811ccc954bbd4c7e661886fe4, type: 3}
+  bulletType: {fileID: 11400000, guid: b197450a0849a884c92adc76a1b74702, type: 2}

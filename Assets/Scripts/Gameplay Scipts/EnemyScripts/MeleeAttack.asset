@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:153c00bcfe59e99bfed484350a4afa054c12d91bb67e96b2f3afd71e8ed30603
-size 1094
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
+  m_Name: MeleeAttack
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  damage: 3
+  velocity: 20
+  manaCost: 0
+  timeBetweenShots: 0
+  atkSpeedUpTimeBetweenShots: 0
+  timeUntilDeath: 0.3
+  VFx: {fileID: 0}
+  enemyProjectile: 1
+  pierce: 0
+  triple: 0
+  bulletSprite: {fileID: 1203071752668406728, guid: f1eb198c4e9763d47aefb2dd054c61bd, type: 3}
+  particleEffect: {fileID: 7675344393094051541, guid: 54388f924c4e6e344b6165b751b8a141, type: 3}
+  collideEffect: {fileID: 685122633663980915, guid: ebd60dc9e8b6f844b9b70bf062062a32, type: 3}
+  shootSound: {fileID: 8300000, guid: a9a5261b7eb34e24887478ddb2a094ad, type: 3}
+  collideSound: {fileID: 8300000, guid: 0a7f3bf3ecea3cc42a9798d58940b92d, type: 3}

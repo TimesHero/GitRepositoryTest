@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4054645455270616602}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.51, y: -4.08, z: 0}
+  m_LocalPosition: {x: -11.51, y: -4.08, z: -10}
   m_LocalScale: {x: 13.5374, y: 13.5374, z: 11.328096}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,16 +126,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3845f7c96f2f045aac06792986fe96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 4433656929221914189, guid: d439f65c411e4834e9bb3c069e4ec083, type: 3}
-  - {fileID: 5888522497940912021, guid: a773d53c89524b94bb900d32b974a1e6, type: 3}
-  - {fileID: 7706470795587292771, guid: 2d7643d9bdbd47247a7ad7b248b843b7, type: 3}
-  - {fileID: 5888522497940912021, guid: a773d53c89524b94bb900d32b974a1e6, type: 3}
-  - {fileID: 4433656929221914189, guid: d439f65c411e4834e9bb3c069e4ec083, type: 3}
-  - {fileID: 4433656929221914189, guid: d439f65c411e4834e9bb3c069e4ec083, type: 3}
-  HP: 100
+  enemyBase: {fileID: 3711757422424280644, guid: 59566e8de4054b84fb68edc684c697c2, type: 3}
+  enemyTypes:
+  - {fileID: 11400000, guid: 4ea4a79ceaeecfc4086715ce90e06b2b, type: 2}
+  - {fileID: 11400000, guid: 4ea4a79ceaeecfc4086715ce90e06b2b, type: 2}
+  - {fileID: 11400000, guid: 4ea4a79ceaeecfc4086715ce90e06b2b, type: 2}
+  - {fileID: 11400000, guid: 4ea4a79ceaeecfc4086715ce90e06b2b, type: 2}
+  - {fileID: 11400000, guid: 30de4f92ab7c1a24bb0cb2da94921aef, type: 2}
+  - {fileID: 11400000, guid: 30de4f92ab7c1a24bb0cb2da94921aef, type: 2}
+  - {fileID: 11400000, guid: 30de4f92ab7c1a24bb0cb2da94921aef, type: 2}
+  - {fileID: 11400000, guid: 7a3a60604e79ac943a61f9654aeb7eed, type: 2}
+  - {fileID: 11400000, guid: 7a3a60604e79ac943a61f9654aeb7eed, type: 2}
+  - {fileID: 11400000, guid: 18ce1df31d632ae4faa8421067402f20, type: 2}
+  - {fileID: 11400000, guid: 18ce1df31d632ae4faa8421067402f20, type: 2}
+  HP: 50
   temporary: 0
-  spawnLimit: 0
+  spawnLimit: 15
   spawnSound: {fileID: 6182369589105416837}
 --- !u!70 &5804246344985371694
 CapsuleCollider2D:
