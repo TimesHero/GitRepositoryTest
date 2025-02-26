@@ -1,26 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d196b0eb459cdb546a998f3f1c57282f, type: 3}
-  m_Name: NormalEnemy
-  m_EditorClassIdentifier: 
-  HP: 10
-  moveSpeed: 3
-  target: Zone
-  meleeAttack: 1
-  rangedAttack: 0
-  explodingAttack: 0
-  eightWayAttack: 0
-  stationary: 0
-  attackInterval: 2
-  attackRange: 3
-  enemySprite: {fileID: -3113891522707939479, guid: 37a1bc1fee69d514c9fede2432af293c, type: 3}
-  bulletType: {fileID: 11400000, guid: 69bd9f424daa09748a8c32b466477ab8, type: 2}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9fa0a045da3f6dffe73b6889c6f56725cdbaf58fe4bd775f54643ab64c47f6fa
+size 771
