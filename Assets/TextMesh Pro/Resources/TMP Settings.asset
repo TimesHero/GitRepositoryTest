@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-version https://git-lfs.github.com/spec/v1
-oid sha256:a8859a19e8919939115cefa86e6f990f7100d3f1739bc03fb87d4f0de09a562c
-size 1840
-=======
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
@@ -55,4 +50,3 @@ MonoBehaviour:
   m_followingCharacters: {fileID: 4900000, guid: fade42e8bc714b018fac513c043d323b,
     type: 3}
   m_UseModernHangulLineBreakingRules: 0
->>>>>>> parent of 6e553dba (Merge branch 'AJ_TestBranch' of https://github.com/TimesHero/GitRepositoryTest into AJ_TestBranch)

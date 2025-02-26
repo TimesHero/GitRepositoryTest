@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-version https://git-lfs.github.com/spec/v1
-oid sha256:4258bed1e28868571085fe493031136fa2ded7a885d7d38a7cd8183ba15abe7d
-size 9342
-=======
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2180264
@@ -350,4 +345,3 @@ Texture2D:
     offset: 0
     size: 0
     path: 
->>>>>>> parent of 6e553dba (Merge branch 'AJ_TestBranch' of https://github.com/TimesHero/GitRepositoryTest into AJ_TestBranch)
