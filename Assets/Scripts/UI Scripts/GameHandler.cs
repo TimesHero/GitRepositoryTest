@@ -56,6 +56,10 @@ public class GameHandler : MonoBehaviour
             expIncreaseValue--;
             
         }
+        if (gameEnded==true&&expIncreaseValue==0)
+        {
+            player.GetComponent<PlayerHPManager>().exp=expBar.value;
+        }
     }
     public void Unpause()
     {

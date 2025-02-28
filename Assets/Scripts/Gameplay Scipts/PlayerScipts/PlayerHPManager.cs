@@ -33,12 +33,13 @@ public class PlayerHPManager : MonoBehaviour
     public float killCount;
     public bool combo;
     public TextMeshProUGUI comboText;
+    public TextMeshProUGUI multiplierText;
     public int HPLevel;
     public int defLevel;
     public int atkLevel;
     public int manaLevel;
     float effectiveDamage;
-    private float scoreMultipler; 
+    private float scoreMultipler = 1; 
     public TextMeshProUGUI HPtext;
     public TextMeshProUGUI manaText;
     public TextMeshProUGUI scoreText;
@@ -63,7 +64,8 @@ public class PlayerHPManager : MonoBehaviour
                 comboCount=0;
                 comboText.text = comboCount + " Combo";
                 combo=false;
-                scoreMultipler = 0; 
+                scoreMultipler = 1; 
+                multiplierText.text ="1.0x Score";
             }
         }
     }
@@ -145,6 +147,7 @@ public class PlayerHPManager : MonoBehaviour
         }
             StartCoroutine(iFrameTick());
         }
+        HP = Mathf.Floor(HP);
         HPBar.value=HP;
         if (HP<=0)
         {
@@ -196,15 +199,16 @@ public class PlayerHPManager : MonoBehaviour
         if (comboCount % 10 == 0)
         {
             scoreMultipler += 0.1f;
+            multiplierText.text = scoreMultipler +"x Score";
+            print(scoreMultipler);
         }
         //------SCORE INCREASE------
-        baseEnemyScore = scoreFromEnemy; 
+        //baseEnemyScore = scoreFromEnemy; 
         scoreFromEnemy = scoreFromEnemy * scoreMultipler; 
 
-        playerScore += baseEnemyScore + scoreFromEnemy; 
+        playerScore += scoreFromEnemy; 
         playerScore = Mathf.Floor(playerScore);
         scoreText.text = "Score: " + playerScore; 
-        print(playerScore);
         
 
     }
