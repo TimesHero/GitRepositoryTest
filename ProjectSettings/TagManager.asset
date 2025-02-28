@@ -8,6 +8,7 @@ TagManager:
   - Zone
   - Portal
   - Void
+  - Test
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - Water
   - UI
   - Obstacles
-  - 
-  - 
-  - 
+  - Player
+  - Enemies
+  - Projectile
   - 
   - 
   - 

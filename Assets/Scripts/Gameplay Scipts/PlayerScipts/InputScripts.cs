@@ -110,10 +110,12 @@ public class InputScript : MonoBehaviour
     }
     private IEnumerator EnablePlayerCollider()
     {
-        gameObject.GetComponent<Collider2D>().enabled = false;
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemies"), true);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Projectile"), true);
         ableToDash=false;
         yield return new WaitForSeconds(0.5f); // Time invincible
-        gameObject.GetComponent<Collider2D>().enabled = true;
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemies"), false);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Projectile"), false);
         ableToDash=true;
         dashing = false;
     }

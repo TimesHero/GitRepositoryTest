@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5383969863169500788}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LookTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 8328486920568606305}
   - component: {fileID: 7634307629495125878}
   - component: {fileID: 7785505384503355779}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyExplodePrefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 20
+  scoreValue: 50
   hurtSound:
   - {fileID: 8300000, guid: 5c39c0b7b59ec2b4a9e30735313a47a6, type: 3}
   - {fileID: 8300000, guid: 87d752f976be8ba4ab084943fc038ec8, type: 3}
@@ -153,6 +154,7 @@ MonoBehaviour:
   - {fileID: 1346549242457926981, guid: bf45de15bde00a64c8893bbfe8cb8005, type: 3}
   - {fileID: 671500980237249953, guid: ea3e20989eb2b6f41b4cf8ab334bd2d9, type: 3}
   deathParticles: {fileID: 686915402783405883, guid: baf692d7da7bc024e8c195f2e31d5176, type: 3}
+  knockBackSound: {fileID: 8300000, guid: 0a7f3bf3ecea3cc42a9798d58940b92d, type: 3}
 --- !u!114 &915815379706370601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 7
   lookTransform: {fileID: 5383969863169500788}
-  knockBackSound: {fileID: 0}
   fuseSound: {fileID: 4269938810639377596}
   startFuse: {fileID: 8300000, guid: deae6736a7fd8ec46ada2e670e38e496, type: 3}
   stopFuse: {fileID: 8300000, guid: abc4761825555ad43bbae18aa28a8834, type: 3}

@@ -12,16 +12,10 @@ public class ExplodingEnemy : MonoBehaviour
     private float angle;
     Rigidbody2D myRB;
     private string target;
-    private bool knockback;
-    private float knockbackTime = 0f;   
-    private float knockbackDuration = 0.2f;
-    private Vector2 knockbackDirection;
-    private float knockbackAmount;
     float currentInterval;
     public Transform lookTransform;
     private float distanceToPlayer;
     private Transform targetTransform;
-    public AudioClip knockBackSound; 
     public AudioSource fuseSound;
     public AudioClip startFuse;
     public AudioClip stopFuse;
@@ -39,13 +33,13 @@ public class ExplodingEnemy : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        gameObject.GetComponent<AIDestinationSetter>().target = player.transform;
         zone = GameObject.FindGameObjectWithTag("Zone");
         myAnim = GetComponent<Animator>();
         myRenderer = GetComponent<SpriteRenderer>();
         currentInterval = Time.time;
         target = "zone";
         originalScale = transform.localScale;
-        //TESTING PURPOSE
     }
 
     // Update is called once per frame
@@ -61,17 +55,6 @@ public class ExplodingEnemy : MonoBehaviour
         //Attack
         Explode();
         
-        //Knockback
-        if (knockback)
-        {
-            myRB.AddForce(knockbackDirection * -knockbackAmount, ForceMode2D.Impulse);
-            knockback = false;
-        }
-        if (Time.time > knockbackTime)
-        {
-            knockback = false;  
-            myRB.linearVelocity = Vector2.zero;  
-        }
         myAnim.SetBool("isAttacking", attacking);
         Flip(angle);
     }
@@ -101,7 +84,7 @@ public class ExplodingEnemy : MonoBehaviour
         }
         else
         {
-            if (transform.localScale.x > originalScale.x)
+            if (transform.localScale.x > originalScale.x && player.GetComponent<Collider2D>().enabled == true)
             {
                 startSound=false;
                 if (startSound2==false)
@@ -122,24 +105,6 @@ public class ExplodingEnemy : MonoBehaviour
         }
     }
     
-    public void ApplyKnockback(Vector2 direction, float knockbackForce)
-    {
-        AudioManager.Instance.PlaySound(knockBackSound);
-        knockback = true; 
-        knockbackDirection = direction.normalized;  
-        knockbackAmount = knockbackForce;
-        knockbackTime = Time.time + knockbackDuration;
-        StartCoroutine(ColliderDisable());
-
-    }
-    private IEnumerator ColliderDisable()
-    {
-        gameObject.GetComponent<Collider2D>().enabled = false;
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
-        yield return new WaitForSeconds(0.5f); // Time invincible
-        gameObject.GetComponent<Collider2D>().enabled = true;
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-    }
     void Flip(float angle)
     {
         if (angle > 90 || angle < -90) // Looking left

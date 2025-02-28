@@ -39,7 +39,6 @@ public class RangedEnemy : MonoBehaviour
         myRenderer = GetComponent<SpriteRenderer>();
         currentInterval = Time.time;
         target = "zone";
-        //TESTING PURPOSE
     }
 
     // Update is called once per frame
@@ -57,18 +56,6 @@ public class RangedEnemy : MonoBehaviour
         {
             StartCoroutine(Shoot());
         }
-        
-        //Knockback
-        if (knockback)
-        {
-            myRB.AddForce(knockbackDirection * -knockbackAmount, ForceMode2D.Impulse);
-            knockback = false;
-        }
-        if (Time.time > knockbackTime)
-        {
-            knockback = false;  
-            myRB.linearVelocity = Vector2.zero;  
-        }
         myAnim.SetBool("isAttacking", attacking);
         Flip(angle);
     }
@@ -84,25 +71,6 @@ public class RangedEnemy : MonoBehaviour
         bullet.gameObject.GetComponent<BulletBase>().PeramPass(bulletType);
         yield return new WaitForSeconds(0.2f);
         attacking=false;
-    }
-    
-    public void ApplyKnockback(Vector2 direction, float knockbackForce)
-    {
-        AudioManager.Instance.PlaySound(knockBackSound);
-        knockback = true; 
-        knockbackDirection = direction.normalized;  
-        knockbackAmount = knockbackForce;
-        knockbackTime = Time.time + knockbackDuration;
-        StartCoroutine(ColliderDisable());
-
-    }
-    private IEnumerator ColliderDisable()
-    {
-        gameObject.GetComponent<Collider2D>().enabled = false;
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
-        yield return new WaitForSeconds(0.5f); // Time invincible
-        gameObject.GetComponent<Collider2D>().enabled = true;
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
     }
     void Flip(float angle)
     {

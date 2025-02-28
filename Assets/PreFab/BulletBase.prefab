@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5801210343225177998}
   - component: {fileID: 8126420666083199687}
   - component: {fileID: -2359967037748743755}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6775fc250be1e4248a3a8d4751605db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 6d2642ff20c1a38408e2ba1150b08f50, type: 2}
 --- !u!82 &-2359967037748743755
 AudioSource:

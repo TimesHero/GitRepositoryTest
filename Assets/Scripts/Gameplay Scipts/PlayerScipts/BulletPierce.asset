@@ -16,9 +16,9 @@ MonoBehaviour:
   damage: 5
   velocity: 30
   manaCost: 10
-  timeBetweenShots: 1
-  atkSpeedUpTimeBetweenShots: 0.5
-  timeUntilDeath: 1
+  timeBetweenShots: 0.8
+  atkSpeedUpTimeBetweenShots: 0.4
+  timeUntilDeath: 1.2
   VFx: {fileID: 0}
   enemyProjectile: 0
   pierce: 1

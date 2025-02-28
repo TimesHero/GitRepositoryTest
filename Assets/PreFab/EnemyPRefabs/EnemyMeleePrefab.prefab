@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3972792543160630979}
   - component: {fileID: 3614662599163626603}
   - component: {fileID: 2883263083302032730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyMeleePrefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -113,7 +113,6 @@ MonoBehaviour:
   interval: 1.5
   enemyBullet: {fileID: 9016828709344966979, guid: 2481094c75a68ee4a909192fdcce2b13, type: 3}
   lookTransform: {fileID: 943703572560735322}
-  knockBackSound: {fileID: 0}
   bulletType: {fileID: 11400000, guid: 69bd9f424daa09748a8c32b466477ab8, type: 2}
   attacking: 0
   facingRight: 1
@@ -130,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 10
+  scoreValue: 30
   hurtSound:
   - {fileID: 8300000, guid: 5c39c0b7b59ec2b4a9e30735313a47a6, type: 3}
   - {fileID: 8300000, guid: 87d752f976be8ba4ab084943fc038ec8, type: 3}
@@ -142,6 +142,7 @@ MonoBehaviour:
   - {fileID: 1346549242457926981, guid: bf45de15bde00a64c8893bbfe8cb8005, type: 3}
   - {fileID: 671500980237249953, guid: ea3e20989eb2b6f41b4cf8ab334bd2d9, type: 3}
   deathParticles: {fileID: 686915402783405883, guid: baf692d7da7bc024e8c195f2e31d5176, type: 3}
+  knockBackSound: {fileID: 8300000, guid: 584e8bd7325439c4b8577e890a95c297, type: 3}
 --- !u!50 &6634278700499454161
 Rigidbody2D:
   serializedVersion: 5
@@ -321,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 943703572560735322}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LookTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

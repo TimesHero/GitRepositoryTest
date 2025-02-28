@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1118024607245969723}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LookTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 864753392550387928}
   - component: {fileID: 8771032105848863863}
   - component: {fileID: 4279008135909417454}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyRangePrefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 10
+  scoreValue: 40
   hurtSound:
   - {fileID: 8300000, guid: 5c39c0b7b59ec2b4a9e30735313a47a6, type: 3}
   - {fileID: 8300000, guid: 87d752f976be8ba4ab084943fc038ec8, type: 3}
@@ -172,6 +173,7 @@ MonoBehaviour:
   - {fileID: 1346549242457926981, guid: bf45de15bde00a64c8893bbfe8cb8005, type: 3}
   - {fileID: 671500980237249953, guid: ea3e20989eb2b6f41b4cf8ab334bd2d9, type: 3}
   deathParticles: {fileID: 686915402783405883, guid: baf692d7da7bc024e8c195f2e31d5176, type: 3}
+  knockBackSound: {fileID: 8300000, guid: 584e8bd7325439c4b8577e890a95c297, type: 3}
 --- !u!50 &8897350256647954494
 Rigidbody2D:
   serializedVersion: 5

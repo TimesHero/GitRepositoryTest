@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using TMPro;
+using System.Diagnostics;
+using Fungus;
+using UnityEngine.Rendering;
 public class PlayerHPManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -12,6 +15,11 @@ public class PlayerHPManager : MonoBehaviour
     public float HPMax=50;
     public float mana;
     public float manaMax=100;
+    public float hopeFragments;
+    public float currentLevel; 
+    public float exp;
+    public float[] expNeededForLevel; 
+    public float playerScore; 
     public float damageMultiplier; 
     public float defValue; 
     public GameObject logicManager;
@@ -21,6 +29,8 @@ public class PlayerHPManager : MonoBehaviour
     public bool invincible = false; 
     public float comboTimer=0;
     public int comboCount=0;
+    public float highestCombo;
+    public float killCount;
     public bool combo;
     public TextMeshProUGUI comboText;
     public int HPLevel;
@@ -28,10 +38,12 @@ public class PlayerHPManager : MonoBehaviour
     public int atkLevel;
     public int manaLevel;
     float effectiveDamage;
-
+    private float scoreMultipler; 
     public TextMeshProUGUI HPtext;
     public TextMeshProUGUI manaText;
+    public TextMeshProUGUI scoreText;
     public AudioClip dmgSound; 
+    private float baseEnemyScore; 
     void Start()
     {
         HPBar.value = HP;
@@ -49,14 +61,17 @@ public class PlayerHPManager : MonoBehaviour
             if (comboTimer<=0)
             {
                 comboCount=0;
-                comboText.text = comboCount + "X";
+                comboText.text = comboCount + " Combo";
                 combo=false;
+                scoreMultipler = 0; 
             }
         }
     }
 
     public void LevelUp()
     {
+        if (hopeFragments>0)
+        
         if (HPLevel == 0)//HPLVL--------------------------------------------------------------------------
         {
             HPMax=50;
@@ -98,7 +113,6 @@ public class PlayerHPManager : MonoBehaviour
         else if (defLevel > 0 && defLevel <= 5)
         {
              defValue = 1 + (defLevel * 0.1f);  // 2x at max damage
-             Debug.Log(defValue);
         }
 
         HPBar.maxValue = HP;
@@ -164,14 +178,35 @@ public class PlayerHPManager : MonoBehaviour
         invincible=false;
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
     }
-    public void ComboTrigger()
+    public void ComboTrigger(float scoreFromEnemy)
     {
         combo=true;
         comboTimer=120;
         comboCount++;
-        comboText.text = comboCount + "X";
+        if (comboCount>highestCombo)
+        {
+            highestCombo=comboCount;
+        }
+        killCount++;
+        comboText.text = comboCount + " Combo";
         mana+=3;
         manaBar.value = mana;
+
+         // Check if the combo counter has reached a multiple of 10
+        if (comboCount % 10 == 0)
+        {
+            scoreMultipler += 0.1f;
+        }
+        //------SCORE INCREASE------
+        baseEnemyScore = scoreFromEnemy; 
+        scoreFromEnemy = scoreFromEnemy * scoreMultipler; 
+
+        playerScore += baseEnemyScore + scoreFromEnemy; 
+        playerScore = Mathf.Floor(playerScore);
+        scoreText.text = "Score: " + playerScore; 
+        print(playerScore);
+        
+
     }
 
 }

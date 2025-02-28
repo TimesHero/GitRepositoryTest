@@ -205,7 +205,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(DmgFlash());
         if (HP<=0)
         {
-            player.gameObject.GetComponent<PlayerHPManager>().ComboTrigger();
+            player.gameObject.GetComponent<PlayerHPManager>().ComboTrigger(1);
             int doDrop = Random.Range(0,9);
             if (doDrop==1)
             {
