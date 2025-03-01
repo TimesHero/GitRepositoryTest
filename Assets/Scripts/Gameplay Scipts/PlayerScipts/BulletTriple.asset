@@ -15,7 +15,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   damage: 3
   velocity: 50
-  manaCost: 4
+  manaCost: 3
   timeBetweenShots: 0.2
   atkSpeedUpTimeBetweenShots: 0.15
   timeUntilDeath: 0.2
