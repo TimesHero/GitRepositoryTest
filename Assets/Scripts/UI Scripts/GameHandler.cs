@@ -59,6 +59,7 @@ public class GameHandler : MonoBehaviour
         if (gameEnded==true&&expIncreaseValue==0)
         {
             player.GetComponent<PlayerHPManager>().exp=expBar.value;
+            player.GetComponent<PlayerHPManager>().SavePlayerData();
         }
     }
     public void Unpause()

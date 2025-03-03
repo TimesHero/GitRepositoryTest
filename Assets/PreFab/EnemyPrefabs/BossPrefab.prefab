@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 358324588441430945}
   - component: {fileID: 8591088094404421}
-  - component: {fileID: 6781999721741443921}
+  - component: {fileID: 5142937188933995500}
   - component: {fileID: 969605558687215106}
   - component: {fileID: 8897350256647954494}
   - component: {fileID: 4161191213934352343}
@@ -66,7 +66,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.3600006, y: 60.249985, z: 0}
-  m_LocalScale: {x: 0.61390173, y: 0.61390173, z: 0.61390173}
+  m_LocalScale: {x: 1, y: 1, z: 0.61390173}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1118024607245969723}
@@ -116,7 +116,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -509484030962229846, guid: 9fd584c836a052e43957722dbe445353, type: 3}
+  m_Sprite: {fileID: -7586215539774572597, guid: 67941b0cf0ce7cd479ef0dcd2ac23e31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,7 +127,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6781999721741443921
+--- !u!114 &5142937188933995500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,15 +136,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5888522497940912021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3878ed31e858b4a429cc45da494ccd3e, type: 3}
+  m_Script: {fileID: 11500000, guid: c9e7aa2a86bdae24f8b0061c4216b45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 18
+  rangedAttackRange: 20
+  aoeRange: 0
+  eightWayRange: 0
   interval: 2
   enemyBullet: {fileID: 9016828709344966979, guid: 2481094c75a68ee4a909192fdcce2b13, type: 3}
   lookTransform: {fileID: 1118024607245969723}
-  knockBackSound: {fileID: 0}
-  bulletType: {fileID: 11400000, guid: 875d607f10b4fdb4aa9da4f2b4f3ef9c, type: 2}
+  normalBullet: {fileID: 11400000, guid: 875d607f10b4fdb4aa9da4f2b4f3ef9c, type: 2}
+  eightWayBullet: {fileID: 11400000, guid: b197450a0849a884c92adc76a1b74702, type: 2}
   attacking: 0
   facingRight: 1
 --- !u!114 &969605558687215106
@@ -235,9 +237,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.08, y: -0.35}
-  m_Size: {x: 4.9, y: 2.06}
-  m_Direction: 1
+  m_Offset: {x: 0.2, y: -0.09}
+  m_Size: {x: 3.36, y: 6.45}
+  m_Direction: 0
 --- !u!95 &261485276735521187
 Animator:
   serializedVersion: 7
@@ -246,7 +248,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5888522497940912021}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 34a6ff276a1805d4181657dbb20ecd9f, type: 2}
   m_CullingMode: 0

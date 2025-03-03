@@ -49,6 +49,12 @@ public class PlayerHPManager : MonoBehaviour
     {
         HPBar.value = HP;
         HPBar.maxValue = HP;
+
+        //PlayerPrefs Saving
+        //SavePlayerData();
+        LoadPlayerData();
+
+
         LevelUp();
     }
 
@@ -69,10 +75,50 @@ public class PlayerHPManager : MonoBehaviour
             }
         }
     }
+    // Save player data, excluding HP and mana
+public void SavePlayerData()
+{
+    PlayerPrefs.SetFloat("HopeFragments", hopeFragments); 
+    PlayerPrefs.SetFloat("CurrentLevel", currentLevel);
+    PlayerPrefs.SetFloat("Exp", exp); 
+    PlayerPrefs.SetInt("HPLevel", HPLevel); 
+    PlayerPrefs.SetInt("AtkLevel", atkLevel);
+    PlayerPrefs.SetInt("DefLevel", defLevel); 
+    PlayerPrefs.SetInt("ManaLevel", manaLevel); 
+    PlayerPrefs.Save(); // Save the changes to PlayerPrefs
+}
+
+// Load player data, excluding HP and mana
+public void LoadPlayerData()
+{
+    if (PlayerPrefs.HasKey("HopeFragments"))  // Check if "HopeFragments" key exists
+    {
+        hopeFragments = PlayerPrefs.GetFloat("HopeFragments");
+        currentLevel = PlayerPrefs.GetFloat("CurrentLevel");
+        exp = PlayerPrefs.GetFloat("Exp");
+        HPLevel = PlayerPrefs.GetInt("HPLevel");
+        atkLevel = PlayerPrefs.GetInt("AtkLevel");
+        defLevel = PlayerPrefs.GetInt("DefLevel");
+        manaLevel = PlayerPrefs.GetInt("ManaLevel");
+        print(HPLevel);
+        print("LOAD");
+    }
+    else
+    {
+        // Default values if no saved data exists
+        hopeFragments = 0;
+        currentLevel = 1;
+        exp = 0;
+        HPLevel = 0;
+        atkLevel = 0;
+        defLevel = 0;
+        manaLevel = 0;
+        playerScore = 0;
+    }
+}
 
     public void LevelUp()
     {
-        if (hopeFragments>0)
         
         if (HPLevel == 0)//HPLVL--------------------------------------------------------------------------
         {
@@ -82,6 +128,8 @@ public class PlayerHPManager : MonoBehaviour
         {
             HPMax = 50 + (HPLevel * 10);  // Add 10 HP for each level up
             HP=HPMax;
+            print(HP+" HP");
+            print(HPMax+" HPMAX");
         }
 
         HP=HPMax;
@@ -117,10 +165,11 @@ public class PlayerHPManager : MonoBehaviour
              defValue = 1 + (defLevel * 0.1f);  // 2x at max damage
         }
 
-        HPBar.maxValue = HP;
-        HPBar.value = HP;
+        HPBar.maxValue = HPMax;
+        HPBar.value = HPMax;
         manaBar.maxValue = manaMax;
         manaBar.value = manaMax;
+        SavePlayerData();
     }
     public void DamageOrHeal(float damage)
     // If something needs to heal the player instead, use this function still but make the int variable passed a negative number

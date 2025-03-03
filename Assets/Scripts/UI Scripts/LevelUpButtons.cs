@@ -33,7 +33,9 @@ public class LevelUpButtons : MonoBehaviour
     public void SetInput()
     {
         input.SetSelectedGameObject(firstButtonToSelect);
+        UpdateUIStats();
     }
+
     public void StatHPUp() { StatChange(1, "HP"); }
     public void StatMPUp() { StatChange(1, "MP"); }
     public void StatATKUp() { StatChange(1, "ATK"); }
@@ -44,50 +46,38 @@ public class LevelUpButtons : MonoBehaviour
     public void StatATKRefund() { StatChange(-1, "ATK"); }
     public void StatDEFRefund() { StatChange(-1, "DEF"); }
 
-    public void StatChange(int increment, string statType)
+   public void StatChange(int increment, string statType)
 {
     bool changeSuccess = false;
 
     if (increment != 0)
     {
+        // Check if player has enough hope fragments to level up (only for increments)
         if (increment > 0 && playerHPManager.hopeFragments <= 0)
         {
+            Debug.LogWarning("Not enough hope fragments.");
             return;
         }
 
-        if (increment < 0)
-        {
-            switch (statType)
-            {
-                case "HP":
-                    if (playerHPManager.HPLevel <= 0) return;
-                    break;
-                case "MP":
-                    if (playerHPManager.manaLevel <= 0) return;
-                    break;
-                case "ATK":
-                    if (playerHPManager.atkLevel <= 0) return;
-                    break;
-                case "DEF":
-                    if (playerHPManager.defLevel <= 0) return;
-                    break;
-            }
-        }
-
-        // Perform stat change
+        // Check if stat can be increased or decreased
         switch (statType)
         {
             case "HP":
+                // Check if HP can be increased (level up)
                 if (increment > 0 && playerHPManager.HPLevel < 5)
                 {
-                    playerHPManager.HPLevel = Mathf.Clamp(playerHPManager.HPLevel + increment, 0, 5);
-                    HPtext.text = $"LVL {playerHPManager.HPLevel}:{playerHPManager.HPMax} HP";
-                    changeSuccess = true;
+                    // Only level up if we have enough fragments
+                    if (playerHPManager.hopeFragments > 0) 
+                    {
+                        playerHPManager.HPLevel += increment;
+                        playerHPManager.HPLevel = Mathf.Clamp(playerHPManager.HPLevel, 0, 5);
+                        changeSuccess = true;
+                    }
                 }
                 else if (increment < 0 && playerHPManager.HPLevel > 0)
                 {
-                    playerHPManager.HPLevel = Mathf.Clamp(playerHPManager.HPLevel + increment, 0, 5);
-                    HPtext.text = $"LVL {playerHPManager.HPLevel}:{playerHPManager.HPMax} HP";
+                    playerHPManager.HPLevel += increment;
+                    playerHPManager.HPLevel = Mathf.Clamp(playerHPManager.HPLevel, 0, 5);
                     changeSuccess = true;
                 }
                 break;
@@ -95,14 +85,14 @@ public class LevelUpButtons : MonoBehaviour
             case "MP":
                 if (increment > 0 && playerHPManager.manaLevel < 5)
                 {
-                    playerHPManager.manaLevel = Mathf.Clamp(playerHPManager.manaLevel + increment, 0, 5);
-                    MPtext.text = $"LVL {playerHPManager.manaLevel}:{playerHPManager.manaMax} MP";
+                    playerHPManager.manaLevel += increment;
+                    playerHPManager.manaLevel = Mathf.Clamp(playerHPManager.manaLevel, 0, 5);
                     changeSuccess = true;
                 }
                 else if (increment < 0 && playerHPManager.manaLevel > 0)
                 {
-                    playerHPManager.manaLevel = Mathf.Clamp(playerHPManager.manaLevel + increment, 0, 5);
-                    MPtext.text = $"LVL {playerHPManager.manaLevel}:{playerHPManager.manaMax} MP";
+                    playerHPManager.manaLevel += increment;
+                    playerHPManager.manaLevel = Mathf.Clamp(playerHPManager.manaLevel, 0, 5);
                     changeSuccess = true;
                 }
                 break;
@@ -110,14 +100,14 @@ public class LevelUpButtons : MonoBehaviour
             case "ATK":
                 if (increment > 0 && playerHPManager.atkLevel < 5)
                 {
-                    playerHPManager.atkLevel = Mathf.Clamp(playerHPManager.atkLevel + increment, 0, 5);
-                    ATKtext.text = $"LVL {playerHPManager.atkLevel}:{playerHPManager.damageMultiplier}X DMG";
+                    playerHPManager.atkLevel += increment;
+                    playerHPManager.atkLevel = Mathf.Clamp(playerHPManager.atkLevel, 0, 5);
                     changeSuccess = true;
                 }
                 else if (increment < 0 && playerHPManager.atkLevel > 0)
                 {
-                    playerHPManager.atkLevel = Mathf.Clamp(playerHPManager.atkLevel + increment, 0, 5);
-                    ATKtext.text = $"LVL {playerHPManager.atkLevel}:{playerHPManager.damageMultiplier}X DMG";
+                    playerHPManager.atkLevel += increment;
+                    playerHPManager.atkLevel = Mathf.Clamp(playerHPManager.atkLevel, 0, 5);
                     changeSuccess = true;
                 }
                 break;
@@ -125,34 +115,58 @@ public class LevelUpButtons : MonoBehaviour
             case "DEF":
                 if (increment > 0 && playerHPManager.defLevel < 5)
                 {
-                    playerHPManager.defLevel = Mathf.Clamp(playerHPManager.defLevel + increment, 0, 5);
-                    DEFtext.text = $"LVL {playerHPManager.defLevel}:{playerHPManager.defValue}X DEF";
+                    playerHPManager.defLevel += increment;
+                    playerHPManager.defLevel = Mathf.Clamp(playerHPManager.defLevel, 0, 5);
                     changeSuccess = true;
                 }
                 else if (increment < 0 && playerHPManager.defLevel > 0)
                 {
-                    playerHPManager.defLevel = Mathf.Clamp(playerHPManager.defLevel + increment, 0, 5);
-                    DEFtext.text = $"LVL {playerHPManager.defLevel}:{playerHPManager.defValue}X DEF";
+                    playerHPManager.defLevel += increment;
+                    playerHPManager.defLevel = Mathf.Clamp(playerHPManager.defLevel, 0, 5);
                     changeSuccess = true;
                 }
                 break;
         }
+
+        // If stat change was successful, update the UI and player stats
         if (changeSuccess)
         {
-            if (increment > 0) // Level-up (fragments deducted)
+            // Deduct fragment for level-up *after* stat level-up (important)
+            if (increment > 0)
             {
-                playerHPManager.hopeFragments -= 1;
+                // Deduct the hope fragment only after the stat successfully increased
+                playerHPManager.hopeFragments -= 1; 
+                PlaySound(increment); // Play level-up sound
             }
-            else if (increment < 0) // Refund (fragments added)
+            else
             {
-                playerHPManager.hopeFragments += 1;
+                // Refund the fragment for refunding the stat
+                playerHPManager.hopeFragments += 1; 
+                PlaySound(increment); // Play refund sound
             }
 
-            playerHPManager.LevelUp(); 
-            PlaySound(increment);
+            // Call LevelUp method to process any other changes if necessary
+            playerHPManager.LevelUp();
+
+            // Update UI again after the fragment deduction and level-up
+            UpdateUIStats();
+        }
+        else
+        {
+            Debug.LogWarning($"Stat change for {statType} failed.");
         }
     }
 }
+
+    private void UpdateUIStats()
+    {
+        // Update UI with the new values
+        HPtext.text = $"LVL {playerHPManager.HPLevel}:{playerHPManager.HPMax} HP";
+        MPtext.text = $"LVL {playerHPManager.manaLevel}:{playerHPManager.manaMax} MP";
+        ATKtext.text = $"LVL {playerHPManager.atkLevel}:{playerHPManager.damageMultiplier}X DMG";
+        DEFtext.text = $"LVL {playerHPManager.defLevel}:{playerHPManager.defValue}X DEF";
+        fragmentText.text = "Hope Fragments: " + playerHPManager.hopeFragments;
+    }
 
     public void Exit()
     {

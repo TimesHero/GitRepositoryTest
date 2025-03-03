@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 0}
   damage: 5
-  velocity: 12
+  velocity: 20
   manaCost: 0
   timeBetweenShots: 0
   atkSpeedUpTimeBetweenShots: 0
