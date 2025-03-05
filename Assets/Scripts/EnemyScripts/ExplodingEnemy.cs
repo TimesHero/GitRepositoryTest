@@ -72,7 +72,6 @@ public class ExplodingEnemy : MonoBehaviour
             startSound=true;
             gameObject.GetComponent<AIPath>().canMove = false;
             transform.localScale = new Vector3(transform.localScale.x + 0.001f,transform.localScale.y + 0.001f,transform.localScale.z);
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f+1f, 1f, 1f, 1f);
             explodeCooldown ++;
             if (explodeCooldown==240)
             {
@@ -94,7 +93,6 @@ public class ExplodingEnemy : MonoBehaviour
                 }
                 startSound2=true;
                 transform.localScale = new Vector3(transform.localScale.x - 0.001f,transform.localScale.y -  0.001f,transform.localScale.z);
-                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1f-1f, 1f, 1f, 1f);
                 explodeCooldown --;
                 if (transform.localScale.x == originalScale.x)
                     {
