@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using TMPro;
-using System.Diagnostics;
 using Fungus;
 using UnityEngine.Rendering;
 public class PlayerHPManager : MonoBehaviour

@@ -1,7 +1,5 @@
 using System.Collections;
 using Pathfinding;
-using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 public class ExplodingEnemy : MonoBehaviour
 {
@@ -83,7 +81,7 @@ public class ExplodingEnemy : MonoBehaviour
         }
         else
         {
-            if (transform.localScale.x > originalScale.x && player.GetComponent<Collider2D>().enabled == true)
+            if (transform.localScale.x > originalScale.x)
             {
                 startSound=false;
                 if (startSound2==false)

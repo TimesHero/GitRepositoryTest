@@ -1,5 +1,4 @@
-using UnityEditor;
-using UnityEditor.Animations;
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyBase", menuName = "Scriptable Objects/EnemyBase")]
@@ -17,6 +16,5 @@ public class EnemyBase : ScriptableObject
     public float attackRange;
     public Sprite enemySprite;
     public Projectile bulletType;
-    public AnimatorController animationController;
 
 }

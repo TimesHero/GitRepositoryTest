@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using UnityEngine.Windows;
 using TMPro;
 public class MenuHandler : MonoBehaviour
 {
@@ -10,6 +9,9 @@ public class MenuHandler : MonoBehaviour
     private EventSystem input;
     public AudioClip sound;
     public AudioClip backSound;
+    public GameObject controlPanel;
+    public GameObject backButton;
+    public GameObject controlButton;
     void Start()
     {
         input = FindAnyObjectByType<EventSystem>();
@@ -26,6 +28,16 @@ public class MenuHandler : MonoBehaviour
     {
         SceneManager.LoadScene("MainLevelScene");
         AudioManager.Instance.PlaySound(sound); 
+    }
+    public void Controlpanel()
+    {
+        controlPanel.SetActive(true);
+        input.SetSelectedGameObject(backButton);
+    }
+    public void back()
+    {
+        input.SetSelectedGameObject(controlButton);
+        controlPanel.SetActive(false);
     }
     public void QuitGame()
     {

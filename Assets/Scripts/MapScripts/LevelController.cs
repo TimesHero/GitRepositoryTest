@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
@@ -10,6 +11,10 @@ public class LevelController : MonoBehaviour
     private int portalsSpawned = 0;
     public GameObject wayPoint;
     public Transform player;
+    public AudioClip zone1music;
+    public AudioClip ambience;
+    public AudioSource audioSource; 
+    public TextMeshProUGUI zoneNumberText;
 
     void Start()
     {
@@ -33,8 +38,11 @@ public class LevelController : MonoBehaviour
         }
 
         //Test level 1------------------------------------------------------------------------------------------------
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1)
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned<1)
         {
+            audioSource.clip = zone1music;
+            audioSource.volume = 0.2f;
+            audioSource.Play();
             zone1Portals[0].SetActive(true);
             portalsSpawned++;
         }
@@ -86,10 +94,16 @@ public class LevelController : MonoBehaviour
             capturedZones++;
             zones[capturedZones].SetActive(true);
             portalsSpawned=0;
+            audioSource.clip = ambience;
+            audioSource.Play();
+            zoneNumberText.text = "Zone 2";
         }
         //Test Level 2--------------------------------------------------------------------------------------------------------
-        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==1)
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned<1)
         {
+            audioSource.clip = zone1music;
+            audioSource.volume = 0.2f;
+            audioSource.Play();
             zone2Portals[0].SetActive(true);
             portalsSpawned++;
         }
