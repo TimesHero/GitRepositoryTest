@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnTimerNormal()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         spawnSound.Play();
         yield return new WaitForSeconds(1f);
         SpawnFunction();

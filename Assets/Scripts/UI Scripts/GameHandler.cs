@@ -37,29 +37,37 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameEnded==true&&expIncreaseValue!=0)
-        {
-            
-            expBar.value ++;
-            Debug.Log(expBar.value);
-            if (expBar.value==expBar.maxValue)
-            {
-                player.GetComponent<PlayerHPManager>().currentLevel++; 
-                player.GetComponent<PlayerHPManager>().hopeFragments++; 
-                lvlText.text = "Player Level: " + player.GetComponent<PlayerHPManager>().currentLevel; 
-                fragmentText.text = "Hope Fragments: " + player.GetComponent<PlayerHPManager>().hopeFragments; 
-                expBar.maxValue = player.GetComponent<PlayerHPManager>().expNeededForLevel[(int)player.GetComponent<PlayerHPManager>().currentLevel-1];
-                expBar.value=0; 
-            }
-            expText.text = expBar.value + "/" + player.GetComponent<PlayerHPManager>().expNeededForLevel[(int)player.GetComponent<PlayerHPManager>().currentLevel-1];
-            expIncreaseValue--;
-            
-        }
-        if (gameEnded==true&&expIncreaseValue==0)
-        {
-            player.GetComponent<PlayerHPManager>().exp=expBar.value;
-            player.GetComponent<PlayerHPManager>().SavePlayerData();
-        }
+if (gameEnded == true && expIncreaseValue > 0)
+{
+    int increment = 15; 
+    expBar.value = Mathf.Min(expBar.value + increment, expBar.maxValue); 
+
+    Debug.Log(expBar.value);
+
+    if (expBar.value == expBar.maxValue)
+    {
+        player.GetComponent<PlayerHPManager>().currentLevel++;
+        player.GetComponent<PlayerHPManager>().hopeFragments++;
+        lvlText.text = "Player Level: " + player.GetComponent<PlayerHPManager>().currentLevel;
+        fragmentText.text = "Hope Fragments: " + player.GetComponent<PlayerHPManager>().hopeFragments;
+        
+        expBar.maxValue = player.GetComponent<PlayerHPManager>().expNeededForLevel[(int)player.GetComponent<PlayerHPManager>().currentLevel - 1];
+        
+        expBar.value = 0;
+    }
+
+    expText.text = expBar.value + "/" + player.GetComponent<PlayerHPManager>().expNeededForLevel[(int)player.GetComponent<PlayerHPManager>().currentLevel - 1];
+
+    expIncreaseValue -= increment;
+
+    if (expIncreaseValue <= 0)
+    {
+        player.GetComponent<PlayerHPManager>().exp = expBar.value;
+        player.GetComponent<PlayerHPManager>().SavePlayerData();
+    }
+}
+
+
     }
     public void Unpause()
     {

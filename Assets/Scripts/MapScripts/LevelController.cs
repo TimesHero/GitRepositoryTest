@@ -14,6 +14,8 @@ public class LevelController : MonoBehaviour
     public AudioClip zone1music;
     public AudioClip ambience;
     public AudioSource audioSource; 
+    public AudioSource battleMusic;
+    public AudioSource ambientMusic;
     public TextMeshProUGUI zoneNumberText;
 
     void Start()
@@ -40,48 +42,53 @@ public class LevelController : MonoBehaviour
         //Test level 1------------------------------------------------------------------------------------------------
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned<1)
         {
-            audioSource.clip = zone1music;
-            audioSource.volume = 0.2f;
-            audioSource.Play();
+            //audioSource.clip = zone1music;
+            //audioSource.volume = 0.2f;
+            audioSource.Stop();
+            battleMusic.Play();
             zone1Portals[0].SetActive(true);
-            portalsSpawned++;
         }
 
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1)
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==10)
         {
-            zone1Portals[1].SetActive(true);
-            portalsSpawned++;
+            //zone1Portals[1].SetActive(true);
         }
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==25)
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==15)
         {
             zone1Portals[2].SetActive(true);
-            portalsSpawned++;
         }
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==25)
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==35)
         {
             zone1Portals[3].SetActive(true);
-            portalsSpawned++;
+        }
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==40)
+        {
+            //zone1Portals[4].SetActive(true);
         }
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==50)
         {
-            zone1Portals[4].SetActive(true);
-            portalsSpawned++;
+            zone1Portals[5].SetActive(true);
         }
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==60)
         {
-            zone1Portals[5].SetActive(true);
-            portalsSpawned++;
-        }
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==80)
-        {
             zone1Portals[6].SetActive(true);
-            zone1Portals[7].SetActive(true);
-            portalsSpawned++;
+            //zone1Portals[7].SetActive(true);
         }
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==90)
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==70)
         {
             zone1Portals[8].SetActive(true);
-            portalsSpawned++;
+        }
+         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==80)
+        {
+            //zone1Portals[9].SetActive(true);
+            zone1Portals[10].SetActive(true);
+            zone1Portals[11].SetActive(true);
+            zone1Portals[12].SetActive(true);
+        }
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==85)
+        {
+            //zone1Portals[13].SetActive(true);
+            //zone1Portals[14].SetActive(true);
         }
         
         if (zones[0].gameObject.GetComponent<ZoneController>().Captured==true && capturedZones==0)
@@ -94,18 +101,66 @@ public class LevelController : MonoBehaviour
             capturedZones++;
             zones[capturedZones].SetActive(true);
             portalsSpawned=0;
-            audioSource.clip = ambience;
-            audioSource.Play();
+            battleMusic.Stop();
+            ambientMusic.Play();
             zoneNumberText.text = "Zone 2";
         }
         //Test Level 2--------------------------------------------------------------------------------------------------------
-        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned<1)
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==1)
         {
-            audioSource.clip = zone1music;
-            audioSource.volume = 0.2f;
-            audioSource.Play();
+           
+            ambientMusic.Stop();
+            battleMusic.Play();
             zone2Portals[0].SetActive(true);
             portalsSpawned++;
         }
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==10)
+        {
+            zone2Portals[1].SetActive(true);
+            Debug.Log("10");
+        }
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==25)
+        {
+            zone2Portals[2].SetActive(true);
+        }
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==30)
+        {
+            zone2Portals[3].SetActive(true);
+        }
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==45)
+        {
+            zone2Portals[4].SetActive(true);
+            zone2Portals[5].SetActive(true);
+        }
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==65)
+        {
+            zone2Portals[6].SetActive(true);
+            zone2Portals[7].SetActive(true);
+        }
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==85)
+        {
+            zone2Portals[8].SetActive(true);
+            zone2Portals[9].SetActive(true);
+        }
+         if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==90)
+        {
+            //zone2Portals[10].SetActive(true);
+            //zone2Portals[11].SetActive(true);
+        }
+        if (zones[1].gameObject.GetComponent<ZoneController>().Captured==true && capturedZones==0)
+        {
+            zones[1].SetActive(false);
+            foreach (var portal in zone2Portals)
+            {
+                Destroy(portal);
+            }
+            capturedZones++;
+            //zones[capturedZones].SetActive(true);
+            battleMusic.Stop();
+            ambientMusic.Play();
+            zoneNumberText.text = "Zone 3";
+        }
+            
+        }
     }
-}
+

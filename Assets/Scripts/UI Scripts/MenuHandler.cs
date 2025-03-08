@@ -10,7 +10,9 @@ public class MenuHandler : MonoBehaviour
     public AudioClip sound;
     public AudioClip backSound;
     public GameObject controlPanel;
+    public GameObject creditsPanel;
     public GameObject backButton;
+    public GameObject backCreditButton;
     public GameObject controlButton;
     void Start()
     {
@@ -29,19 +31,30 @@ public class MenuHandler : MonoBehaviour
         SceneManager.LoadScene("MainLevelScene");
         AudioManager.Instance.PlaySound(sound); 
     }
-    public void Controlpanel()
+    public void ControlPanel()
     {
         controlPanel.SetActive(true);
         input.SetSelectedGameObject(backButton);
+    }
+    public void CreditsPanel()
+    {
+        creditsPanel.SetActive(true);
+        input.SetSelectedGameObject(backCreditButton);
     }
     public void back()
     {
         input.SetSelectedGameObject(controlButton);
         controlPanel.SetActive(false);
+        creditsPanel.SetActive(false);
     }
+    
     public void QuitGame()
     {
         Application.Quit();
         AudioManager.Instance.PlaySound(backSound); 
+    }
+    public void survey()
+    {
+         Application.OpenURL("http://unity3d.com/");
     }
 }

@@ -55,7 +55,6 @@ void Start()
             {
                 percentageText.text = "Move to next Zone";
                 Captured=true;
-                //gameObject.SetActive(false);
             }
         }
 

@@ -39,7 +39,7 @@ public class Teleporter : MonoBehaviour
     {
         teleporting=true; 
         yield return new WaitForSeconds(0.4f);
-        player.transform.position = new Vector3(0,-4,0); 
+        player.transform.position = new Vector3(0,-6,0); 
         yield return new WaitForSeconds(0.4f);
         teleporting=false; 
         

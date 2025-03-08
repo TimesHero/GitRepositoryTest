@@ -9,6 +9,7 @@ TagManager:
   - Portal
   - Void
   - Test
+  - melee
   layers:
   - Default
   - TransparentFX

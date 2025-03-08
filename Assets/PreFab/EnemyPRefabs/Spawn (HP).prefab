@@ -135,7 +135,9 @@ MonoBehaviour:
   - {fileID: 4433656929221914189, guid: d439f65c411e4834e9bb3c069e4ec083, type: 3}
   - {fileID: 4433656929221914189, guid: d439f65c411e4834e9bb3c069e4ec083, type: 3}
   - {fileID: 5783965256221458099, guid: b0ecfe6c4eafdb74fb5a55d522e4b47b, type: 3}
-  HP: 200
+  - {fileID: 4433656929221914189, guid: d439f65c411e4834e9bb3c069e4ec083, type: 3}
+  - {fileID: 4433656929221914189, guid: d439f65c411e4834e9bb3c069e4ec083, type: 3}
+  HP: 50
   temporary: 0
   spawnLimit: 0
   spawnSound: {fileID: 6182369589105416837}

@@ -47,7 +47,7 @@ public class BulletBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Obstacles") && !other.CompareTag("Void"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Obstacles") && !other.CompareTag("Void") || other.tag=="melee")
         {
             Instantiate(bullet.collideEffect, transform.position, transform.rotation);
             Destroy(gameObject);

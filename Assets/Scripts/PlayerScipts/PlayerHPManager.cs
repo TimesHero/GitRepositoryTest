@@ -189,6 +189,7 @@ public void LoadPlayerData()
         {
             HP -= damage;
         }
+        HP = Mathf.Clamp(HP, 0, HPMax);
         HPtext.text = "" + HP + "/" + HPMax;
         if (effectiveDamage > 0)
         {

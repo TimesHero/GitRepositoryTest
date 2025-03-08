@@ -73,7 +73,7 @@ public class ExplodingEnemy : MonoBehaviour
             explodeCooldown ++;
             if (explodeCooldown==240)
             {
-                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(12);
+                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(8);
                 Instantiate(explosionParticles, transform.position, transform.rotation);
                 AudioManager.Instance.PlaySound(explosionSound);
                 Destroy(gameObject);

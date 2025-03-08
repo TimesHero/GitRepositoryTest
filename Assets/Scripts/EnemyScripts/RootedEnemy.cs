@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
+
 public class RootedEnemy : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float attackRange;
     public float interval;
     private GameObject player;
@@ -22,6 +22,7 @@ public class RootedEnemy : MonoBehaviour
     Animator myAnim;
     private float Steptimer = 0f;
     private bool stepping = false; 
+
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
@@ -32,10 +33,8 @@ public class RootedEnemy : MonoBehaviour
         currentInterval = Time.time;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
         Vector2 direction = player.transform.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         lookTransform.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
@@ -45,28 +44,32 @@ public class RootedEnemy : MonoBehaviour
         {
             Steptimer += Time.deltaTime;
 
-            if (Steptimer >= 1 && stepping == false)
+            if (Steptimer >= 1 && !stepping)
             {
-                 StartCoroutine(Burrow());
+                StartCoroutine(Burrow());
             }
         }
-        //Attack
-        if (Time.time>currentInterval  && distanceToPlayer <= attackRange)
+
+        if (Time.time > currentInterval && distanceToPlayer <= attackRange)
         {
             StartCoroutine(Shoot());
         }
+
         myAnim.SetBool("isAttacking", attacking);
-        Debug.Log(attacking);
         Flip(angle);
     }
+
     private IEnumerator Burrow()
     {
         stepping = true;
-        myAnim.SetBool("isBurrowing",true);
+        myAnim.SetBool("isBurrowing", true);
+
         yield return new WaitForSeconds(1f);
+
         Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
-        Vector2 targetPosition = (Vector2)player.transform.position - directionToPlayer * 6f; // last number is distance from the player
-        if (!IsValidPosition(targetPosition))   // Check if the calculated target position is valid
+        Vector2 targetPosition = (Vector2)player.transform.position - directionToPlayer * 6f;
+
+        if (!IsValidPosition(targetPosition))   
         {
             Vector2 adjustedPosition = FindClosestValidPosition(targetPosition);
             transform.position = adjustedPosition;
@@ -75,12 +78,12 @@ public class RootedEnemy : MonoBehaviour
         {
             transform.position = targetPosition;
         }
-        Vector3 currentPosition = transform.position;
+
         myAnim.SetBool("isBurrowing", false);
-        transform.position = new Vector3(currentPosition.x, currentPosition.y);
         Steptimer = 0f;
         stepping = false; 
     }
+
     private Vector2 FindClosestValidPosition(Vector2 targetPosition)
     {
         float searchRadius = 30f; 
@@ -104,43 +107,42 @@ public class RootedEnemy : MonoBehaviour
 
         return closestValidPosition;
     }
+
     bool IsValidPosition(Vector2 position)
     {
         LayerMask obstacleLayer = LayerMask.GetMask("Obstacle"); 
-        return !Physics2D.OverlapCircle(position, 0.5f, obstacleLayer); // Check if there's any collider in the area
+        return !Physics2D.OverlapCircle(position, 0.5f, obstacleLayer);
     }
-
 
     private IEnumerator Shoot()
     {
-    // Loop to shoot in 8 directions (Up, Down, Left, Right, and 4 diagonals)
+        attacking = true; 
+        currentInterval = Time.time + interval;
+        yield return new WaitForSeconds(0.2f);
+
+        float spreadAngle = 45f;
+        for (int i = 0; i < 8; i++)
         {
-            attacking=true; 
-            currentInterval = Time.time + interval;
-            yield return new WaitForSeconds(0.2f);
-            float spreadAngle = 45f;
-            for (int i = 0; i < 8; i++)
-            {
-                
-                angle = i * spreadAngle;
-                GameObject bullet = Instantiate(enemyBullet, lookTransform.position, lookTransform.rotation * Quaternion.Euler(0, 0, -90));
-                Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
-                Vector2 direction = Quaternion.Euler(0, 0, angle) * transform.transform.up;
+            angle = i * spreadAngle;
+            GameObject bullet = Instantiate(enemyBullet, lookTransform.position, lookTransform.rotation * Quaternion.Euler(0, 0, -90));
+            Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
+            Vector2 direction = Quaternion.Euler(0, 0, angle) * transform.transform.up;
 
-                rigidbodyB.linearVelocity = bulletType.velocity * direction.normalized;
+            rigidbodyB.linearVelocity = bulletType.velocity * direction.normalized;
 
-                float bulletAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle - 90)); 
+            float bulletAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle - 90)); 
 
-                bullet.gameObject.GetComponent<BulletBase>().PeramPass(bulletType);
-            }
-            yield return new WaitForSeconds(0.2f);
-            attacking=false;
+            bullet.gameObject.GetComponent<BulletBase>().PeramPass(bulletType);
         }
+
+        yield return new WaitForSeconds(0.2f);
+        attacking = false;
     }
+
     void Flip(float angle)
     {
-        if (angle > 90 || angle < -90) // Looking left
+        if (angle > 90 || angle < -90)
         {
             if (facingRight)
             {
@@ -158,16 +160,13 @@ public class RootedEnemy : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-                if (other.gameObject.GetComponent<PlayerHPManager>().invincible == false)
-                    //Destroy(gameObject);//destroys itself
-                    other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(3);//goes into the player perams and runs the take dmg function. 
-                    print("hurt");
-
+            if (!other.gameObject.GetComponent<PlayerHPManager>().invincible)
+                other.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(3); 
+            print("hurt");
         }        
     }
 }
