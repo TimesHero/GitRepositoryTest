@@ -26,23 +26,6 @@ public class LevelController : MonoBehaviour
     void Update()
     {
         // Zone 1 logic
-        if (zones[capturedZones].gameObject.GetComponent<ZoneController>().playerColliding == false)
-        {
-            Vector3 zoneViewportPosition = Camera.main.WorldToViewportPoint(zones[capturedZones].transform.position);
-            float margin = 0.25f;
-            if (zoneViewportPosition.x < -margin || zoneViewportPosition.x > 1 + margin || zoneViewportPosition.y < -margin || zoneViewportPosition.y > 1 + margin)
-            {
-                wayPoint.SetActive(true);
-                Vector3 directionToZone = zones[capturedZones].transform.position - player.position;
-                float angle = Mathf.Atan2(directionToZone.y, directionToZone.x) * Mathf.Rad2Deg;
-                angle -= 90;
-                wayPoint.transform.rotation = Quaternion.Euler(0, 0, angle);
-            }
-            else
-            {
-                wayPoint.SetActive(false); 
-            }
-        }
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage == 1 && portalsSpawned == 0)
         {
             audioSource.Stop();
