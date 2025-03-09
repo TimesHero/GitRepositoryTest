@@ -307,19 +307,7 @@ public class InputScript : MonoBehaviour
     }
     public void OnDebug(InputValue inputValue)
     {
-        bool isActive = !lvlUpScreen.activeSelf;
-        lvlUpScreen.SetActive(isActive);
-        Debug.Log(isActive);
-
-        if (!isActive)
-        {
-            Time.timeScale = 1; 
-        }
-        else
-        {
-            Time.timeScale = 0; 
-        }
-        lvlUpScript.GetComponent<LevelUpButtons>().SetInput();
+       
     }
     public void OnInteract(InputValue inputValue)
     {

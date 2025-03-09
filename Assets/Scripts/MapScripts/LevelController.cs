@@ -8,7 +8,7 @@ public class LevelController : MonoBehaviour
     public GameObject[] zone1Portals;
     public GameObject[] zone2Portals;
     public GameObject[] zone3Portals;
-    private int capturedZones = 0;
+    private int capturedZones = 2;
     private int portalsSpawned = 0;
     public GameObject wayPoint;
     public Transform player;
@@ -47,11 +47,12 @@ public class LevelController : MonoBehaviour
 
 
         //Test level 1------------------------------------------------------------------------------------------------
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned<1)
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
         {
             audioSource.Stop();
             battleMusic.Play();
             zone1Portals[0].SetActive(true);
+            portalsSpawned++;
         }
 
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==15)
@@ -111,7 +112,7 @@ public class LevelController : MonoBehaviour
             zoneNumberText.text = "Zone 2";
         }
         //Test Level 2--------------------------------------------------------------------------------------------------------
-        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==1)
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
         {
            
             ambientMusic.Stop();
@@ -160,14 +161,15 @@ public class LevelController : MonoBehaviour
             }
             capturedZones++;
             zones[capturedZones].SetActive(true);
+            portalsSpawned=0;
             battleMusic.Stop();
             ambientMusic.Play();
             zoneNumberText.text = "Zone 3";
         }
         //Test Level 3--------------------------------------------------------------------------------------------------------
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==1)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
         {
-           
+            portalsSpawned++;
             ambientMusic.Stop();
             battleMusic.Play();
             zone3Portals[0].SetActive(true);

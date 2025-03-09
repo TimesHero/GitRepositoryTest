@@ -10,6 +10,7 @@ TagManager:
   - Void
   - Test
   - melee
+  - Manager
   layers:
   - Default
   - TransparentFX

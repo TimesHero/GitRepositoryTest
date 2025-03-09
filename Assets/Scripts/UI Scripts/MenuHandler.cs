@@ -35,17 +35,22 @@ public class MenuHandler : MonoBehaviour
     {
         controlPanel.SetActive(true);
         input.SetSelectedGameObject(backButton);
+        AudioManager.Instance.PlaySound(sound); 
+        
     }
     public void CreditsPanel()
     {
         creditsPanel.SetActive(true);
         input.SetSelectedGameObject(backCreditButton);
+        AudioManager.Instance.PlaySound(sound); 
+        AudioManager.Instance.PlaySound(backSound); 
     }
     public void back()
     {
         input.SetSelectedGameObject(controlButton);
         controlPanel.SetActive(false);
         creditsPanel.SetActive(false);
+        AudioManager.Instance.PlaySound(backSound); 
     }
     
     public void QuitGame()
@@ -55,6 +60,7 @@ public class MenuHandler : MonoBehaviour
     }
     public void survey()
     {
-         Application.OpenURL("http://unity3d.com/");
+         Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdtUC22pmHLhEJ0rYwYYYOCQp1WK86lNOPKDX6inuEdd7s24Q/viewform?usp=dialog");
+         AudioManager.Instance.PlaySound(sound); 
     }
 }

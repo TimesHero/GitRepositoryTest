@@ -44,15 +44,14 @@ public class PlayerHPManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public AudioClip dmgSound; 
     private float baseEnemyScore; 
+    public Collider2D myCollider;
+
     void Start()
     {
         HPBar.value = HP;
         HPBar.maxValue = HP;
-
-        //PlayerPrefs Saving
-        //SavePlayerData();
         LoadPlayerData();
-
+        myCollider = GetComponent<Collider2D>();
 
         LevelUp();
     }
@@ -90,7 +89,7 @@ public void SavePlayerData()
 // Load player data, excluding HP and mana
 public void LoadPlayerData()
 {
-    if (PlayerPrefs.HasKey("HopeFragments"))  // Check if "HopeFragments" key exists
+    if (PlayerPrefs.HasKey("HopeFragments"))  
     {
         hopeFragments = PlayerPrefs.GetFloat("HopeFragments");
         currentLevel = PlayerPrefs.GetFloat("CurrentLevel");
@@ -161,7 +160,7 @@ public void LoadPlayerData()
         }
         else if (defLevel > 0 && defLevel <= 5)
         {
-             defValue = 1 + (defLevel * 0.1f);  // 2x at max damage
+             defValue = 1 + (defLevel * 0.2f);  // 2x at max damage
         }
 
         HPBar.maxValue = HPMax;
@@ -170,15 +169,16 @@ public void LoadPlayerData()
         manaBar.value = manaMax;
         SavePlayerData();
     }
-    public void DamageOrHeal(float damage)
+   public void DamageOrHeal(float damage)
+{
     // If something needs to heal the player instead, use this function still but make the int variable passed a negative number
+    if (invincible == true)
     {
-        if (invincible==true)
-        {
-        }
-        else
-        {
-        if (damage>0)
+        // Do nothing if the player is invincible
+    }
+    else
+    {
+        if (damage > 0)
         {
             float effectiveDamage = damage / defValue;
             effectiveDamage = Mathf.Max(0, effectiveDamage);
@@ -189,20 +189,22 @@ public void LoadPlayerData()
         {
             HP -= damage;
         }
+        
         HP = Mathf.Clamp(HP, 0, HPMax);
-        HPtext.text = "" + HP + "/" + HPMax;
-        if (effectiveDamage > 0)
-        {
-        }
-            StartCoroutine(iFrameTick());
-        }
-        HP = Mathf.Floor(HP);
-        HPBar.value=HP;
-        if (HP<=0)
-        {
-            MakeDead();
-            logicManager.gameObject.GetComponent<GameHandler>().GameOver(false);
-        }
+        HPtext.text = "" + Mathf.Floor(HP) + "/" + Mathf.Floor(HPMax);
+        StartCoroutine(iFrameTick());
+    }
+    HP = Mathf.Ceil(HP); 
+    HPBar.value = HP;
+
+    if (HP <= 0)
+    {
+        Debug.Log("DEAD");
+        MakeDead();
+        logicManager.gameObject.GetComponent<GameHandler>().GameOver(false);
+    }
+
+
     }
     public void UseMana(float consumption)
     {
@@ -221,6 +223,7 @@ public void LoadPlayerData()
     public void MakeDead()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
+        myCollider.enabled = false;
     }
     private IEnumerator iFrameTick()
     {

@@ -23,11 +23,15 @@ public class GameHandler : MonoBehaviour
     public TextMeshProUGUI expText;
     public TextMeshProUGUI endScoreText;
     private GameObject player;
-    private bool gameEnded = false; 
+    public bool gameEnded = false; 
     private float expIncreaseValue = 0; 
     private InputActionMap playerActionMap;
     public InputActionAsset inputActions;
-     public TextMeshProUGUI gameOverText; 
+    public TextMeshProUGUI gameOverText; 
+    public AudioClip winMusic;
+    public AudioClip loseMusic;
+    public AudioSource audioPlayer; 
+    public AudioSource gameMusic;
     void Start()
     {
         input = FindAnyObjectByType<EventSystem>();
@@ -103,13 +107,17 @@ public class GameHandler : MonoBehaviour
     {
         if (gameEnded==false)
         {
+            gameMusic.Stop();
             if (win==true)
             {
                 gameOverText.text = "YOU WIN";
+                audioPlayer.clip = winMusic;
+                audioPlayer.Play();
             }
             else
             {
-
+                audioPlayer.clip = loseMusic;
+                audioPlayer.Play();
             }
             endPanel.SetActive(true);
             input.SetSelectedGameObject(firstButtonToSelectGameOver);
