@@ -52,6 +52,7 @@ public class InputScript : MonoBehaviour
     public bool facingRight = true;
     SpriteRenderer myRenderer;
     Animator myAnim;
+    public GameObject dashTrail;
 
     void Start()
     {
@@ -61,6 +62,7 @@ public class InputScript : MonoBehaviour
         currentDashInterval = Time.time;
         currentProjectile=regularProjectile;
         myRenderer = GetComponent<SpriteRenderer>();
+        myAnim = GetComponent<Animator>();
         ChangeBulletType();
     }
 
@@ -93,6 +95,7 @@ public class InputScript : MonoBehaviour
             }
         }
         Flip();
+        myAnim.SetBool("isMoving",moving);
 
     }
    void Flip()
@@ -125,7 +128,7 @@ public class InputScript : MonoBehaviour
      private IEnumerator Dash()
     {
         dashing = true;
-
+        dashTrail.SetActive(true);
         myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
         gameObject.GetComponent<PlayerHPManager>().invincible = true;
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
@@ -136,7 +139,7 @@ public class InputScript : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
 
         StopCoroutine(EnablePlayerCollider()); 
-
+        dashTrail.SetActive(false);
         dashing = false;
     }
     private IEnumerator EnablePlayerCollider()
@@ -160,7 +163,7 @@ public class InputScript : MonoBehaviour
         {
             gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost);
         }
-
+        myAnim.SetTrigger("shoot");
         if (currentProjectile.triple == true) {
             float spreadAngle = 25f; 
             for (int i = -1; i <= 1; i++) 
@@ -267,6 +270,7 @@ public class InputScript : MonoBehaviour
     public void OnMeleeWeapon(InputValue inputValue)
     {
         meleeWeapon.gameObject.GetComponent<MeleeSwing>().Attack();
+        myAnim.SetTrigger("meleeAttack");
     }
     public void OnLeftBumper(InputValue inputValue)
     {

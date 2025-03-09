@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      harkinian_0: 1339929756793901750
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

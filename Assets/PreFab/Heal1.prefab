@@ -225,3 +225,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8723b00488f11a741be532c74af04b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tick: {fileID: 8300000, guid: 0b63231fedf4993419108a4e44f3e3c6, type: 3}
