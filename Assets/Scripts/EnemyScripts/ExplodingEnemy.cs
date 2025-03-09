@@ -1,7 +1,5 @@
 using System.Collections;
 using Pathfinding;
-using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 public class ExplodingEnemy : MonoBehaviour
 {
@@ -72,11 +70,10 @@ public class ExplodingEnemy : MonoBehaviour
             startSound=true;
             gameObject.GetComponent<AIPath>().canMove = false;
             transform.localScale = new Vector3(transform.localScale.x + 0.001f,transform.localScale.y + 0.001f,transform.localScale.z);
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f+1f, 1f, 1f, 1f);
             explodeCooldown ++;
             if (explodeCooldown==240)
             {
-                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(12);
+                player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(8);
                 Instantiate(explosionParticles, transform.position, transform.rotation);
                 AudioManager.Instance.PlaySound(explosionSound);
                 Destroy(gameObject);
@@ -84,7 +81,7 @@ public class ExplodingEnemy : MonoBehaviour
         }
         else
         {
-            if (transform.localScale.x > originalScale.x && player.GetComponent<Collider2D>().enabled == true)
+            if (transform.localScale.x > originalScale.x)
             {
                 startSound=false;
                 if (startSound2==false)
@@ -94,7 +91,6 @@ public class ExplodingEnemy : MonoBehaviour
                 }
                 startSound2=true;
                 transform.localScale = new Vector3(transform.localScale.x - 0.001f,transform.localScale.y -  0.001f,transform.localScale.z);
-                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1f-1f, 1f, 1f, 1f);
                 explodeCooldown --;
                 if (transform.localScale.x == originalScale.x)
                     {

@@ -78,10 +78,10 @@ public class EnemyHPManager : MonoBehaviour
     private IEnumerator ColliderDisable()
     {
         gameObject.GetComponent<AIPath>().canMove =false;
-        gameObject.GetComponent<Collider2D>().enabled = false;
+        //gameObject.GetComponent<Collider2D>().enabled = false;
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
         yield return new WaitForSeconds(0.5f); // Time invincible
-        gameObject.GetComponent<Collider2D>().enabled = true;
+        //gameObject.GetComponent<Collider2D>().enabled = true;
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         gameObject.GetComponent<AIPath>().canMove =true;
     }

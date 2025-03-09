@@ -17,6 +17,10 @@ public class ZoneController : MonoBehaviour
     public int zoneLossGameOverCount;
     public bool Captured;
     public int enemieInZone = 0; 
+    public AudioClip upTick;
+    public AudioClip downTick;
+    public AudioClip contestSound;
+    public AudioClip cappedSound;
 void Start()
 {
     currentTime = 0f;
@@ -39,6 +43,7 @@ void Start()
                 outlineParticles.startColor = new Color(1, 0.5f, 0.5f, 0.5f);
                 uiColour.gameObject.GetComponent<Image>().color = new Color(1, 0.5f, 0.5f);
                 outline.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0.5f);
+                AudioManager.Instance.PlaySound(contestSound); 
             }
             else
             {
@@ -48,14 +53,15 @@ void Start()
                 outlineParticles.startColor = new Color(1, 1, 0f, 0.5f);
                 uiColour.gameObject.GetComponent<Image>().color = new Color(1, 1, 0);
                 outline.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0);
+                AudioManager.Instance.PlaySound(upTick); 
                 
             }
 
             if (capturePercentage==100)
             {
                 percentageText.text = "Move to next Zone";
+                AudioManager.Instance.PlaySound(cappedSound); 
                 Captured=true;
-                //gameObject.SetActive(false);
             }
         }
 
@@ -67,6 +73,7 @@ void Start()
             outlineParticles.startColor = new Color(1f, 0f, 1f, 0.5f);
             uiColour.gameObject.GetComponent<Image>().color = new Color(1, 0 , 1);
             outline.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0 , 1);
+            AudioManager.Instance.PlaySound(downTick); 
         }
         if (enemieInZone==0 && playerColliding==false)
         {
@@ -77,9 +84,9 @@ void Start()
         }
         percentageText.text = capturePercentage + "%";
 
-        if (capturePercentage==zoneLossGameOverCount)
+        if (capturePercentage==-20)
         {
-            logicManager.gameObject.GetComponent<GameHandler>().GameOver();
+            logicManager.gameObject.GetComponent<GameHandler>().GameOver(false);
         }
     }
 }

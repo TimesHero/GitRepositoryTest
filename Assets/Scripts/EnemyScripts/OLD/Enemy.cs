@@ -1,7 +1,5 @@
 using System.Collections;
 using Pathfinding;
-using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
 
 
@@ -63,8 +61,6 @@ public class Enemy : MonoBehaviour
         gameObject.GetComponent<AIPath>().canMove =!enemytype.stationary;
 
         HP = enemytype.HP;
-        animator.runtimeAnimatorController = enemytype.animationController;
-
         gameObject.GetComponent<SpriteRenderer>().sprite = enemytype.enemySprite;
         interval = enemytype.attackInterval;
         stationary=enemytype.stationary;

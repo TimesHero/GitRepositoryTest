@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using TMPro;
-using System.Diagnostics;
 using Fungus;
 using UnityEngine.Rendering;
 public class PlayerHPManager : MonoBehaviour
@@ -190,6 +189,7 @@ public void LoadPlayerData()
         {
             HP -= damage;
         }
+        HP = Mathf.Clamp(HP, 0, HPMax);
         HPtext.text = "" + HP + "/" + HPMax;
         if (effectiveDamage > 0)
         {
@@ -201,7 +201,7 @@ public void LoadPlayerData()
         if (HP<=0)
         {
             MakeDead();
-            logicManager.gameObject.GetComponent<GameHandler>().GameOver();
+            logicManager.gameObject.GetComponent<GameHandler>().GameOver(false);
         }
     }
     public void UseMana(float consumption)

@@ -49,6 +49,10 @@ public class InputScript : MonoBehaviour
     public GameObject lvlUpScreen;
     public GameObject lvlUpScript;
     public List<GameObject> interactables;
+    public bool facingRight = true;
+    SpriteRenderer myRenderer;
+    Animator myAnim;
+    public GameObject dashTrail;
 
     void Start()
     {
@@ -57,6 +61,8 @@ public class InputScript : MonoBehaviour
         currentInterval = Time.time;
         currentDashInterval = Time.time;
         currentProjectile=regularProjectile;
+        myRenderer = GetComponent<SpriteRenderer>();
+        myAnim = GetComponent<Animator>();
         ChangeBulletType();
     }
 
@@ -88,13 +94,41 @@ public class InputScript : MonoBehaviour
                 gameObject.GetComponent<PlayerHPManager>().UseMana(-0.8f);
             }
         }
+        Flip();
+        myAnim.SetBool("isMoving",moving);
 
     }
+   void Flip()
+{
+    // Calculate the angle between the right-facing direction (Vector2.right) and the direction the player is aiming (lookTransform.up)
+    float angle = Vector2.SignedAngle(Vector2.right, lookTransform.up);
+
+    // If the angle is greater than 90 or less than -90, flip the player to face left
+    if (angle > 90 || angle < -90)
+    {
+        if (facingRight) 
+        {
+            facingRight = false;
+            myRenderer.flipX = false; // Flip the sprite to face left (flipX = true for left-facing)
+        }
+    }
+    else // If the angle is between -90 and 90, the player is facing right
+    {
+        if (!facingRight)
+        {
+            facingRight = true;
+            myRenderer.flipX = true; // Reset sprite flip to face right (flipX = false for right-facing)
+        }
+    }
+}
+
+
+
 
      private IEnumerator Dash()
     {
         dashing = true;
-
+        dashTrail.SetActive(true);
         myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
         gameObject.GetComponent<PlayerHPManager>().invincible = true;
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
@@ -105,7 +139,7 @@ public class InputScript : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
 
         StopCoroutine(EnablePlayerCollider()); 
-
+        dashTrail.SetActive(false);
         dashing = false;
     }
     private IEnumerator EnablePlayerCollider()
@@ -121,8 +155,15 @@ public class InputScript : MonoBehaviour
     }
     public void shoot()
     {
-        gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost);
-
+        if (atkSpeedPickup) 
+        {
+            gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost/2);
+        }
+        else
+        {
+            gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost);
+        }
+        myAnim.SetTrigger("shoot");
         if (currentProjectile.triple == true) {
             float spreadAngle = 25f; 
             for (int i = -1; i <= 1; i++) 
@@ -160,7 +201,10 @@ public class InputScript : MonoBehaviour
             currentProjectile=pierceProjectile;
             reticle.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f);
         }
+        if (atkSpeedPickup!=true)
+        {
         interval=currentProjectile.timeBetweenShots;
+        }
         
     }
 
@@ -171,11 +215,14 @@ public class InputScript : MonoBehaviour
     private IEnumerator atkSpeedTimer()
     {
         atkSpeedPickup=true;
-        interval=currentProjectile.atkSpeedUpTimeBetweenShots;
+        Debug.Log("START ATTACK");
+        interval=interval/2;
+        Debug.Log(interval);
         ChangeBulletType();
         yield return new WaitForSeconds(8f);
         atkSpeedPickup=false;
-        interval=currentProjectile.timeBetweenShots;
+        interval=interval*2;
+        atkSpeedPickup=false;
         ChangeBulletType();
         
         
@@ -187,7 +234,7 @@ public class InputScript : MonoBehaviour
 
     private IEnumerator runTimer()
     {
-        baseSpeed=150;
+        baseSpeed=200;
         yield return new WaitForSeconds(8f);
         baseSpeed=100;
     }
@@ -223,6 +270,7 @@ public class InputScript : MonoBehaviour
     public void OnMeleeWeapon(InputValue inputValue)
     {
         meleeWeapon.gameObject.GetComponent<MeleeSwing>().Attack();
+        myAnim.SetTrigger("meleeAttack");
     }
     public void OnLeftBumper(InputValue inputValue)
     {
