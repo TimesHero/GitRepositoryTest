@@ -44,12 +44,14 @@ public class PlayerHPManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public AudioClip dmgSound; 
     private float baseEnemyScore; 
+    public Collider2D myCollider;
+
     void Start()
     {
         HPBar.value = HP;
         HPBar.maxValue = HP;
         LoadPlayerData();
-
+        myCollider = GetComponent<Collider2D>();
 
         LevelUp();
     }
@@ -87,7 +89,7 @@ public void SavePlayerData()
 // Load player data, excluding HP and mana
 public void LoadPlayerData()
 {
-    if (PlayerPrefs.HasKey("HopeFragments"))  // Check if "HopeFragments" key exists
+    if (PlayerPrefs.HasKey("HopeFragments"))  
     {
         hopeFragments = PlayerPrefs.GetFloat("HopeFragments");
         currentLevel = PlayerPrefs.GetFloat("CurrentLevel");
@@ -220,6 +222,7 @@ public void LoadPlayerData()
     public void MakeDead()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
+        myCollider.enabled = false;
     }
     private IEnumerator iFrameTick()
     {
