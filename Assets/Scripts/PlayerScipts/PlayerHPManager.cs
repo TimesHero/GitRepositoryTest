@@ -201,7 +201,7 @@ public void LoadPlayerData()
         if (HP<=0)
         {
             MakeDead();
-            logicManager.gameObject.GetComponent<GameHandler>().GameOver();
+            logicManager.gameObject.GetComponent<GameHandler>().GameOver(false);
         }
     }
     public void UseMana(float consumption)

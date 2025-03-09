@@ -152,7 +152,14 @@ public class InputScript : MonoBehaviour
     }
     public void shoot()
     {
-        gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost);
+        if (atkSpeedPickup) 
+        {
+            gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost/2);
+        }
+        else
+        {
+            gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost);
+        }
 
         if (currentProjectile.triple == true) {
             float spreadAngle = 25f; 

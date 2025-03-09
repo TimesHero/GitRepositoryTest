@@ -7,6 +7,7 @@ public class LevelController : MonoBehaviour
     public GameObject[] zones;
     public GameObject[] zone1Portals;
     public GameObject[] zone2Portals;
+    public GameObject[] zone3Portals;
     private int capturedZones = 0;
     private int portalsSpawned = 0;
     public GameObject wayPoint;
@@ -26,7 +27,11 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (zones[capturedZones].gameObject.GetComponent<ZoneController>().playerColliding ==false)
+        if (zones[capturedZones].gameObject.GetComponent<ZoneController>().playerColliding == false)
+    {
+        Vector3 zoneViewportPosition = Camera.main.WorldToViewportPoint(zones[capturedZones].transform.position);
+        float margin = 0.25f;
+        if (zoneViewportPosition.x < -margin || zoneViewportPosition.x > 1 + margin || zoneViewportPosition.y < -margin || zoneViewportPosition.y > 1 + margin)
         {
             wayPoint.SetActive(true);
             Vector3 directionToZone = zones[capturedZones].transform.position - player.position;
@@ -36,24 +41,24 @@ public class LevelController : MonoBehaviour
         }
         else
         {
-            wayPoint.SetActive(false);
+            wayPoint.SetActive(false); 
         }
+    }
+
 
         //Test level 1------------------------------------------------------------------------------------------------
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned<1)
         {
-            //audioSource.clip = zone1music;
-            //audioSource.volume = 0.2f;
             audioSource.Stop();
             battleMusic.Play();
             zone1Portals[0].SetActive(true);
         }
 
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==10)
-        {
-            //zone1Portals[1].SetActive(true);
-        }
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==15)
+        {
+            zone1Portals[1].SetActive(true);
+        }
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==25)
         {
             zone1Portals[2].SetActive(true);
         }
@@ -77,11 +82,11 @@ public class LevelController : MonoBehaviour
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==70)
         {
             zone1Portals[8].SetActive(true);
+            zone1Portals[10].SetActive(true);
         }
-         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==80)
+         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==85)
         {
             //zone1Portals[9].SetActive(true);
-            zone1Portals[10].SetActive(true);
             zone1Portals[11].SetActive(true);
             zone1Portals[12].SetActive(true);
         }
@@ -117,7 +122,6 @@ public class LevelController : MonoBehaviour
         if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==10)
         {
             zone2Portals[1].SetActive(true);
-            Debug.Log("10");
         }
         if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==25)
         {
@@ -147,7 +151,7 @@ public class LevelController : MonoBehaviour
             //zone2Portals[10].SetActive(true);
             //zone2Portals[11].SetActive(true);
         }
-        if (zones[1].gameObject.GetComponent<ZoneController>().Captured==true && capturedZones==0)
+        if (zones[1].gameObject.GetComponent<ZoneController>().Captured==true)
         {
             zones[1].SetActive(false);
             foreach (var portal in zone2Portals)
@@ -155,12 +159,60 @@ public class LevelController : MonoBehaviour
                 Destroy(portal);
             }
             capturedZones++;
-            //zones[capturedZones].SetActive(true);
+            zones[capturedZones].SetActive(true);
             battleMusic.Stop();
             ambientMusic.Play();
             zoneNumberText.text = "Zone 3";
         }
-            
+        //Test Level 3--------------------------------------------------------------------------------------------------------
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==1)
+        {
+           
+            ambientMusic.Stop();
+            battleMusic.Play();
+            zone3Portals[0].SetActive(true);
+        }
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==10)
+        {
+            zone3Portals[1].SetActive(true);
+        }
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==20)
+        {
+            zone3Portals[4].SetActive(true);
+        }
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==35)
+        {
+            zone3Portals[2].SetActive(true);
+            zone3Portals[3].SetActive(true);
+        }
+         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==45)
+        {
+            zone3Portals[5].SetActive(true);
+            zone3Portals[6].SetActive(true);
+        }
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==55)
+        {
+            zone3Portals[7].SetActive(true);
+            zone3Portals[8].SetActive(true);
+        }
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==70)
+        {
+            zone3Portals[9].SetActive(true);
+            zone3Portals[10].SetActive(true);
+        }
+         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==85)
+        {
+            zone3Portals[11].SetActive(true);
+        }
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==100)
+        {
+            gameObject.GetComponent<GameHandler>().GameOver(true);
+            zones[2].SetActive(false);
+            foreach (var portal in zone3Portals)
+            {
+                Destroy(portal);
+            }
+        }
         }
     }
 

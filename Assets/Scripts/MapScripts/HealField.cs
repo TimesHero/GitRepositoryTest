@@ -7,6 +7,7 @@ public class HealField : MonoBehaviour
     float tickInterval = 1f; 
     private GameObject player;
     private bool playerColliding;
+    public AudioClip Tick;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class HealField : MonoBehaviour
             if (playerColliding)
             {
                 player.gameObject.GetComponent<PlayerHPManager>().DamageOrHeal(-5); 
+                AudioManager.Instance.PlaySound(Tick); 
             }
             currentTime = 0f;
         }
