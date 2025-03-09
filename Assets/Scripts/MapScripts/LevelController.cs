@@ -8,7 +8,7 @@ public class LevelController : MonoBehaviour
     public GameObject[] zone1Portals;
     public GameObject[] zone2Portals;
     public GameObject[] zone3Portals;
-    private int capturedZones = 2;
+    private int capturedZones = 0;
     private int portalsSpawned = 0;
     public GameObject wayPoint;
     public Transform player;
@@ -152,7 +152,7 @@ public class LevelController : MonoBehaviour
             //zone2Portals[10].SetActive(true);
             //zone2Portals[11].SetActive(true);
         }
-        if (zones[1].gameObject.GetComponent<ZoneController>().Captured==true)
+        if (zones[1].gameObject.GetComponent<ZoneController>().Captured==true&& capturedZones==1)
         {
             zones[1].SetActive(false);
             foreach (var portal in zone2Portals)
@@ -170,6 +170,7 @@ public class LevelController : MonoBehaviour
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
         {
             portalsSpawned++;
+            Debug.Log("ZONE3");
             ambientMusic.Stop();
             battleMusic.Play();
             zone3Portals[0].SetActive(true);
