@@ -8,7 +8,7 @@ public class LevelController : MonoBehaviour
     public GameObject[] zone1Portals;
     public GameObject[] zone2Portals;
     public GameObject[] zone3Portals;
-    private int capturedZones = 2;
+    private int capturedZones = 0;
     private int portalsSpawned = 0;
     public GameObject wayPoint;
     public Transform player;
