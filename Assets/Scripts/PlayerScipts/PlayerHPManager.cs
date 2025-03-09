@@ -199,6 +199,7 @@ public void LoadPlayerData()
 
     if (HP <= 0)
     {
+        Debug.Log("DEAD");
         MakeDead();
         logicManager.gameObject.GetComponent<GameHandler>().GameOver(false);
     }
