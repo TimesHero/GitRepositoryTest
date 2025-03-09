@@ -57,7 +57,7 @@ public class MeleeSwing : MonoBehaviour
             // Apply knockback and damage to the enemy
             Vector2 knockbackDirection = transform.position - other.transform.position;
             knockbackDirection.Normalize();
-            other.gameObject.GetComponent<EnemyHPManager>().ApplyKnockback(knockbackDirection, 40f);
+            other.gameObject.GetComponent<EnemyHPManager>().ApplyKnockback(knockbackDirection, 20f);
             other.gameObject.GetComponent<EnemyHPManager>().TakeDamage(3);
         }
     }
