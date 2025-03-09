@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.501
 --- !u!114 &-3366580902444253817
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -31,7 +31,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 5
   tintColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 1, b: 0.1357832, a: 1}
@@ -70,7 +70,7 @@ MonoBehaviour:
     m_Value: 0.46
   streaksLength:
     m_OverrideState: 1
-    m_Value: 0.12
+    m_Value: 0.073
   streaksOrientation:
     m_OverrideState: 1
     m_Value: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0.03
+    m_Value: 0.109
   cropToFit:
     m_OverrideState: 1
     m_Value: 1
@@ -166,11 +166,11 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
   center:
-    m_OverrideState: 1
-    m_Value: {x: 0.5, y: 0.3}
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.43}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.174
+    m_Value: 0.275
   smoothness:
     m_OverrideState: 1
     m_Value: 1

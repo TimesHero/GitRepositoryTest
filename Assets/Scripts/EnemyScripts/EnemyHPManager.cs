@@ -18,18 +18,24 @@ public class EnemyHPManager : MonoBehaviour
     private Vector2 knockbackDirection;
     private float knockbackAmount;
     public AudioClip knockBackSound; 
+    private GameObject logicManager; 
     Rigidbody2D myRB;
     private bool isKnockedBack = false;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         myRB = GetComponent<Rigidbody2D>();
+        logicManager = GameObject.FindGameObjectWithTag("Manager");
     }
 
     void Update()
     {
-        
+        if (logicManager.GetComponent<GameHandler>().gameEnded==true)
+        {
+            Destroy(gameObject);
+        }
     }
+
      public void TakeDamage(float damage)
     {
         HP-= damage;

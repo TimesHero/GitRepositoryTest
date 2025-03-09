@@ -47,7 +47,7 @@ public class LevelController : MonoBehaviour
 
 
         //Test level 1------------------------------------------------------------------------------------------------
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned<1)
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1)
         {
             audioSource.Stop();
             battleMusic.Play();

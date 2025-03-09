@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     private int spawnCount;
     public int spawnLimit;
     public AudioSource spawnSound;
-
+    private GameObject logicManager; 
     void Start()
     {
         if (temporary==true)
@@ -26,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
         { 
             StartCoroutine(SpawnTimerNormal());
         }
+        logicManager = GameObject.FindGameObjectWithTag("Manager");
     }
 
     // Update is called once per frame
@@ -34,6 +35,10 @@ public class EnemySpawner : MonoBehaviour
         if (dead==true)
         {
             transform.localScale = new Vector3(transform.localScale.x - 0.01f,transform.localScale.y - 0.01f,transform.localScale.z);
+        }
+        if (logicManager.GetComponent<GameHandler>().gameEnded==true)
+        {
+            Destroy(gameObject);
         }
     }
 
