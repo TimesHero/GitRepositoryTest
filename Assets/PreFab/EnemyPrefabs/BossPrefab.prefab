@@ -143,6 +143,7 @@ MonoBehaviour:
   aoeRange: 0
   eightWayRange: 0
   interval: 2
+  shockwave: {fileID: 1260551655256414191, guid: 75aa10a1b76e57644b293b005d4be608, type: 3}
   enemyBullet: {fileID: 9016828709344966979, guid: 2481094c75a68ee4a909192fdcce2b13, type: 3}
   lookTransform: {fileID: 1118024607245969723}
   normalBullet: {fileID: 11400000, guid: 875d607f10b4fdb4aa9da4f2b4f3ef9c, type: 2}
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dbbe9a362f64843891cc6d4a4ff420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
+  HP: 1500
   scoreValue: 40
   hurtSound:
   - {fileID: 8300000, guid: 5c39c0b7b59ec2b4a9e30735313a47a6, type: 3}

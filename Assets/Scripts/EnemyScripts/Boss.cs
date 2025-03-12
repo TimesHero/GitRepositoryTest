@@ -8,6 +8,7 @@ public class Boss : MonoBehaviour
     public float aoeRange;
     public float eightWayRange;
     public float interval;
+    public GameObject shockwave; 
     private GameObject player;
     private GameObject zone;
     private float angle;
