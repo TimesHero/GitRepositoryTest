@@ -9,7 +9,7 @@ public class ZoneController : MonoBehaviour
     bool enemyColliding = false; 
     public ParticleSystem outlineParticles; 
     float currentTime = 0f;  
-    float tickInterval = 1f; 
+    float tickInterval = 0.8f; 
     public TextMeshProUGUI percentageText;
     public GameObject logicManager;
     public GameObject uiColour; 
