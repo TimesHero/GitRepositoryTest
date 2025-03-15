@@ -13,6 +13,7 @@ public class CutsceneTrigger : MonoBehaviour
     public InputActionAsset inputActions;  
     private InputActionMap playerActionMap;
     private EventSystem input;
+    public string fungusBlock;
     void Start()
     {
         playerActionMap = inputActions.FindActionMap("Player");
@@ -31,7 +32,7 @@ public class CutsceneTrigger : MonoBehaviour
         {
             if (activeFlowchart==false)
             {
-                fungusFlowchart.ExecuteBlock("Start");
+                fungusFlowchart.ExecuteBlock(fungusBlock);
                 playerActionMap.Disable();
                 activeFlowchart=true;
             }

@@ -197,7 +197,7 @@ public void LoadPlayerData()
     HP = Mathf.Ceil(HP); 
     HPBar.value = HP;
 
-    if (HP <= 0)
+    if (HP < 1)
     {
         Debug.Log("DEAD");
         MakeDead();

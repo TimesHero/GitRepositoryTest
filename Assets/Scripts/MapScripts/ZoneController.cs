@@ -21,6 +21,8 @@ public class ZoneController : MonoBehaviour
     public AudioClip downTick;
     public AudioClip contestSound;
     public AudioClip cappedSound;
+
+    
 void Start()
 {
     currentTime = 0f;

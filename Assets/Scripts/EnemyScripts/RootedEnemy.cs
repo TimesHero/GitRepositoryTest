@@ -47,12 +47,12 @@ public class RootedEnemy : MonoBehaviour
         if ( distanceToPlayer > attackRange)
         {
             burrowing = true; 
-            Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Projectile"), false);
+            //Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Projectile"), true);
         }
         else
         {
             burrowing=false;
-            Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Projectile"), false);
+            //Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Projectile"), false);
         }
 
         myAnim.SetBool("isAttacking", attacking);
