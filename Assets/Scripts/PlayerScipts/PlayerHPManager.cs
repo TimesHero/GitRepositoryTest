@@ -113,8 +113,7 @@ public void LoadPlayerData()
         {
             tutorialComplete = false; 
         }
-       if (SceneManager.GetActiveScene().name == "MainLevelScene")
-        startFlowchart.SetBooleanVariable("TutorialComplete", tutorialComplete);
+       if (SceneManager.GetActiveScene().name == "MainLevelScene") startFlowchart.SetBooleanVariable("TutorialComplete", tutorialComplete);
     }
     else
     {

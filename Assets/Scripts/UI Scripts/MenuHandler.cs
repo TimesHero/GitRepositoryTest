@@ -67,7 +67,8 @@ public class MenuHandler : MonoBehaviour
     }
     public void survey()
     {
-         Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdtUC22pmHLhEJ0rYwYYYOCQp1WK86lNOPKDX6inuEdd7s24Q/viewform?usp=dialog");
+         //Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdtUC22pmHLhEJ0rYwYYYOCQp1WK86lNOPKDX6inuEdd7s24Q/viewform?usp=dialog");
+         PlayerPrefs.DeleteAll();
          AudioManager.Instance.PlaySound(sound); 
     }
 }
