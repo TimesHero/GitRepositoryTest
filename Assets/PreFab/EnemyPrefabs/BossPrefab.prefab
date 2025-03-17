@@ -66,7 +66,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.3600006, y: 60.249985, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.61390173}
+  m_LocalScale: {x: 0.70224893, y: 0.70224893, z: 0.43111184}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1118024607245969723}
@@ -140,15 +140,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangedAttackRange: 20
-  aoeRange: 0
-  eightWayRange: 0
-  interval: 2
+  aoeRange: 5
+  eightWayRange: 12
+  interval: 3
+  shockwave: {fileID: 1260551655256414191, guid: 75aa10a1b76e57644b293b005d4be608, type: 3}
   enemyBullet: {fileID: 9016828709344966979, guid: 2481094c75a68ee4a909192fdcce2b13, type: 3}
   lookTransform: {fileID: 1118024607245969723}
-  normalBullet: {fileID: 11400000, guid: 875d607f10b4fdb4aa9da4f2b4f3ef9c, type: 2}
+  normalBullet: {fileID: 11400000, guid: cabae1313773a264490371c99383956b, type: 2}
   eightWayBullet: {fileID: 11400000, guid: b197450a0849a884c92adc76a1b74702, type: 2}
   attacking: 0
   facingRight: 1
+  shockwavePrefab: {fileID: 1260551655256414191, guid: 75aa10a1b76e57644b293b005d4be608, type: 3}
 --- !u!114 &969605558687215106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dbbe9a362f64843891cc6d4a4ff420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
+  HP: 300
   scoreValue: 40
   hurtSound:
   - {fileID: 8300000, guid: 5c39c0b7b59ec2b4a9e30735313a47a6, type: 3}
@@ -176,6 +178,8 @@ MonoBehaviour:
   - {fileID: 671500980237249953, guid: ea3e20989eb2b6f41b4cf8ab334bd2d9, type: 3}
   deathParticles: {fileID: 686915402783405883, guid: baf692d7da7bc024e8c195f2e31d5176, type: 3}
   knockBackSound: {fileID: 8300000, guid: 584e8bd7325439c4b8577e890a95c297, type: 3}
+  HPBar: {fileID: 2638482750277172271, guid: 583bb03d8ae44be43b8a97d87b0dfcda, type: 3}
+  bossType: 1
 --- !u!50 &8897350256647954494
 Rigidbody2D:
   serializedVersion: 5
@@ -325,9 +329,9 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 20
+  slowdownDistance: 5
   pickNextWaypointDist: 2
-  endReachedDistance: 18
+  endReachedDistance: 2.5
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0

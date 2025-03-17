@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Fungus;
 public class ZoneController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -9,7 +10,7 @@ public class ZoneController : MonoBehaviour
     bool enemyColliding = false; 
     public ParticleSystem outlineParticles; 
     float currentTime = 0f;  
-    float tickInterval = 1f; 
+    float tickInterval = 0.8f; 
     public TextMeshProUGUI percentageText;
     public GameObject logicManager;
     public GameObject uiColour; 
@@ -21,6 +22,9 @@ public class ZoneController : MonoBehaviour
     public AudioClip downTick;
     public AudioClip contestSound;
     public AudioClip cappedSound;
+
+
+    
 void Start()
 {
     currentTime = 0f;
