@@ -1,8 +1,5 @@
-using System.Text.RegularExpressions;
-using Fungus;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class LevelController : MonoBehaviour
 {
@@ -21,48 +18,32 @@ public class LevelController : MonoBehaviour
     public AudioSource battleMusic;
     public AudioSource ambientMusic;
     public TextMeshProUGUI zoneNumberText;
-    public Flowchart fungusFlowchart;
-    public Flowchart bossFlowchart;
-    public string zone2Block; 
-    public string zone3Block; 
-    public string finalBossSpawnBlock; 
-    public string finalBossKillBlock; 
-    private InputActionMap playerActionMap;
-    public InputActionAsset inputActions;  
-    public GameObject zoneUI;
-    public GameObject BossUI; 
-    public GameObject Boss; 
-    private bool zone3Complete=false; 
-    private bool finalCutsceneCalled=false;
+
     void Start()
     {
-        playerActionMap = inputActions.FindActionMap("Player");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         if (zones[capturedZones].gameObject.GetComponent<ZoneController>().playerColliding == false)
+    {
+        Vector3 zoneViewportPosition = Camera.main.WorldToViewportPoint(zones[capturedZones].transform.position);
+        float margin = 0.25f;
+        if (zoneViewportPosition.x < -margin || zoneViewportPosition.x > 1 + margin || zoneViewportPosition.y < -margin || zoneViewportPosition.y > 1 + margin)
         {
-            Vector3 zoneViewportPosition = Camera.main.WorldToViewportPoint(zones[capturedZones].transform.position);
-            float margin = 0.25f;
-            if (zoneViewportPosition.x < -margin || zoneViewportPosition.x > 1 + margin || zoneViewportPosition.y < -margin || zoneViewportPosition.y > 1 + margin)
-            {
-                wayPoint.SetActive(true);
-                Vector3 directionToZone = zones[capturedZones].transform.position - player.position;
-                float angle = Mathf.Atan2(directionToZone.y, directionToZone.x) * Mathf.Rad2Deg;
-                angle -= 90;
-                wayPoint.transform.rotation = Quaternion.Euler(0, 0, angle);
-            }
-            else
-            {
-                wayPoint.SetActive(false); 
-            }
+            wayPoint.SetActive(true);
+            Vector3 directionToZone = zones[capturedZones].transform.position - player.position;
+            float angle = Mathf.Atan2(directionToZone.y, directionToZone.x) * Mathf.Rad2Deg;
+            angle -= 90;
+            wayPoint.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
         else
         {
             wayPoint.SetActive(false); 
         }
+    }
 
 
         //Test level 1------------------------------------------------------------------------------------------------
@@ -129,8 +110,6 @@ public class LevelController : MonoBehaviour
             battleMusic.Stop();
             ambientMusic.Play();
             zoneNumberText.text = "Zone 2";
-            fungusFlowchart.ExecuteBlock(zone2Block);
-            playerActionMap.Disable();
         }
         //Test Level 2--------------------------------------------------------------------------------------------------------
         if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
@@ -186,8 +165,6 @@ public class LevelController : MonoBehaviour
             battleMusic.Stop();
             ambientMusic.Play();
             zoneNumberText.text = "Zone 3";
-            fungusFlowchart.ExecuteBlock(zone3Block);
-            playerActionMap.Disable();
         }
         //Test Level 3--------------------------------------------------------------------------------------------------------
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
@@ -230,25 +207,14 @@ public class LevelController : MonoBehaviour
         {
             zone3Portals[11].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==100&&zone3Complete==false)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==100)
         {
+            gameObject.GetComponent<GameHandler>().GameOver(true);
             zones[2].SetActive(false);
             foreach (var portal in zone3Portals)
             {
                 Destroy(portal);
             }
-            Boss.SetActive(true);
-            BossUI.SetActive(true);
-            zoneUI.SetActive(false);
-            zone3Complete=true;
-            playerActionMap.Disable();
-            bossFlowchart.ExecuteBlock(finalBossSpawnBlock);
-        }
-        if (Boss.GetComponent<EnemyHPManager>().bossDead==true&&finalCutsceneCalled==false&&Boss!=null)
-        {
-            playerActionMap.Disable();
-            bossFlowchart.ExecuteBlock(finalBossKillBlock);
-            finalCutsceneCalled=true;
         }
         }
     }

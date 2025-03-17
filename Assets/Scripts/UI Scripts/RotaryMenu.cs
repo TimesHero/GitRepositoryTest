@@ -40,6 +40,7 @@ public class RotaryMenu : MonoBehaviour
         {
             transform.Rotate(0f,0f,rotationSpeed);
             currentRotation+=rotationSpeed;
+            print(currentRotation);
             if (currentRotation==360)
             {
                 currentRotation=0;

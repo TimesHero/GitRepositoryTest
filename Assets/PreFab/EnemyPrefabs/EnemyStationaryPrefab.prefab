@@ -175,7 +175,6 @@ MonoBehaviour:
   attacking: 0
   facingRight: 1
   burrowing: 0
-  myCollider: {fileID: 0}
 --- !u!50 &5875591813218239275
 Rigidbody2D:
   serializedVersion: 5
@@ -233,7 +232,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

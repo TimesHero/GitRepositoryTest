@@ -1,22 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class InputScript : MonoBehaviour
 {
-    private PlayerInput myPI;
-    private Rigidbody2D myRB;
-    private SpriteRenderer myRenderer;
-    private Animator myAnim;
-    private PlayerHPManager playerHPManager;
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    PlayerInput myPI;
     public float baseSpeed;
-    private Vector2 moveDirection;
-    private Vector2 lookDirection;
-
+    Vector2 moveDirection;
+    Vector2 lookDirection;
     public GameObject normalBullet;
     public GameObject meleeWeapon;
     public GameObject logicManager;
@@ -24,58 +23,46 @@ public class InputScript : MonoBehaviour
     public GameObject reticle;
     public Transform lookTransform;
     public Transform aimReticle;
-
-    private bool moving = false;
-    private bool isFiring = false;
-    private bool dashing = false;
-    private bool atkSpeedPickup = false;
-    private bool meleeAttack = false;
-
-    private float currentInterval;
-    private float interval;
+    Rigidbody2D myRB;
+    bool moving=false;
+    bool isFiring=false;
+    bool dashing = false;
+    bool runSpeedPickup = false;
+    bool atkSpeedPickup = false;
+    bool reloading;
+    float currentInterval;
+    float interval;
     public float dashSpeed = 1;
-    private float dashTime = 0f;
+    private float dashTime = 0f;   
     public float dashDuration = 0.2f;
-    private float currentDashInterval;
-    public float meleeInterval;
-    private float currentMeleeInterval;
-    private float reloadTimer;
+    float dashInterval = 0.8f;
+    float currentDashInterval; 
+    float reloadTimer;
     public Slider MPBar;
-    private int bulletType = 0;
-
+    int bulletType = 0;
     public Projectile regularProjectile;
     public Projectile tripleProjectile;
     public Projectile pierceProjectile;
-    private Projectile currentProjectile;
-
+    bool ableToDash = true;
+    Projectile currentProjectile;
     public AudioSource failedCast;
     public GameObject lvlUpScreen;
     public GameObject lvlUpScript;
-
     public List<GameObject> interactables;
-
-    private bool facingRight = true;
+    public bool facingRight = true;
+    SpriteRenderer myRenderer;
+    Animator myAnim;
     public GameObject dashTrail;
-    public float smoothingSpeed;
-    private Vector2 targetLookDirection;
-    public float sensitivity; 
- 
-    
-
-    private Vector2 currentLookDirection = Vector2.zero;
 
     void Start()
     {
         myPI = GetComponent<PlayerInput>();
         myRB = GetComponent<Rigidbody2D>();
-        myRenderer = GetComponent<SpriteRenderer>();
-        myAnim = GetComponent<Animator>();
-        playerHPManager = GetComponent<PlayerHPManager>();
-
         currentInterval = Time.time;
         currentDashInterval = Time.time;
-        currentMeleeInterval = Time.time;
-        currentProjectile = regularProjectile;
+        currentProjectile=regularProjectile;
+        myRenderer = GetComponent<SpriteRenderer>();
+        myAnim = GetComponent<Animator>();
         ChangeBulletType();
     }
 
@@ -83,12 +70,12 @@ public class InputScript : MonoBehaviour
     {
         if (moving)
         {
-            myRB.AddForce(moveDirection * baseSpeed);
+            myRB.AddForce (new Vector2(moveDirection.x*baseSpeed, moveDirection.y*baseSpeed)); 
         }
-
-        if (isFiring && Time.time > currentInterval)
+        if (isFiring == true && Time.time > currentInterval) // Player Shooting
         {
-            if (playerHPManager.mana > 0)
+            
+            if (gameObject.GetComponent<PlayerHPManager>().mana > 0) // Check if the player has mana
             {
                 shoot();
                 reloadTimer = 0;
@@ -96,157 +83,150 @@ public class InputScript : MonoBehaviour
             else
             {
                 failedCast.Play();
+                
             }
         }
 
-        reloadTimer += 1;
-        if (reloadTimer >= 80 && playerHPManager.mana < playerHPManager.manaMax)
         {
-            playerHPManager.UseMana(-0.8f);
+            reloadTimer+=1;
+            if (reloadTimer>=80 && gameObject.GetComponent<PlayerHPManager>().mana < gameObject.GetComponent<PlayerHPManager>().manaMax)
+            {
+                gameObject.GetComponent<PlayerHPManager>().UseMana(-0.8f);
+            }
         }
-        //AIMING------------------------------------------------
-        if (targetLookDirection.magnitude > 0)
-        {
-            currentLookDirection = Vector2.Lerp(currentLookDirection, targetLookDirection, smoothingSpeed * Time.deltaTime);
-        }
-        else
-        {
-            currentLookDirection = Vector2.Lerp(currentLookDirection, Vector2.zero, smoothingSpeed * Time.deltaTime);
-        }
-
-        if (currentLookDirection.magnitude > 0.01f)
-        {
-            lookTransform.up = currentLookDirection;
-        }
-
         Flip();
-        myAnim.SetBool("isMoving", moving);
+        myAnim.SetBool("isMoving",moving);
+
     }
+   void Flip()
+{
+    // Calculate the angle between the right-facing direction (Vector2.right) and the direction the player is aiming (lookTransform.up)
+    float angle = Vector2.SignedAngle(Vector2.right, lookTransform.up);
 
-    private void Flip()
+    // If the angle is greater than 90 or less than -90, flip the player to face left
+    if (angle > 90 || angle < -90)
     {
-        float angle = Vector2.SignedAngle(Vector2.right, lookTransform.up);
-
-        if ((angle > 90 || angle < -90) && facingRight)
+        if (facingRight) 
         {
             facingRight = false;
-            myRenderer.flipX = false;
-            meleeWeapon.GetComponent<MeleeSwing>().myRenderer.flipX = false;
-        }
-        else if (angle <= 90 && angle >= -90 && !facingRight)
-        {
-            facingRight = true;
-            myRenderer.flipX = true;
-            meleeWeapon.GetComponent<MeleeSwing>().myRenderer.flipX = true;
+            myRenderer.flipX = false; // Flip the sprite to face left (flipX = true for left-facing)
         }
     }
+    else // If the angle is between -90 and 90, the player is facing right
+    {
+        if (!facingRight)
+        {
+            facingRight = true;
+            myRenderer.flipX = true; // Reset sprite flip to face right (flipX = false for right-facing)
+        }
+    }
+}
 
-    private IEnumerator Dash()
+
+
+
+     private IEnumerator Dash()
     {
         dashing = true;
         dashTrail.SetActive(true);
-
         myRB.AddForce(moveDirection.normalized * dashSpeed, ForceMode2D.Impulse);
-        playerHPManager.invincible = true;
-        myRenderer.color = new Color(0f, 0f, 0f, 0.5f);
+        gameObject.GetComponent<PlayerHPManager>().invincible = true;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.5f);
 
         StartCoroutine(EnablePlayerCollider());
         yield return new WaitForSeconds(dashDuration);
+        gameObject.GetComponent<PlayerHPManager>().invincible = false;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
 
-        playerHPManager.invincible = false;
-        myRenderer.color = Color.white;
+        StopCoroutine(EnablePlayerCollider()); 
         dashTrail.SetActive(false);
         dashing = false;
     }
-
-    private IEnumerator meleeAttackTrigger()
-    {
-        meleeWeapon.GetComponent<MeleeSwing>().Attack();
-        myAnim.SetTrigger("meleeAttack");
-        currentMeleeInterval = Time.time + interval;
-        meleeAttack = true;
-        yield return new WaitForSeconds(0.5f);
-        meleeAttack = false;
-    }
-
     private IEnumerator EnablePlayerCollider()
     {
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemies"), true);
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Projectile"), true);
-        yield return new WaitForSeconds(0.5f);
+        ableToDash=false;
+        yield return new WaitForSeconds(0.5f); // Time invincible
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemies"), false);
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Projectile"), false);
+        ableToDash=true;
+        dashing = false;
     }
-
     public void shoot()
     {
-        float manaCost = atkSpeedPickup ? currentProjectile.manaCost / 2 : currentProjectile.manaCost;
-        playerHPManager.UseMana(manaCost);
-
-        myAnim.SetTrigger("shoot");
-
-        if (currentProjectile.triple)
+        if (atkSpeedPickup) 
         {
-            float spreadAngle = 25f;
-            for (int i = -1; i <= 1; i++)
+            gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost/2);
+        }
+        else
+        {
+            gameObject.GetComponent<PlayerHPManager>().UseMana(currentProjectile.manaCost);
+        }
+        myAnim.SetTrigger("shoot");
+        if (currentProjectile.triple == true) {
+            float spreadAngle = 25f; 
+            for (int i = -1; i <= 1; i++) 
             {
                 GameObject bullet = Instantiate(normalBullet, aimReticle.position, aimReticle.rotation);
                 Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
                 rigidbodyB.linearVelocity = currentProjectile.velocity * (Quaternion.Euler(0, 0, i * spreadAngle) * aimReticle.transform.up).normalized;
-                bullet.GetComponent<BulletBase>().PeramPass(currentProjectile);
+                bullet.gameObject.GetComponent<BulletBase>().PeramPass(currentProjectile);
             }
-        }
-        else
+        } 
+        else 
         {
             GameObject bullet = Instantiate(normalBullet, aimReticle.position, aimReticle.rotation);
             Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
-            rigidbodyB.linearVelocity = currentProjectile.velocity * aimReticle.transform.up;
-            bullet.GetComponent<BulletBase>().PeramPass(currentProjectile);
+            rigidbodyB.linearVelocity=currentProjectile.velocity*aimReticle.transform.up;
+            bullet.gameObject.GetComponent<BulletBase>().PeramPass(currentProjectile);
         }
-        Camera.main.GetComponent<CameraFollow>().TriggerShake(0.5f, 1f, 5f);
         currentInterval = Time.time + interval;
     }
 
     public void ChangeBulletType()
     {
-        switch (bulletType)
+        if (bulletType==0)
         {
-            case 0:
-                currentProjectile = regularProjectile;
-                reticle.GetComponent<SpriteRenderer>().color = new Color(1f, 0.5f, 0f);
-                break;
-            case 1:
-                currentProjectile = tripleProjectile;
-                reticle.GetComponent<SpriteRenderer>().color = new Color(0f, 0.5f, 0f);
-                break;
-            case 2:
-                currentProjectile = pierceProjectile;
-                reticle.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f);
-                break;
+            currentProjectile=regularProjectile;
+            reticle.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.5f, 0f);
         }
-
-        if (!atkSpeedPickup)
+        if (bulletType==1)
         {
-            interval = currentProjectile.timeBetweenShots;
+            currentProjectile=tripleProjectile;
+            reticle.gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0.5f, 0f);
         }
+        if (bulletType==2)
+        {
+            currentProjectile=pierceProjectile;
+            reticle.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f);
+        }
+        if (atkSpeedPickup!=true)
+        {
+        interval=currentProjectile.timeBetweenShots;
+        }
+        
     }
 
     public void AtkSpeedPickupTrigger()
     {
         StartCoroutine(atkSpeedTimer());
     }
-
     private IEnumerator atkSpeedTimer()
     {
-        atkSpeedPickup = true;
-        interval /= 2;
+        atkSpeedPickup=true;
+        Debug.Log("START ATTACK");
+        interval=interval/2;
+        Debug.Log(interval);
         ChangeBulletType();
         yield return new WaitForSeconds(8f);
-        atkSpeedPickup = false;
-        interval *= 2;
+        atkSpeedPickup=false;
+        interval=interval*2;
+        atkSpeedPickup=false;
         ChangeBulletType();
+        
+        
     }
-
     public void RunSpeedPickupTrigger()
     {
         StartCoroutine(runTimer());
@@ -254,51 +234,60 @@ public class InputScript : MonoBehaviour
 
     private IEnumerator runTimer()
     {
-        baseSpeed = 200;
+        baseSpeed=200;
         yield return new WaitForSeconds(8f);
-        baseSpeed = 100;
+        baseSpeed=100;
     }
 
-    // PLAYER CONTROLS --------------------------------------------------------------------------------------
+    //PLAYER CONTROLS--------------------------------------------------------------------------------------
     public void OnMove(InputValue moveValue)
     {
         moveDirection = moveValue.Get<Vector2>().normalized;
-        moving = moveDirection.magnitude > 0;
+        if (Mathf.Abs(moveDirection.magnitude)>0)
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
     }
 
-   // This method is called by the input system when the Look action is triggered
     public void OnLook(InputValue lookValue)
     {
-        targetLookDirection = lookValue.Get<Vector2>().normalized;
-        targetLookDirection *= sensitivity;
+        lookDirection = lookValue.Get<Vector2>().normalized;
+        if (Mathf.Abs(lookDirection.magnitude)>0)
+        {
+            lookTransform.up = lookDirection;
+        }
     }
 
-
     public void OnFire(InputValue inputValue)
-    {
+    {   
         isFiring = inputValue.isPressed;
     }
 
     public void OnMeleeWeapon(InputValue inputValue)
     {
-        if (!meleeAttack)
-        {
-            StartCoroutine(meleeAttackTrigger());
-        }
+        meleeWeapon.gameObject.GetComponent<MeleeSwing>().Attack();
+        myAnim.SetTrigger("meleeAttack");
     }
-
     public void OnLeftBumper(InputValue inputValue)
     {
-        bulletType = (bulletType == 0) ? 2 : bulletType - 1;
+        bulletType-=1;
+        if (bulletType==-1)
+        {
+            bulletType=2;
+        }
         ChangeBulletType();
         rotaryMenu.gameObject.GetComponent<RotaryMenu>().right=false;
         rotaryMenu.gameObject.GetComponent<RotaryMenu>().left=true;
         rotaryMenu.gameObject.GetComponent<RotaryMenu>().bulletType=bulletType;
-    }
 
+    }
     public void OnDash(InputValue inputValue)
     {
-        if (inputValue.isPressed && !dashing)
+         if (inputValue.isPressed && !dashing &&ableToDash==true) 
         {
             StartCoroutine(Dash());
         }
@@ -308,19 +297,23 @@ public class InputScript : MonoBehaviour
     {
         if (Time.timeScale == 0)
         {
-            logicManager.GetComponent<GameHandler>().Unpause();
+            logicManager.gameObject.GetComponent<GameHandler>().Unpause();
         }
-        else
+        else 
         {
-            logicManager.GetComponent<GameHandler>().PauseGame();
+            logicManager.gameObject.GetComponent<GameHandler>().PauseGame();
         }
+        
     }
-
+    public void OnDebug(InputValue inputValue)
+    {
+       
+    }
     public void OnInteract(InputValue inputValue)
     {
         foreach (GameObject obj in interactables)
-        {
-            obj.SendMessage("OnUse");
-        }
+                {
+                    obj.SendMessage("OnUse");
+                }
     }
 }

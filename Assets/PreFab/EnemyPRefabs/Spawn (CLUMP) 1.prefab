@@ -116,9 +116,8 @@ MonoBehaviour:
   - {fileID: 4433656929221914189, guid: d439f65c411e4834e9bb3c069e4ec083, type: 3}
   HP: 100
   temporary: 1
-  spawnLimit: 6
+  spawnLimit: 9
   spawnSound: {fileID: 6182369589105416837, guid: 341ced32e0d6a014bb311a102cfe89e1, type: 3}
-  stopSpawn: 0
 --- !u!95 &4515495110148841439
 Animator:
   serializedVersion: 7

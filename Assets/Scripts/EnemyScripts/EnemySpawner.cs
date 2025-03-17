@@ -16,16 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public int spawnLimit;
     public AudioSource spawnSound;
     private GameObject logicManager; 
-    public bool stopSpawn; 
     void Start()
-    {
-        if (stopSpawn==false)
-        {
-            StartSpawn();
-        }
-        logicManager = GameObject.FindGameObjectWithTag("Manager");
-    }
-    public void StartSpawn()
     {
         if (temporary==true)
         {
@@ -35,8 +26,8 @@ public class EnemySpawner : MonoBehaviour
         { 
             StartCoroutine(SpawnTimerNormal());
         }
+        logicManager = GameObject.FindGameObjectWithTag("Manager");
     }
-    
 
     // Update is called once per frame
     void Update()

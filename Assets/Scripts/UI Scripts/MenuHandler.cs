@@ -28,14 +28,7 @@ public class MenuHandler : MonoBehaviour
 
     public void StartGame()
     {
-        if (PlayerPrefs.GetInt("tutorialComplete?")==1)
-        {
-            SceneManager.LoadScene("MainLevelScene");
-        }
-        else
-        {
-            SceneManager.LoadScene("Tutorial");
-        }
+        SceneManager.LoadScene("MainLevelScene");
         AudioManager.Instance.PlaySound(sound); 
     }
     public void ControlPanel()

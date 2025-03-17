@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using Pathfinding;
-using UnityEngine.UI;
 
 public class EnemyHPManager : MonoBehaviour
 {
@@ -22,26 +21,11 @@ public class EnemyHPManager : MonoBehaviour
     private GameObject logicManager; 
     Rigidbody2D myRB;
     private bool isKnockedBack = false;
-    private Slider bossHPBar;
-    public bool bossType; 
-    public bool bossDead;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         myRB = GetComponent<Rigidbody2D>();
         logicManager = GameObject.FindGameObjectWithTag("Manager");
-        
-        if (bossType==true)
-        {
-            GameObject HPBar = GameObject.FindGameObjectWithTag("BossBar");
-            bossHPBar = HPBar.GetComponent<Slider>();
-            bossHPBar.maxValue = HP;
-            bossHPBar.value = HP;
-        }
-    }
-    public void CanMove()
-    {
-        gameObject.GetComponent<AIPath>().canMove=true; 
     }
 
     void Update()
@@ -55,14 +39,10 @@ public class EnemyHPManager : MonoBehaviour
      public void TakeDamage(float damage)
     {
         HP-= damage;
-        if (bossType==true)
-        {
-            bossHPBar.value = HP;
-        }
         int hurtSoundType = Random.Range(0, hurtSound.Length);
         AudioManager.Instance.PlaySound(hurtSound[hurtSoundType]);
         StartCoroutine(DmgFlash());
-        if (HP<=0&&bossType==false)
+        if (HP<=0)
         {
             player.gameObject.GetComponent<PlayerHPManager>().ComboTrigger(scoreValue);
             int doDrop = Random.Range(0,9);
@@ -74,12 +54,6 @@ public class EnemyHPManager : MonoBehaviour
             Instantiate(deathParticles, transform.position, transform.rotation);
             AudioManager.Instance.PlaySound(dieSound);
             Destroy(gameObject);
-        }
-        else
-        {
-             AudioManager.Instance.PlaySound(dieSound);
-             gameObject.GetComponent<AIPath>().canMove=true; 
-             bossDead=true; 
         }
     }
 

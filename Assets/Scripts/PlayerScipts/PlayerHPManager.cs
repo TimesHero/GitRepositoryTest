@@ -7,7 +7,6 @@ using Unity.Mathematics;
 using TMPro;
 using Fungus;
 using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 public class PlayerHPManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,8 +45,6 @@ public class PlayerHPManager : MonoBehaviour
     public AudioClip dmgSound; 
     private float baseEnemyScore; 
     public Collider2D myCollider;
-    public bool tutorialComplete; 
-    public Flowchart startFlowchart; 
 
     void Start()
     {
@@ -88,10 +85,6 @@ public void SavePlayerData()
     PlayerPrefs.SetInt("ManaLevel", manaLevel); 
     PlayerPrefs.Save(); // Save the changes to PlayerPrefs
 }
-public void SaveTutorialStatus()
-{
-    PlayerPrefs.SetInt("tutorialComplete?", 1); 
-}
 
 // Load player data, excluding HP and mana
 public void LoadPlayerData()
@@ -105,16 +98,8 @@ public void LoadPlayerData()
         atkLevel = PlayerPrefs.GetInt("AtkLevel");
         defLevel = PlayerPrefs.GetInt("DefLevel");
         manaLevel = PlayerPrefs.GetInt("ManaLevel");
-        if (PlayerPrefs.GetInt("tutorialComplete?")==1)
-        {
-            tutorialComplete = true; 
-        }
-        else
-        {
-            tutorialComplete = false; 
-        }
-       if (SceneManager.GetActiveScene().name == "MainLevelScene")
-        startFlowchart.SetBooleanVariable("TutorialComplete", tutorialComplete);
+        print(HPLevel);
+        print("LOAD");
     }
     else
     {
@@ -212,7 +197,7 @@ public void LoadPlayerData()
     HP = Mathf.Ceil(HP); 
     HPBar.value = HP;
 
-    if (HP < 1)
+    if (HP <= 0)
     {
         Debug.Log("DEAD");
         MakeDead();
