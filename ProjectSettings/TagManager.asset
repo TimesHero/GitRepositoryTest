@@ -11,11 +11,12 @@ TagManager:
   - Test
   - melee
   - Manager
+  - BossBar
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BossBar
   - Water
   - UI
   - Obstacles

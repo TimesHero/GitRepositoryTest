@@ -86,9 +86,15 @@ public class GameHandler : MonoBehaviour
     }
     public void Retry()
     {
-        SceneManager.LoadScene("MainLevelScene");
-        AudioManager.Instance.PlaySound(sound); 
-
+        if (PlayerPrefs.GetInt("tutorialComplete?")==1)
+        {
+            SceneManager.LoadScene("MainLevelScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("Tutorial");
+            AudioManager.Instance.PlaySound(sound); 
+        }
     }
     public void QuitGame()
     {
@@ -101,6 +107,10 @@ public class GameHandler : MonoBehaviour
         pausePanel.SetActive(true);
         input.SetSelectedGameObject(firstButtonToSelect);
         AudioManager.Instance.PlaySound(sound); 
+    }
+    public void GameWin()
+    {
+        GameOver(true);
     }
 
     public void GameOver(bool win)

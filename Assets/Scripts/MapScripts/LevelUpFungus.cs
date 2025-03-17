@@ -50,7 +50,7 @@ public class LevelUpFungus : MonoBehaviour
                 //EventSystem.current.SetSelectedGameObject(null);
                 fungusFlowchart.ExecuteBlock("Start");
                 playerActionMap.Disable();
-                activeFlowchart=true;
+                
             }
         }
 
