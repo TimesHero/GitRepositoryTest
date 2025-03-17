@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c4427a5b4ec91745bd1b7d48e67429f, type: 3}
+  m_Name: RangedBoss
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  damage: 3
+  velocity: 30
+  manaCost: 0
+  timeBetweenShots: 0
+  atkSpeedUpTimeBetweenShots: 0
+  timeUntilDeath: 1
+  VFx: {fileID: 0}
+  enemyProjectile: 1
+  pierce: 0
+  triple: 0
+  bulletSprite: {fileID: -7774398785813640310, guid: 6c47436c082878047b8b7719853841eb, type: 3}
+  particleEffect: {fileID: 8890977160480423543, guid: 5c5141f54a36510499ce7a90911376b4, type: 3}
+  collideEffect: {fileID: 685122633663980915, guid: ebd60dc9e8b6f844b9b70bf062062a32, type: 3}
+  shootSound: {fileID: 8300000, guid: 10f600e5536e0074ebcdd36bed6f9dcf, type: 3}
+  collideSound: {fileID: 8300000, guid: 0a7f3bf3ecea3cc42a9798d58940b92d, type: 3}
