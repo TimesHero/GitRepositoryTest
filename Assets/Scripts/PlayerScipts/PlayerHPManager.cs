@@ -8,6 +8,8 @@ using TMPro;
 using Fungus;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Audio;
 public class PlayerHPManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,13 +50,41 @@ public class PlayerHPManager : MonoBehaviour
     public Collider2D myCollider;
     public bool tutorialComplete; 
     public Flowchart startFlowchart; 
+    public Volume volume;
+    private Vignette vignette;
+    private FilmGrain grain;
+    private ColorAdjustments colorAdjustments;
+     private float defaultVignetteIntensity;
+    private float defaultGrainIntensity;
+    private float defaultSaturation;
+    private float targetVignetteIntensity;
+    private float targetGrainIntensity;
+    private float targetSaturation;
+    private float lerpSpeed = 5f;
 
+    
     void Start()
     {
         HPBar.value = HP;
         HPBar.maxValue = HP;
         LoadPlayerData();
         myCollider = GetComponent<Collider2D>();
+        volume.profile.TryGet<Vignette>(out vignette);
+        volume.profile.TryGet<FilmGrain>(out grain);
+
+        volume.profile.TryGet<ColorAdjustments>(out colorAdjustments);
+         if (vignette != null)
+            defaultVignetteIntensity = vignette.intensity.value;
+
+        if (grain != null)
+            defaultGrainIntensity = grain.intensity.value;
+
+        if (colorAdjustments != null)
+            defaultSaturation = colorAdjustments.saturation.value;
+        
+        targetVignetteIntensity = defaultVignetteIntensity;
+        targetGrainIntensity = defaultGrainIntensity;
+        targetSaturation = defaultSaturation;
 
         LevelUp();
     }
@@ -62,6 +92,55 @@ public class PlayerHPManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float healthPercentage = HP / HPMax;
+
+        if (healthPercentage <= 0.33f)
+        {
+            targetVignetteIntensity = 0.25f;  
+            targetGrainIntensity = 0.5f;     
+            targetSaturation = -50f;         
+
+            if (vignette != null)
+            {
+                vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, targetVignetteIntensity, Time.deltaTime * lerpSpeed);
+            }
+
+            if (grain != null)
+            {
+                grain.intensity.value = Mathf.Lerp(grain.intensity.value, targetGrainIntensity, Time.deltaTime * lerpSpeed);
+            }
+
+            if (colorAdjustments != null)
+            {
+                colorAdjustments.saturation.value = Mathf.Lerp(colorAdjustments.saturation.value, targetSaturation, Time.deltaTime * lerpSpeed);
+            }
+        }
+         else
+        {
+            // If health is above 33%, smoothly return to the default values
+            targetVignetteIntensity = defaultVignetteIntensity;
+            targetGrainIntensity = defaultGrainIntensity;
+            targetSaturation = defaultSaturation;
+
+            // Lerp back to the default values
+            if (vignette != null)
+            {
+                vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, targetVignetteIntensity, Time.deltaTime * lerpSpeed);
+            }
+
+            if (grain != null)
+            {
+                grain.intensity.value = Mathf.Lerp(grain.intensity.value, targetGrainIntensity, Time.deltaTime * lerpSpeed);
+            }
+
+            if (colorAdjustments != null)
+            {
+                colorAdjustments.saturation.value = Mathf.Lerp(colorAdjustments.saturation.value, targetSaturation, Time.deltaTime * lerpSpeed);
+            }
+        }
+        
+
+        
         if (combo==true && Time.time>0)
         {
             comboTimer-=0.2f;

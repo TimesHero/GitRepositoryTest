@@ -8,12 +8,15 @@ public class LevelController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject[] zones;
+    public GameObject[] hpZones;
     public GameObject[] zone1Portals;
     public GameObject[] zone2Portals;
     public GameObject[] zone3Portals;
     private int capturedZones = 0;
     private int portalsSpawned = 0;
     public GameObject wayPoint;
+    public GameObject hpWayPoint;
+    public GameObject hpWayPointArrow;
     public Transform player;
     public AudioClip zone1music;
     public AudioClip ambience;
@@ -34,6 +37,14 @@ public class LevelController : MonoBehaviour
     public GameObject Boss; 
     private bool zone3Complete=false; 
     private bool finalCutsceneCalled=false;
+    public GameObject contestIndicator; 
+    public GameObject playerIndicator; 
+    public GameObject enemyIndicator; 
+    private bool playerPopUp = false;
+    private bool enemyPopUp = false; 
+    private bool contestPopUp = false; 
+    public GameObject captureFrame; 
+
     void Start()
     {
         playerActionMap = inputActions.FindActionMap("Player");
@@ -63,7 +74,67 @@ public class LevelController : MonoBehaviour
         {
             wayPoint.SetActive(false); 
         }
-
+        //--------------HP WAYPOINT-------------------------------------
+        if (hpZones[capturedZones].gameObject.GetComponent<HealField>().playerColliding == false && player.GetComponent<PlayerHPManager>().HP <= player.GetComponent<PlayerHPManager>().HPMax / 3f)
+        {
+            hpWayPointArrow.SetActive(true);  
+            Vector3 hpZoneViewportPosition = Camera.main.WorldToViewportPoint(hpZones[capturedZones].transform.position);
+            float margin = -0.1f;
+            if (hpZoneViewportPosition.x < -margin || hpZoneViewportPosition.x > 1 + margin || hpZoneViewportPosition.y < -margin || hpZoneViewportPosition.y > 1 + margin)
+            {
+                hpWayPoint.SetActive(true);
+                Vector3 directionToHPZone = hpZones[capturedZones].transform.position - player.position;
+                float hpAngle = Mathf.Atan2(directionToHPZone.y, directionToHPZone.x) * Mathf.Rad2Deg;
+                hpAngle -= 90;
+                hpWayPoint.transform.rotation = Quaternion.Euler(0, 0, hpAngle);
+            }
+            else
+            {
+                hpWayPoint.SetActive(false);
+                hpWayPointArrow.SetActive(false);  
+            }
+        }
+        else
+            {
+                hpWayPoint.SetActive(false);
+                hpWayPointArrow.SetActive(false);  
+            }
+        
+         //-------------------------------------------------------------
+        if (zones[capturedZones].gameObject.GetComponent<ZoneController>().playerCapture==true && playerPopUp==false)
+        {
+            playerIndicator.GetComponent<Animator>().SetTrigger("popUpTriggerP");
+            playerPopUp = true;
+            enemyPopUp = false;
+            contestPopUp = false;
+            captureFrame.GetComponent<Animator>().SetBool("Player",true);
+            captureFrame.GetComponent<Animator>().SetBool("Losing",false);
+        }
+        if (zones[capturedZones].gameObject.GetComponent<ZoneController>().contested==true && contestPopUp==false)
+        {
+            contestIndicator.GetComponent<Animator>().SetTrigger("popUpTriggerC");
+            playerPopUp = false;
+            enemyPopUp = false;
+            contestPopUp = true;
+            captureFrame.GetComponent<Animator>().SetBool("Player",false);
+            captureFrame.GetComponent<Animator>().SetBool("Losing",false);
+        }
+        if (zones[capturedZones].gameObject.GetComponent<ZoneController>().enemyCapture==true && enemyPopUp==false )
+        {
+            enemyIndicator.GetComponent<Animator>().SetTrigger("popUpTriggerE");
+            playerPopUp = false;
+            enemyPopUp = true;
+            contestPopUp = false;
+            captureFrame.GetComponent<Animator>().SetBool("Player",false);
+            captureFrame.GetComponent<Animator>().SetBool("Losing",true);
+        }
+        if (zones[capturedZones].gameObject.GetComponent<ZoneController>().enemyCapture==false && zones[capturedZones].gameObject.GetComponent<ZoneController>().playerCapture==false)
+        {
+            captureFrame.GetComponent<Animator>().SetBool("Player",false);
+            captureFrame.GetComponent<Animator>().SetBool("Losing",false);
+            playerPopUp = false;
+            enemyPopUp = false;
+        }
 
         //Test level 1------------------------------------------------------------------------------------------------
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)

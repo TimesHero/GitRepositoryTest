@@ -6,7 +6,7 @@ public class HealField : MonoBehaviour
     float currentTime = 0f;  
     float tickInterval = 1f; 
     private GameObject player;
-    private bool playerColliding;
+    public bool playerColliding;
     public AudioClip Tick;
 
     void Start()

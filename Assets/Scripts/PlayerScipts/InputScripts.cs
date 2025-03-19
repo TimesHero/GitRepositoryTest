@@ -249,6 +249,7 @@ public class InputScript : MonoBehaviour
 
     public void RunSpeedPickupTrigger()
     {
+        StopCoroutine(runTimer());
         StartCoroutine(runTimer());
     }
 
