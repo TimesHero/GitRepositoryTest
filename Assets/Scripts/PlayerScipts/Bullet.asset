@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 9016828709344966979, guid: 2481094c75a68ee4a909192fdcce2b13, type: 3}
   damage: 4
-  velocity: 30
+  velocity: 27
   manaCost: 2
   timeBetweenShots: 0.3
   atkSpeedUpTimeBetweenShots: 0.2
-  timeUntilDeath: 0.7
+  timeUntilDeath: 0.5
   VFx: {fileID: 0}
   enemyProjectile: 0
   pierce: 0

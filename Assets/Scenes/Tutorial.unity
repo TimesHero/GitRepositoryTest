@@ -32383,6 +32383,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 40466326}
     - target: {fileID: 6592850982773679375, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
+      propertyPath: inputActions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 6bc301b5ea7875b4a9166fecf26d04c0, type: 3}
+    - target: {fileID: 6592850982773679375, guid: 7756fb090e5d38d438c747706138b19a, type: 3}
       propertyPath: logicManager
       value: 
       objectReference: {fileID: 1529056361}

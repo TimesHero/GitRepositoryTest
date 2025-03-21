@@ -64,15 +64,16 @@ public class Boss : MonoBehaviour
             {
                 StartCoroutine(Shoot());
             }
+            Flip(angle);
         }
-        //myAnim.SetBool("isAttacking", attacking);
-        Flip(angle);
+        myAnim.SetBool("Moving",gameObject.GetComponent<AIPath>().canMove);
     }
 
     private IEnumerator SpawnShockwave()
     {
         currentInterval = Time.time + interval;
-        yield return new WaitForSeconds(0.4f);
+        myAnim.SetTrigger("AoeAttack");
+        yield return new WaitForSeconds(0.3f);
         Instantiate(shockwave, gameObject.transform.position, gameObject.transform.rotation);
         Camera.main.GetComponent<CameraFollow>().TriggerShake(0.5f, 2f, 5f);
         yield return new WaitForSeconds(0.4f);
@@ -83,6 +84,7 @@ public class Boss : MonoBehaviour
         Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
         rigidbodyB.linearVelocity=normalBullet.velocity*lookTransform.transform.right;
         bullet.gameObject.GetComponent<BulletBase>().PeramPass(normalBullet);
+        myAnim.SetTrigger("RangedAttack");
     }
     public void SpawnEightWayBullet(bool offset)
     {
@@ -108,6 +110,7 @@ public class Boss : MonoBehaviour
             bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle - 90)); 
 
             bullet.gameObject.GetComponent<BulletBase>().PeramPass(eightWayBullet);
+            myAnim.SetTrigger("RangedAttack");
         }
     }
     private IEnumerator Shoot()
@@ -148,16 +151,16 @@ public class Boss : MonoBehaviour
         {
             if (facingRight)
             {
-                facingRight = false;
-                myRenderer.flipX = true;
+                facingRight = true;
+                myRenderer.flipX = false;
             }
         }
         else
         {
             if (!facingRight)
             {
-                facingRight = true;
-                myRenderer.flipX = false;
+                facingRight = false;
+                myRenderer.flipX = true;
             }
         }
     }

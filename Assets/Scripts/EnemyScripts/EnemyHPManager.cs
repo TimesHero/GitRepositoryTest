@@ -75,10 +75,10 @@ public class EnemyHPManager : MonoBehaviour
             AudioManager.Instance.PlaySound(dieSound);
             Destroy(gameObject);
         }
-        else
+        else if (HP<=0)
         {
              AudioManager.Instance.PlaySound(dieSound);
-             gameObject.GetComponent<AIPath>().canMove=true; 
+             gameObject.GetComponent<AIPath>().canMove=false; 
              bossDead=true; 
         }
     }

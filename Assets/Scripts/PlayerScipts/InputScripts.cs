@@ -51,7 +51,6 @@ public class InputScript : MonoBehaviour
     public AudioSource failedCast;
     public GameObject lvlUpScreen;
     public GameObject lvlUpScript;
-
     public List<GameObject> interactables;
 
     private bool facingRight = true;
@@ -59,6 +58,8 @@ public class InputScript : MonoBehaviour
     public float smoothingSpeed;
     private Vector2 targetLookDirection;
     public float sensitivity; 
+    public InputActionAsset inputActions;  // Reference to the InputActionAsset (assigned in the Inspector)
+    private InputActionMap playerActionMap;
  
     
 
@@ -66,7 +67,7 @@ public class InputScript : MonoBehaviour
 
     void Start()
     {
-        myPI = GetComponent<PlayerInput>();
+        playerActionMap = inputActions.FindActionMap("Player");
         myRB = GetComponent<Rigidbody2D>();
         myRenderer = GetComponent<SpriteRenderer>();
         myAnim = GetComponent<Animator>();
@@ -85,8 +86,12 @@ public class InputScript : MonoBehaviour
         {
             myRB.AddForce(moveDirection * baseSpeed);
         }
+        if (playerActionMap.enabled==false)
+        {
+            isFiring=false; 
+        }
 
-        if (isFiring && Time.time > currentInterval)
+        if (isFiring && Time.time > currentInterval) 
         {
             if (playerHPManager.mana > 0)
             {
