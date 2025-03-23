@@ -1,12 +1,15 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Fungus;
 public class ZoneController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public int capturePercentage = 90;
     public bool playerColliding = false;
-    bool enemyColliding = false; 
+    public bool enemyCapture = false; 
+    public bool playerCapture = false; 
+    public bool contested = false; 
     public ParticleSystem outlineParticles; 
     float currentTime = 0f;  
     float tickInterval = 0.8f; 
@@ -17,10 +20,10 @@ public class ZoneController : MonoBehaviour
     public int zoneLossGameOverCount;
     public bool Captured;
     public int enemieInZone = 0; 
-    public AudioClip upTick;
-    public AudioClip downTick;
-    public AudioClip contestSound;
     public AudioClip cappedSound;
+ 
+
+    
 void Start()
 {
     currentTime = 0f;
@@ -43,7 +46,9 @@ void Start()
                 outlineParticles.startColor = new Color(1, 0.5f, 0.5f, 0.5f);
                 uiColour.gameObject.GetComponent<Image>().color = new Color(1, 0.5f, 0.5f);
                 outline.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0.5f);
-                AudioManager.Instance.PlaySound(contestSound); 
+                playerCapture=false;
+                enemyCapture=false;
+                contested=true; 
             }
             else
             {
@@ -53,7 +58,9 @@ void Start()
                 outlineParticles.startColor = new Color(1, 1, 0f, 0.5f);
                 uiColour.gameObject.GetComponent<Image>().color = new Color(1, 1, 0);
                 outline.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0);
-                AudioManager.Instance.PlaySound(upTick); 
+                playerCapture=true;
+                enemyCapture=false;
+                contested=false; 
                 
             }
 
@@ -73,7 +80,9 @@ void Start()
             outlineParticles.startColor = new Color(1f, 0f, 1f, 0.5f);
             uiColour.gameObject.GetComponent<Image>().color = new Color(1, 0 , 1);
             outline.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0 , 1);
-            AudioManager.Instance.PlaySound(downTick); 
+            playerCapture=false;
+            enemyCapture=true;
+            contested=false; 
         }
         if (enemieInZone==0 && playerColliding==false)
         {
@@ -81,6 +90,9 @@ void Start()
             outlineParticles.startColor = new Color(1f, 1f, 1f, 0.5f);
             uiColour.gameObject.GetComponent<Image>().color = new Color(1f, 1f, 1f);
             outline.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            playerCapture=false;
+            enemyCapture=false;
+            contested=false; 
         }
         percentageText.text = capturePercentage + "%";
 

@@ -18,7 +18,7 @@ MonoBehaviour:
   manaCost: 2
   timeBetweenShots: 0.3
   atkSpeedUpTimeBetweenShots: 0.2
-  timeUntilDeath: 0.7
+  timeUntilDeath: 0.5
   VFx: {fileID: 0}
   enemyProjectile: 0
   pierce: 0

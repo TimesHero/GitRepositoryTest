@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dbbe9a362f64843891cc6d4a4ff420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 30
+  HP: 15
   scoreValue: 40
   hurtSound:
   - {fileID: 8300000, guid: 5c39c0b7b59ec2b4a9e30735313a47a6, type: 3}
@@ -154,6 +154,8 @@ MonoBehaviour:
   - {fileID: 671500980237249953, guid: ea3e20989eb2b6f41b4cf8ab334bd2d9, type: 3}
   deathParticles: {fileID: 686915402783405883, guid: baf692d7da7bc024e8c195f2e31d5176, type: 3}
   knockBackSound: {fileID: 8300000, guid: 584e8bd7325439c4b8577e890a95c297, type: 3}
+  bossType: 0
+  bossDead: 0
 --- !u!114 &773536598226425272
 MonoBehaviour:
   m_ObjectHideFlags: 0

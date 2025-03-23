@@ -6,6 +6,7 @@ public class MenuHandler : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject firstButtonToSelect;
+    public GameObject firstPlayButtonToSelect;
     private EventSystem input;
     public AudioClip sound;
     public AudioClip backSound;
@@ -14,6 +15,8 @@ public class MenuHandler : MonoBehaviour
     public GameObject backButton;
     public GameObject backCreditButton;
     public GameObject controlButton;
+    public GameObject buttonLayout; 
+    public GameObject playButtonLayout;
     void Start()
     {
         input = FindAnyObjectByType<EventSystem>();
@@ -25,8 +28,27 @@ public class MenuHandler : MonoBehaviour
     {
         
     }
+    public void Play()
+    {
+        buttonLayout.SetActive(false);
+        playButtonLayout.SetActive(true);
+        input.SetSelectedGameObject(firstPlayButtonToSelect);
+        AudioManager.Instance.PlaySound(sound); 
+    }
+    public void Back()
+    {
+        buttonLayout.SetActive(true);
+        playButtonLayout.SetActive(false);
+        input.SetSelectedGameObject(firstButtonToSelect);
+        AudioManager.Instance.PlaySound(backSound); 
+    }
 
     public void StartGame()
+    {
+        SceneManager.LoadScene("MainLevelScene");
+        AudioManager.Instance.PlaySound(sound); 
+    }
+    public void Skip()
     {
         SceneManager.LoadScene("MainLevelScene");
         AudioManager.Instance.PlaySound(sound); 
@@ -34,6 +56,7 @@ public class MenuHandler : MonoBehaviour
     public void ControlPanel()
     {
         controlPanel.SetActive(true);
+        buttonLayout.SetActive(false);
         input.SetSelectedGameObject(backButton);
         AudioManager.Instance.PlaySound(sound); 
         
@@ -41,6 +64,7 @@ public class MenuHandler : MonoBehaviour
     public void CreditsPanel()
     {
         creditsPanel.SetActive(true);
+        buttonLayout.SetActive(false);
         input.SetSelectedGameObject(backCreditButton);
         AudioManager.Instance.PlaySound(sound); 
         AudioManager.Instance.PlaySound(backSound); 
@@ -48,6 +72,7 @@ public class MenuHandler : MonoBehaviour
     public void back()
     {
         input.SetSelectedGameObject(controlButton);
+        buttonLayout.SetActive(true);
         controlPanel.SetActive(false);
         creditsPanel.SetActive(false);
         AudioManager.Instance.PlaySound(backSound); 
@@ -60,7 +85,8 @@ public class MenuHandler : MonoBehaviour
     }
     public void survey()
     {
-         Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdtUC22pmHLhEJ0rYwYYYOCQp1WK86lNOPKDX6inuEdd7s24Q/viewform?usp=dialog");
+         //Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdtUC22pmHLhEJ0rYwYYYOCQp1WK86lNOPKDX6inuEdd7s24Q/viewform?usp=dialog");
+         PlayerPrefs.DeleteAll();
          AudioManager.Instance.PlaySound(sound); 
     }
 }

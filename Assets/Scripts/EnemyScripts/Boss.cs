@@ -1,6 +1,8 @@
 using System.Collections;
+using Fungus;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,11 +17,6 @@ public class Boss : MonoBehaviour
     public GameObject enemyBullet;
     Rigidbody2D myRB;
     private string target;
-    private bool knockback;
-    private float knockbackTime = 0f;   
-    private float knockbackDuration = 0.2f;
-    private Vector2 knockbackDirection;
-    private float knockbackAmount;
     float currentInterval;
     public Transform lookTransform;
     private float distanceToPlayer;
@@ -29,6 +26,7 @@ public class Boss : MonoBehaviour
     public bool attacking = false; 
     public bool facingRight = true;
     SpriteRenderer myRenderer;
+    public GameObject shockwavePrefab; 
     Animator myAnim;
     void Start()
     {
@@ -45,28 +43,48 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        Vector2 direction = player.transform.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        lookTransform.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
-
-        distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        //Attack
-        if (Time.time>currentInterval  && distanceToPlayer <= rangedAttackRange)
+        if (gameObject.GetComponent<EnemyHPManager>().bossDead==false)
         {
-            StartCoroutine(ShootEight());
+            Vector2 direction = player.transform.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            lookTransform.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            Flip(angle);
+
+
+            distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+            //Attack
+            if (Time.time>currentInterval  && distanceToPlayer <= aoeRange)
+            {
+                StartCoroutine(SpawnShockwave());
+            }
+            else if (Time.time>currentInterval  && distanceToPlayer <= eightWayRange)
+            {
+                StartCoroutine(ShootEight());
+            }
+            else if (Time.time>currentInterval  && distanceToPlayer <= rangedAttackRange)
+            {
+                StartCoroutine(Shoot());
+            }
         }
-        //myAnim.SetBool("isAttacking", attacking);
-        Flip(angle);
+        myAnim.SetBool("Moving",gameObject.GetComponent<AIPath>().canMove);
     }
 
+    private IEnumerator SpawnShockwave()
+    {
+        currentInterval = Time.time + interval;
+        myAnim.SetTrigger("AoeAttack");
+        yield return new WaitForSeconds(0.3f);
+        Instantiate(shockwave, gameObject.transform.position, gameObject.transform.rotation);
+        Camera.main.GetComponent<CameraFollow>().TriggerShake(0.5f, 2f, 5f);
+        yield return new WaitForSeconds(0.4f);
+    }
     public void SpawnBulletNormal()
     {
         GameObject bullet = Instantiate(enemyBullet, lookTransform.position, lookTransform.rotation * Quaternion.Euler(0, 0, -90));
         Rigidbody2D rigidbodyB = bullet.GetComponent<Rigidbody2D>();
         rigidbodyB.linearVelocity=normalBullet.velocity*lookTransform.transform.right;
         bullet.gameObject.GetComponent<BulletBase>().PeramPass(normalBullet);
+        myAnim.SetTrigger("RangedAttack");
     }
     public void SpawnEightWayBullet(bool offset)
     {
@@ -92,6 +110,7 @@ public class Boss : MonoBehaviour
             bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, bulletAngle - 90)); 
 
             bullet.gameObject.GetComponent<BulletBase>().PeramPass(eightWayBullet);
+            myAnim.SetTrigger("RangedAttack");
         }
     }
     private IEnumerator Shoot()
@@ -115,10 +134,6 @@ public class Boss : MonoBehaviour
         attacking=true; 
         currentInterval = Time.time + interval;
         yield return new WaitForSeconds(0.2f);
-        SpawnEightWayBullet(false);
-        yield return new WaitForSeconds(0.4f);
-        SpawnEightWayBullet(true);
-        yield return new WaitForSeconds(0.4f);
         SpawnEightWayBullet(false);
         yield return new WaitForSeconds(0.4f);
         SpawnEightWayBullet(true);
