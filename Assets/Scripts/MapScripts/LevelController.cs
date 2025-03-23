@@ -23,6 +23,7 @@ public class LevelController : MonoBehaviour
     public AudioSource audioSource; 
     public AudioSource battleMusic;
     public AudioSource ambientMusic;
+    public AudioSource finalMusic;
     public TextMeshProUGUI zoneNumberText;
     public Flowchart fungusFlowchart;
     public Flowchart bossFlowchart;
@@ -195,6 +196,11 @@ public class LevelController : MonoBehaviour
                 Destroy(portal);
             }
             capturedZones++;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
             zones[capturedZones].SetActive(true);
             portalsSpawned=0;
             battleMusic.Stop();
@@ -252,6 +258,11 @@ public class LevelController : MonoBehaviour
                 Destroy(portal);
             }
             capturedZones++;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
             zones[capturedZones].SetActive(true);
             portalsSpawned=0;
             battleMusic.Stop();
@@ -292,12 +303,12 @@ public class LevelController : MonoBehaviour
             zone3Portals[7].SetActive(true);
             zone3Portals[8].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==70)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==75)
         {
             zone3Portals[9].SetActive(true);
             zone3Portals[10].SetActive(true);
         }
-         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==85)
+         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==90)
         {
             zone3Portals[11].SetActive(true);
         }
@@ -308,12 +319,18 @@ public class LevelController : MonoBehaviour
             {
                 Destroy(portal);
             }
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
             Boss.SetActive(true);
             BossUI.SetActive(true);
             zoneUI.SetActive(false);
             zone3Complete=true;
             playerActionMap.Disable();
             bossFlowchart.ExecuteBlock(finalBossSpawnBlock);
+            battleMusic.Stop();
         }
         if (Boss.GetComponent<EnemyHPManager>().bossDead==true&&finalCutsceneCalled==false&&Boss!=null)
         {
@@ -322,5 +339,10 @@ public class LevelController : MonoBehaviour
             finalCutsceneCalled=true;
         }
         }
+    
+    public void finalBossMusic()
+    {
+        finalMusic.Play();
     }
+}
 

@@ -48,6 +48,7 @@ public class Boss : MonoBehaviour
             Vector2 direction = player.transform.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             lookTransform.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            Flip(angle);
 
 
             distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
@@ -64,7 +65,6 @@ public class Boss : MonoBehaviour
             {
                 StartCoroutine(Shoot());
             }
-            Flip(angle);
         }
         myAnim.SetBool("Moving",gameObject.GetComponent<AIPath>().canMove);
     }
@@ -151,16 +151,16 @@ public class Boss : MonoBehaviour
         {
             if (facingRight)
             {
-                facingRight = true;
-                myRenderer.flipX = false;
+                facingRight = false;
+                myRenderer.flipX = true;
             }
         }
         else
         {
             if (!facingRight)
             {
-                facingRight = false;
-                myRenderer.flipX = true;
+                facingRight = true;
+                myRenderer.flipX = false;
             }
         }
     }

@@ -47,8 +47,12 @@ public class InputScript : MonoBehaviour
     public Projectile tripleProjectile;
     public Projectile pierceProjectile;
     private Projectile currentProjectile;
+    public Sprite fireReticle;
+    public Sprite thornReticle;
+    public Sprite thunderReticle; 
 
     public AudioSource failedCast;
+    public AudioClip dash; 
     public GameObject lvlUpScreen;
     public GameObject lvlUpScript;
     public List<GameObject> interactables;
@@ -218,15 +222,15 @@ public class InputScript : MonoBehaviour
         {
             case 0:
                 currentProjectile = regularProjectile;
-                reticle.GetComponent<SpriteRenderer>().color = new Color(1f, 0.5f, 0f);
+                reticle.GetComponent<SpriteRenderer>().sprite = fireReticle;
                 break;
             case 1:
                 currentProjectile = tripleProjectile;
-                reticle.GetComponent<SpriteRenderer>().color = new Color(0f, 0.5f, 0f);
+                reticle.GetComponent<SpriteRenderer>().sprite = thornReticle;
                 break;
             case 2:
                 currentProjectile = pierceProjectile;
-                reticle.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f);
+                reticle.GetComponent<SpriteRenderer>().sprite = thunderReticle;
                 break;
         }
 
@@ -262,7 +266,7 @@ public class InputScript : MonoBehaviour
     {
         baseSpeed = 200;
         yield return new WaitForSeconds(8f);
-        baseSpeed = 100;
+        baseSpeed = 125;
     }
 
     // PLAYER CONTROLS --------------------------------------------------------------------------------------
@@ -307,6 +311,7 @@ public class InputScript : MonoBehaviour
         if (inputValue.isPressed && !dashing)
         {
             StartCoroutine(Dash());
+             AudioManager.Instance.PlaySound(dash); 
         }
     }
 
