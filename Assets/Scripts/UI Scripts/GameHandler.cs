@@ -32,6 +32,7 @@ public class GameHandler : MonoBehaviour
     public AudioClip loseMusic;
     public AudioSource audioPlayer; 
     public AudioSource gameMusic;
+    public AudioSource finalMusicPlayer; 
     void Start()
     {
         input = FindAnyObjectByType<EventSystem>();
@@ -121,12 +122,11 @@ public class GameHandler : MonoBehaviour
             if (win==true)
             {
                 gameOverText.text = "YOU WIN";
-                audioPlayer.clip = winMusic;
-                audioPlayer.Play();
             }
             else
             {
                 audioPlayer.clip = loseMusic;
+                finalMusicPlayer.Stop(); 
                 audioPlayer.Play();
             }
             endPanel.SetActive(true);

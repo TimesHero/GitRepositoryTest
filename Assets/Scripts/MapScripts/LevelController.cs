@@ -44,6 +44,7 @@ public class LevelController : MonoBehaviour
     private bool playerPopUp = false;
     private bool enemyPopUp = false; 
     private bool contestPopUp = false; 
+    public AudioClip endSong; 
     public GameObject captureFrame; 
 
     void Start()
@@ -54,7 +55,7 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (zones[capturedZones].gameObject.GetComponent<ZoneController>().playerColliding == false)
+        if (zones[capturedZones].gameObject.GetComponent<ZoneController>().playerColliding == false && zone3Complete==false)
         {
             Vector3 zoneViewportPosition = Camera.main.WorldToViewportPoint(zones[capturedZones].transform.position);
             float margin = 0.25f;
@@ -76,7 +77,7 @@ public class LevelController : MonoBehaviour
             wayPoint.SetActive(false); 
         }
         //--------------HP WAYPOINT-------------------------------------
-        if (hpZones[capturedZones].gameObject.GetComponent<HealField>().playerColliding == false && player.GetComponent<PlayerHPManager>().HP <= player.GetComponent<PlayerHPManager>().HPMax / 3f)
+        if (hpZones[capturedZones].gameObject.GetComponent<HealField>().playerColliding == false && player.GetComponent<PlayerHPManager>().HP <= player.GetComponent<PlayerHPManager>().HPMax / 3f && zone3Complete==false)
         {
             hpWayPointArrow.SetActive(true);  
             Vector3 hpZoneViewportPosition = Camera.main.WorldToViewportPoint(hpZones[capturedZones].transform.position);
@@ -335,6 +336,9 @@ public class LevelController : MonoBehaviour
         if (Boss.GetComponent<EnemyHPManager>().bossDead==true&&finalCutsceneCalled==false&&Boss!=null)
         {
             playerActionMap.Disable();
+            finalMusic.Stop();
+            finalMusic.clip = endSong; 
+            finalMusic.Play();
             bossFlowchart.ExecuteBlock(finalBossKillBlock);
             finalCutsceneCalled=true;
         }
