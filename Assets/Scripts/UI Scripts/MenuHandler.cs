@@ -92,8 +92,12 @@ public class MenuHandler : MonoBehaviour
     }
     public void survey()
     {
-         //Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSdtUC22pmHLhEJ0rYwYYYOCQp1WK86lNOPKDX6inuEdd7s24Q/viewform?usp=dialog");
+         //Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSeStvDK9Qr6ouIKV7U9W95sZcq5y_0v9wSuHiePmb0iLoJLSA/viewform?usp=sharing");
          PlayerPrefs.DeleteAll();
          AudioManager.Instance.PlaySound(sound); 
+    }
+    public void BetaSurvery()
+    {
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSeStvDK9Qr6ouIKV7U9W95sZcq5y_0v9wSuHiePmb0iLoJLSA/viewform?usp=sharing");
     }
 }
