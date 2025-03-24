@@ -21,12 +21,14 @@ public class ZoneController : MonoBehaviour
     public bool Captured;
     public int enemieInZone = 0; 
     public AudioClip cappedSound;
+    private GameObject player; 
  
 
     
 void Start()
 {
     currentTime = 0f;
+    player = GameObject.FindGameObjectWithTag("Player");
 }
 
     [System.Obsolete]
@@ -38,7 +40,7 @@ void Start()
     {
         currentTime = 0f;
 
-        if (playerColliding)
+        if (playerColliding && gameObject.GetComponent<PlayerHPManager>().HP>0)
         {
             if (enemieInZone!=0)
             {
