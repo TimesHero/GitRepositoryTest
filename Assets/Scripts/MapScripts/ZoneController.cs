@@ -40,7 +40,7 @@ void Start()
     {
         currentTime = 0f;
 
-        if (playerColliding && gameObject.GetComponent<PlayerHPManager>().HP>0)
+        if (playerColliding)
         {
             if (enemieInZone!=0)
             {
