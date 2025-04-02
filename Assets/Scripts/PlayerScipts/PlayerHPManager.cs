@@ -54,7 +54,7 @@ public class PlayerHPManager : MonoBehaviour
     private Vignette vignette;
     private FilmGrain grain;
     private ColorAdjustments colorAdjustments;
-     private float defaultVignetteIntensity;
+    private float defaultVignetteIntensity;
     private float defaultGrainIntensity;
     private float defaultSaturation;
     private float targetVignetteIntensity;
@@ -71,17 +71,21 @@ public class PlayerHPManager : MonoBehaviour
         myCollider = GetComponent<Collider2D>();
         volume.profile.TryGet<Vignette>(out vignette);
         volume.profile.TryGet<FilmGrain>(out grain);
-
         volume.profile.TryGet<ColorAdjustments>(out colorAdjustments);
-         if (vignette != null)
+        if (vignette != null)
+        {
             defaultVignetteIntensity = vignette.intensity.value;
+        }
 
         if (grain != null)
+        {
             defaultGrainIntensity = grain.intensity.value;
+        }
 
         if (colorAdjustments != null)
+        {
             defaultSaturation = colorAdjustments.saturation.value;
-        
+        }
         targetVignetteIntensity = defaultVignetteIntensity;
         targetGrainIntensity = defaultGrainIntensity;
         targetSaturation = defaultSaturation;

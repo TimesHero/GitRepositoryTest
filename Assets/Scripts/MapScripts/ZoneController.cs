@@ -12,7 +12,7 @@ public class ZoneController : MonoBehaviour
     public bool contested = false; 
     public ParticleSystem outlineParticles; 
     float currentTime = 0f;  
-    float tickInterval = 0.8f; 
+    private float tickInterval = 0.8f; 
     public TextMeshProUGUI percentageText;
     public GameObject logicManager;
     public GameObject uiColour; 
@@ -54,6 +54,7 @@ void Start()
             }
             else
             {
+                tickInterval=0.8f;
                 capturePercentage += 1;
                 capturePercentage = Mathf.Clamp(capturePercentage, 0, 100); // Ensure it stays within 0-100
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0, 0.25f);
@@ -76,6 +77,7 @@ void Start()
 
         if (enemieInZone!=0 && playerColliding==false)
         {
+            tickInterval=1.2f;
             capturePercentage -= 1;
             capturePercentage = Mathf.Clamp(capturePercentage, -20, 100); 
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 1, 0.25f);

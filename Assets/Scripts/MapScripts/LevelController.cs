@@ -200,7 +200,7 @@ public class LevelController : MonoBehaviour
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in enemies)
             {
-                Destroy(enemy);
+                enemy.GetComponent<EnemyHPManager>().TakeDamage(99);
             }
             zones[capturedZones].SetActive(true);
             portalsSpawned=0;
@@ -262,7 +262,7 @@ public class LevelController : MonoBehaviour
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in enemies)
             {
-                Destroy(enemy);
+                enemy.GetComponent<EnemyHPManager>().TakeDamage(99);
             }
             zones[capturedZones].SetActive(true);
             portalsSpawned=0;
@@ -323,7 +323,7 @@ public class LevelController : MonoBehaviour
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in enemies)
             {
-                Destroy(enemy);
+                 enemy.GetComponent<EnemyHPManager>().TakeDamage(99);
             }
             Boss.SetActive(true);
             BossUI.SetActive(true);
