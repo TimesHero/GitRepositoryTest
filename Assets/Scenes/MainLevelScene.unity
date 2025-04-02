@@ -900,7 +900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6056061382187393164, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: selectedCommands.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6056061382187393164, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: 'selectedBlocks.Array.data[0]'
@@ -9588,8 +9588,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1103521407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18926,8 +18926,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1549847311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -26476,7 +26476,7 @@ RectTransform:
   m_Father: {fileID: 794125551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -34729,7 +34729,7 @@ RectTransform:
   m_Father: {fileID: 338699106}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -392, y: 2.175}
   m_SizeDelta: {x: 10, y: 89.651}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -43935,7 +43935,7 @@ RectTransform:
   m_Father: {fileID: 1134795287}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -85094,6 +85094,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1023498804}
     - target: {fileID: 6225562380344336793, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: notebook1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225562380344336793, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
       propertyPath: fungusBlock
       value: Start
       objectReference: {fileID: 0}
@@ -85101,6 +85105,10 @@ PrefabInstance:
       propertyPath: fungusFlowchart
       value: 
       objectReference: {fileID: 1023498831}
+    - target: {fileID: 6225562380344336793, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: triggerSecondInteractable
+      value: 
+      objectReference: {fileID: 1967044845}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -91348,6 +91356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Notebook2
       objectReference: {fileID: 0}
+    - target: {fileID: 2895533195705245693, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3068997801976459486, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.08
@@ -92246,6 +92258,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21496a97efc18f04291e6ca3eff5780f, type: 3}
+--- !u!1 &1967044845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2895533195705245693, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+  m_PrefabInstance: {fileID: 1871265509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1968532991 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 589623198948184041, guid: 21496a97efc18f04291e6ca3eff5780f, type: 3}
@@ -98368,7 +98385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2144711646
 RectTransform:
   m_ObjectHideFlags: 0

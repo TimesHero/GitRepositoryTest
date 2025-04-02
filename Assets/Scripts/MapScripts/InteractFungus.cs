@@ -15,6 +15,8 @@ public class InteractFungus : MonoBehaviour
     public InputActionAsset inputActions;  // Reference to the InputActionAsset (assigned in the Inspector)
     private InputActionMap playerActionMap;
     private EventSystem input;
+    public GameObject triggerSecondInteractable; 
+    public bool notebook1;
     void Start()
     {
         playerActionMap = inputActions.FindActionMap("Player");
@@ -48,6 +50,10 @@ public class InteractFungus : MonoBehaviour
             {
                 fungusFlowchart.ExecuteBlock(fungusBlock);
                 playerActionMap.Disable();
+                if (notebook1==true)
+                {
+                    triggerSecondInteractable.SetActive(true);
+                }
                
             }
         }
