@@ -2006,7 +2006,7 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 347.16525
-    y: 511.63562
+    y: 512.7285
     width: 104.21
     height: 40
   tint: {r: 0.69803923, g: 0.5254902, b: 0.8, a: 1}
@@ -4066,7 +4066,7 @@ MonoBehaviour:
   indentLevel: 0
   storyText: '{b}Lightning bolts are useful for  piercing multiple enemies.{/b}'
   description: 
-  character: {fileID: 0}
+  character: {fileID: 1974988266}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -4093,7 +4093,7 @@ MonoBehaviour:
   indentLevel: 0
   storyText: '{b}Fireballs are useful for individual enemies. {/b}'
   description: 
-  character: {fileID: 0}
+  character: {fileID: 1974988266}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -4120,7 +4120,7 @@ MonoBehaviour:
   indentLevel: 0
   storyText: '{b}Thorns are useful for short-range crowd control. {/b}'
   description: 
-  character: {fileID: 0}
+  character: {fileID: 1974988266}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -10392,7 +10392,7 @@ PrefabInstance:
     - target: {fileID: 6225562380344336793, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
       propertyPath: fungusFlowchart
       value: 
-      objectReference: {fileID: 89994321}
+      objectReference: {fileID: 260363358}
     - target: {fileID: 6317631575262474672, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
       propertyPath: m_Radius
       value: 30.64
@@ -11735,7 +11735,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &260363362
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11749,7 +11749,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &260363363
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12586,7 +12586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 260363358}
+  selectedFlowchart: {fileID: 89994321}
 --- !u!4 &372291338
 Transform:
   m_ObjectHideFlags: 1
@@ -17936,6 +17936,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479302532}
   m_CullTransparentMesh: 1
+--- !u!1001 &479676709
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1158057966454407152, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_Name
+      value: Interactable Aura (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299760213302509299, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0489b9f85344e6d42ad4014cd37626b2, type: 3}
 --- !u!1 &479971263
 GameObject:
   m_ObjectHideFlags: 0
@@ -114071,7 +114128,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -750.0001, y: 0}
-  m_SizeDelta: {x: 1500, y: 335}
+  m_SizeDelta: {x: 1344.2334, y: 335}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1632034176
 MonoBehaviour:
@@ -165764,6 +165821,7 @@ SceneRoots:
   - {fileID: 253749109}
   - {fileID: 1214858634}
   - {fileID: 3828635511250973156}
+  - {fileID: 479676709}
   - {fileID: 1823900542}
   - {fileID: 878988934}
   - {fileID: 1753548249}
