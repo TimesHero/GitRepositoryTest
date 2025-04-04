@@ -965,7 +965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: blockViewHeight
-      value: 312
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: selectedBlocks.Array.size
@@ -978,11 +978,11 @@ PrefabInstance:
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: 'selectedBlocks.Array.data[0]'
       value: 
-      objectReference: {fileID: 89994282}
+      objectReference: {fileID: 89994301}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: 'selectedCommands.Array.data[0]'
       value: 
-      objectReference: {fileID: 89994402}
+      objectReference: {fileID: 89994405}
     - target: {fileID: 11433304, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: blockName
       value: Start
@@ -1371,6 +1371,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 89994402}
+    - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 89994404}
+    - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 89994403}
+    - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 89994405}
   m_SourcePrefab: {fileID: 100100000, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
 --- !u!4 &89994273 stripped
 Transform:
@@ -2009,6 +2018,9 @@ MonoBehaviour:
   commandList:
   - {fileID: 89994311}
   - {fileID: 89994310}
+  - {fileID: 89994404}
+  - {fileID: 89994403}
+  - {fileID: 89994405}
   - {fileID: 89994328}
   - {fileID: 89994396}
   - {fileID: 89994318}
@@ -2197,8 +2209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 32
   indentLevel: 0
-  storyText: '{b}Switch spells with the left bumper. Your lightning can pierce but
-    fires slow while your thorns shoot fast in a spread pattern. {/b}'
+  storyText: '{b}Switch spells with the left bumper. {/b}'
   description: 
   character: {fileID: 1974988266}
   portrait: {fileID: 0}
@@ -3875,8 +3886,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 105
   indentLevel: 0
-  storyText: "Whew... Now that that\u2019s been dealt with, I'll take us into the
-    limbo.  I\u2019ll tell you more once we are inside. "
+  storyText: "Whew... Now that that\u2019s been dealt with, I'll take us into Limbo. 
+    I\u2019ll tell you more once we are inside. "
   description: 
   character: {fileID: 80792956}
   portrait: {fileID: 21300000, guid: 14645568dd8c52a419a9e6a2e3dbfbed, type: 3}
@@ -4039,6 +4050,87 @@ MonoBehaviour:
     booleanRef: {fileID: 0}
     booleanVal: 1
   targetGameObjectOLD: {fileID: 0}
+--- !u!114 &89994403
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89994274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 121
+  indentLevel: 0
+  storyText: '{b}Lightning bolts are useful for  piercing multiple enemies.{/b}'
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &89994404
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89994274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 120
+  indentLevel: 0
+  storyText: '{b}Fireballs are useful for individual enemies. {/b}'
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &89994405
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89994274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 122
+  indentLevel: 0
+  storyText: '{b}Thorns are useful for short-range crowd control. {/b}'
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1001 &103448502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10221,6 +10313,95 @@ CapsuleCollider2D:
   m_Offset: {x: 0.13, y: -0.44}
   m_Size: {x: 1.48, y: 3.03}
   m_Direction: 0
+--- !u!1001 &247225460
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1752182389}
+    m_Modifications:
+    - target: {fileID: 1031276715726803362, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8469278876633829172, guid: bb639625a7b59d64d9b2cf51e3fa2a1a, type: 3}
+    - target: {fileID: 1031276715726803362, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895533195705245693, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_Name
+      value: MoveMeleeTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068997801976459486, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -23.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822931036505631989, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225562380344336793, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: flowChart
+      value: 
+      objectReference: {fileID: 89994274}
+    - target: {fileID: 6225562380344336793, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: fungusBlock
+      value: Tutorial 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225562380344336793, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: fungusFlowchart
+      value: 
+      objectReference: {fileID: 89994321}
+    - target: {fileID: 6317631575262474672, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+      propertyPath: m_Radius
+      value: 30.64
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
 --- !u!1 &253205373
 GameObject:
   m_ObjectHideFlags: 0
@@ -10918,7 +11099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: zoom
-      value: 1
+      value: 0.85000014
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: description
@@ -10929,11 +11110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: scrollPos.x
-      value: -103.038506
+      value: 22.98981
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: scrollPos.y
-      value: 79.73137
+      value: -10.763999
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: blockViewHeight
@@ -10958,11 +11139,11 @@ PrefabInstance:
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: 'selectedBlocks.Array.data[0]'
       value: 
-      objectReference: {fileID: 260363347}
+      objectReference: {fileID: 260363342}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: 'selectedCommands.Array.data[0]'
       value: 
-      objectReference: {fileID: 260363360}
+      objectReference: {fileID: 260363362}
     - target: {fileID: 11433304, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: blockName
       value: Game Start
@@ -11014,9 +11195,6 @@ PrefabInstance:
       addedObject: {fileID: 260363335}
     - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 260363337}
-    - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 260363336}
     - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       insertIndex: -1
@@ -11057,6 +11235,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 260363360}
+    - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 260363363}
+    - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 260363362}
   m_SourcePrefab: {fileID: 100100000, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
 --- !u!1 &260363332 stripped
 GameObject:
@@ -11109,8 +11293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 549.38
-    y: 285.5
+    x: 546.0834
+    y: 299.7858
     width: 102.08
     height: 40
   tint: {r: 0.69727767, g: 0.5257654, b: 0.8018868, a: 1}
@@ -11151,27 +11335,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &260363337
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260363332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 7
-  indentLevel: 0
-  targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 260363335}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
-  callMode: 0
 --- !u!114 &260363340
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -11258,7 +11421,8 @@ MonoBehaviour:
   - {fileID: 260363351}
   - {fileID: 260363340}
   - {fileID: 260363357}
-  - {fileID: 260363337}
+  - {fileID: 260363363}
+  - {fileID: 260363362}
   suppressAllAutoSelections: 0
 --- !u!114 &260363345
 MonoBehaviour:
@@ -11323,7 +11487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 548.0876
+    x: 545.0876
     y: 384.69418
     width: 103.759995
     height: 40
@@ -11565,6 +11729,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: 48
+  indentLevel: 0
+  targetObject: {fileID: 1864498140}
+  methodName: ActivateControls
+  delay: 0
+--- !u!114 &260363362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260363332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1ca510a57aa47568a5e4ee558ff41f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 51
+  indentLevel: 0
+--- !u!114 &260363363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260363332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 50
   indentLevel: 0
   targetObject: {fileID: 1864498140}
   methodName: ActivateControls
@@ -12391,7 +12586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 89994321}
+  selectedFlowchart: {fileID: 260363358}
 --- !u!4 &372291338
 Transform:
   m_ObjectHideFlags: 1
@@ -98157,6 +98352,11 @@ Transform:
   - {fileID: 1887670380}
   m_Father: {fileID: 398674745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &997989517 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5300793515838188313, guid: 972d495decd5e2143bf2bb590a9601d8, type: 3}
+  m_PrefabInstance: {fileID: 247225460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1002577030
 GameObject:
   m_ObjectHideFlags: 0
@@ -120096,6 +120296,7 @@ Transform:
   - {fileID: 254489595}
   - {fileID: 1053135413}
   - {fileID: 866054962}
+  - {fileID: 997989517}
   - {fileID: 37078302}
   - {fileID: 850552320}
   - {fileID: 2067771777}
