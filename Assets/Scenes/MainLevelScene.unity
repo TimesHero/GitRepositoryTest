@@ -1098,6 +1098,10 @@ PrefabInstance:
       propertyPath: eventHandler
       value: 
       objectReference: {fileID: 964789283}
+    - target: {fileID: 9008247515256653690, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1336.147
+      objectReference: {fileID: 0}
     - target: {fileID: 9142751533682120497, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: soundEffect
       value: 
@@ -9600,8 +9604,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1103521407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10337,7 +10341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 964789308}
+  selectedFlowchart: {fileID: 1636301379}
 --- !u!4 &372291338
 Transform:
   m_ObjectHideFlags: 1
@@ -18938,8 +18942,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1549847311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -26488,7 +26492,7 @@ RectTransform:
   m_Father: {fileID: 794125551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -34741,7 +34745,7 @@ RectTransform:
   m_Father: {fileID: 338699106}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -392, y: 2.175}
   m_SizeDelta: {x: 10, y: 89.651}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -43947,7 +43951,7 @@ RectTransform:
   m_Father: {fileID: 1134795287}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -98539,7 +98543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2144711646
 RectTransform:
   m_ObjectHideFlags: 0
