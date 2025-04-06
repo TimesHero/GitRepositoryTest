@@ -276,7 +276,7 @@ public class LevelController : MonoBehaviour
             playerActionMap.Disable();
             notebooks.SetActive(true);
         }
-        //Test Level 3--------------------------------------------------------------------------------------------------------
+        //Test Level 3-------------------------------------------------------------------------------------------------------
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
         {
             notebooks.SetActive(false);
