@@ -61,6 +61,7 @@ public class PlayerHPManager : MonoBehaviour
     private float targetGrainIntensity;
     private float targetSaturation;
     private float lerpSpeed = 5f;
+    public bool dead = false; 
 
     
     void Start()
@@ -321,6 +322,7 @@ public void LoadPlayerData()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
         myCollider.enabled = false;
+        dead=true; 
     }
     private IEnumerator iFrameTick()
     {

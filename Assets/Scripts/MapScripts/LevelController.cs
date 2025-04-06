@@ -46,6 +46,7 @@ public class LevelController : MonoBehaviour
     private bool contestPopUp = false; 
     public AudioClip endSong; 
     public GameObject captureFrame; 
+    public GameObject notebooks; 
 
     void Start()
     {
@@ -141,6 +142,7 @@ public class LevelController : MonoBehaviour
         //Test level 1------------------------------------------------------------------------------------------------
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
         {
+            notebooks.SetActive(false);
             audioSource.Stop();
             battleMusic.Play();
             zone1Portals[0].SetActive(true);
@@ -209,11 +211,12 @@ public class LevelController : MonoBehaviour
             zoneNumberText.text = "Zone 2";
             fungusFlowchart.ExecuteBlock(zone2Block);
             playerActionMap.Disable();
+            notebooks.SetActive(true);
         }
         //Test Level 2--------------------------------------------------------------------------------------------------------
         if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
         {
-           
+            notebooks.SetActive(false);
             ambientMusic.Stop();
             battleMusic.Play();
             zone2Portals[0].SetActive(true);
@@ -227,21 +230,21 @@ public class LevelController : MonoBehaviour
         {
             zone2Portals[2].SetActive(true);
         }
-        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==30)
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==35)
         {
             zone2Portals[3].SetActive(true);
         }
-        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==45)
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==50)
         {
             zone2Portals[4].SetActive(true);
             zone2Portals[5].SetActive(true);
         }
-        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==65)
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==70)
         {
             zone2Portals[6].SetActive(true);
             zone2Portals[7].SetActive(true);
         }
-        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==85)
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==90)
         {
             zone2Portals[8].SetActive(true);
             zone2Portals[9].SetActive(true);
@@ -271,10 +274,12 @@ public class LevelController : MonoBehaviour
             zoneNumberText.text = "Zone 3";
             fungusFlowchart.ExecuteBlock(zone3Block);
             playerActionMap.Disable();
+            notebooks.SetActive(true);
         }
         //Test Level 3--------------------------------------------------------------------------------------------------------
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
         {
+            notebooks.SetActive(false);
             portalsSpawned++;
             Debug.Log("ZONE3");
             ambientMusic.Stop();
@@ -294,22 +299,22 @@ public class LevelController : MonoBehaviour
             zone3Portals[2].SetActive(true);
             zone3Portals[3].SetActive(true);
         }
-         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==45)
+         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==50)
         {
             zone3Portals[5].SetActive(true);
             zone3Portals[6].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==55)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==60)
         {
-            zone3Portals[7].SetActive(true);
+            //zone3Portals[7].SetActive(true);
             zone3Portals[8].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==75)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==80)
         {
             zone3Portals[9].SetActive(true);
-            zone3Portals[10].SetActive(true);
+            //zone3Portals[10].SetActive(true);
         }
-         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==90)
+         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==95)
         {
             zone3Portals[11].SetActive(true);
         }
@@ -335,6 +340,11 @@ public class LevelController : MonoBehaviour
         }
         if (Boss.GetComponent<EnemyHPManager>().bossDead==true&&finalCutsceneCalled==false&&Boss!=null)
         {
+            GameObject[] projectile = GameObject.FindGameObjectsWithTag("Projectile");
+            foreach (GameObject proj in projectile)
+            {
+                Destroy(proj);
+            }
             playerActionMap.Disable();
             finalMusic.Stop();
             finalMusic.clip = endSong; 

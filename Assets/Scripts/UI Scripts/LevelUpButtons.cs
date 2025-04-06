@@ -52,21 +52,16 @@ public class LevelUpButtons : MonoBehaviour
 
     if (increment != 0)
     {
-        // Check if player has enough hope fragments to level up (only for increments)
         if (increment > 0 && playerHPManager.hopeFragments <= 0)
         {
             Debug.LogWarning("Not enough hope fragments.");
             return;
         }
-
-        // Check if stat can be increased or decreased
         switch (statType)
         {
             case "HP":
-                // Check if HP can be increased (level up)
                 if (increment > 0 && playerHPManager.HPLevel < 5)
                 {
-                    // Only level up if we have enough fragments
                     if (playerHPManager.hopeFragments > 0) 
                     {
                         playerHPManager.HPLevel += increment;
@@ -128,27 +123,21 @@ public class LevelUpButtons : MonoBehaviour
                 break;
         }
 
-        // If stat change was successful, update the UI and player stats
         if (changeSuccess)
         {
-            // Deduct fragment for level-up *after* stat level-up (important)
             if (increment > 0)
             {
-                // Deduct the hope fragment only after the stat successfully increased
                 playerHPManager.hopeFragments -= 1; 
-                PlaySound(increment); // Play level-up sound
+                PlaySound(increment); 
             }
             else
             {
                 // Refund the fragment for refunding the stat
                 playerHPManager.hopeFragments += 1; 
-                PlaySound(increment); // Play refund sound
+                PlaySound(increment);
             }
 
-            // Call LevelUp method to process any other changes if necessary
             playerHPManager.LevelUp();
-
-            // Update UI again after the fragment deduction and level-up
             UpdateUIStats();
         }
         else
@@ -160,7 +149,6 @@ public class LevelUpButtons : MonoBehaviour
 
     private void UpdateUIStats()
     {
-        // Update UI with the new values
         HPtext.text = $"LVL {playerHPManager.HPLevel}:{playerHPManager.HPMax} HP";
         MPtext.text = $"LVL {playerHPManager.manaLevel}:{playerHPManager.manaMax} MP";
         ATKtext.text = $"LVL {playerHPManager.atkLevel}:{playerHPManager.damageMultiplier}X DMG";
@@ -177,9 +165,9 @@ public class LevelUpButtons : MonoBehaviour
     void PlaySound(int increment)
     {
         if (increment > 0)
-            AudioManager.Instance.PlaySound(sound); // Level-up sound
+            AudioManager.Instance.PlaySound(sound); 
         else
-            AudioManager.Instance.PlaySound(backSound); // Refund sound
+            AudioManager.Instance.PlaySound(backSound); 
 
         fragmentText.text = "Hope Fragments: " + playerHPManager.hopeFragments;
     }

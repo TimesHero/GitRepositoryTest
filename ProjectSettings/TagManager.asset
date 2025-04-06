@@ -12,6 +12,7 @@ TagManager:
   - melee
   - Manager
   - BossBar
+  - Projectile
   layers:
   - Default
   - TransparentFX
