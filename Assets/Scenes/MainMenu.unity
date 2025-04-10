@@ -417,7 +417,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2111269882}
         m_TargetAssemblyTypeName: MenuHandler, Assembly-CSharp
-        m_MethodName: Play
+        m_MethodName: Skip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

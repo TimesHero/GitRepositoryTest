@@ -12,7 +12,7 @@ public class LevelController : MonoBehaviour
     public GameObject[] zone1Portals;
     public GameObject[] zone2Portals;
     public GameObject[] zone3Portals;
-    private int capturedZones = 0;
+    public int capturedZones;
     private int portalsSpawned = 0;
     public GameObject wayPoint;
     public GameObject hpWayPoint;
@@ -282,11 +282,11 @@ public class LevelController : MonoBehaviour
             notebooks.SetActive(false);
             portalsSpawned++;
             Debug.Log("ZONE3");
-            ambientMusic.Stop();
+            audioSource.Stop();
             battleMusic.Play();
             zone3Portals[0].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==10)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==5)
         {
             zone3Portals[1].SetActive(true);
         }
@@ -299,24 +299,24 @@ public class LevelController : MonoBehaviour
             zone3Portals[2].SetActive(true);
             zone3Portals[3].SetActive(true);
         }
-         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==50)
+         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==45)
         {
             zone3Portals[5].SetActive(true);
             zone3Portals[6].SetActive(true);
         }
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==60)
         {
-            //zone3Portals[7].SetActive(true);
-            zone3Portals[8].SetActive(true);
+            zone3Portals[7].SetActive(true);
+            //zone3Portals[8].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==80)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==85)
         {
             zone3Portals[9].SetActive(true);
-            //zone3Portals[10].SetActive(true);
+            zone3Portals[10].SetActive(true);
         }
          if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==95)
         {
-            zone3Portals[11].SetActive(true);
+            //zone3Portals[11].SetActive(true);
         }
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==100&&zone3Complete==false)
         {
