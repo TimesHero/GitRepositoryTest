@@ -202,7 +202,7 @@ public void LoadPlayerData()
     else
     {
         // Default values if no saved data exists
-        hopeFragments = 0;
+        hopeFragments = 3;
         currentLevel = 1;
         exp = 0;
         HPLevel = 0;

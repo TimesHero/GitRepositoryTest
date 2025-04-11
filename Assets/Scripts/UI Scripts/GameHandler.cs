@@ -87,15 +87,9 @@ public class GameHandler : MonoBehaviour
     }
     public void Retry()
     {
-        if (PlayerPrefs.GetInt("tutorialComplete?")==1)
-        {
-            SceneManager.LoadScene("MainLevelScene");
-        }
-        else
-        {
-            SceneManager.LoadScene("Tutorial");
-            AudioManager.Instance.PlaySound(sound); 
-        }
+        
+        SceneManager.LoadScene("MainLevelScene");
+        
     }
     public void QuitGame()
     {
