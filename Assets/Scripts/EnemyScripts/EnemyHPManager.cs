@@ -79,6 +79,7 @@ public class EnemyHPManager : MonoBehaviour
         {
              AudioManager.Instance.PlaySound(dieSound);
              gameObject.GetComponent<AIPath>().canMove=false; 
+             player.GetComponent<PlayerHPManager>().invincible=true; 
              bossDead=true; 
         }
     }
