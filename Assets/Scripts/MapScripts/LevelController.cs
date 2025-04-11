@@ -172,7 +172,6 @@ public class LevelController : MonoBehaviour
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==60)
         {
             zone1Portals[6].SetActive(true);
-            //zone1Portals[7].SetActive(true);
         }
         if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==70)
         {
@@ -182,12 +181,13 @@ public class LevelController : MonoBehaviour
          if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==85)
         {
             //zone1Portals[9].SetActive(true);
+            zone1Portals[7].SetActive(true);
             zone1Portals[11].SetActive(true);
             zone1Portals[12].SetActive(true);
         }
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==85)
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==90)
         {
-            //zone1Portals[13].SetActive(true);
+            zone1Portals[13].SetActive(true);
             //zone1Portals[14].SetActive(true);
         }
         
@@ -294,7 +294,7 @@ public class LevelController : MonoBehaviour
         {
             zone3Portals[4].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==35)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==30)
         {
             zone3Portals[2].SetActive(true);
             zone3Portals[3].SetActive(true);
@@ -307,7 +307,7 @@ public class LevelController : MonoBehaviour
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==60)
         {
             zone3Portals[7].SetActive(true);
-            //zone3Portals[8].SetActive(true);
+            zone3Portals[8].SetActive(true);
         }
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==85)
         {
