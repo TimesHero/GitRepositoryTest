@@ -953,19 +953,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: zoom
-      value: 0.46000004
+      value: 0.7599998
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: scrollPos.x
-      value: 37.346462
+      value: -157.62206
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: scrollPos.y
-      value: -6.343666
+      value: -144.66798
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: blockViewHeight
-      value: 350
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: selectedBlocks.Array.size
@@ -978,11 +978,11 @@ PrefabInstance:
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: 'selectedBlocks.Array.data[0]'
       value: 
-      objectReference: {fileID: 89994301}
+      objectReference: {fileID: 89994294}
     - target: {fileID: 11430050, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: 'selectedCommands.Array.data[0]'
       value: 
-      objectReference: {fileID: 89994405}
+      objectReference: {fileID: 89994290}
     - target: {fileID: 11433304, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       propertyPath: blockName
       value: Start
@@ -1380,6 +1380,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 89994405}
+    - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 89994407}
+    - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 89994406}
+    - targetCorrespondingSourceObject: {fileID: 142980, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 89994408}
   m_SourcePrefab: {fileID: 100100000, guid: 5e7fbc8d4eb714b279eeeef2262c1e1a, type: 3}
 --- !u!4 &89994273 stripped
 Transform:
@@ -1523,6 +1532,7 @@ MonoBehaviour:
   commandList:
   - {fileID: 89994285}
   - {fileID: 89994284}
+  - {fileID: 89994407}
   - {fileID: 89994283}
   - {fileID: 89994338}
   - {fileID: 89994340}
@@ -1530,6 +1540,7 @@ MonoBehaviour:
   - {fileID: 89994402}
   - {fileID: 89994306}
   - {fileID: 89994305}
+  - {fileID: 89994406}
   - {fileID: 89994323}
   - {fileID: 89994322}
   suppressAllAutoSelections: 0
@@ -1575,8 +1586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 18
   indentLevel: 0
-  storyText: "I was starting to think that humanity had perished entirely! I would\u2019ve
-    left this graveyard long ago, but I feel\u2026 incomplete. "
+  storyText: I was starting to think that humanity had perished entirely!
   description: 
   character: {fileID: 80792956}
   portrait: {fileID: 21300000, guid: 187bf604a01a8af4a967ce7ff50d85a7, type: 3}
@@ -1730,7 +1740,7 @@ MonoBehaviour:
   itemId: 11
   indentLevel: 0
   storyText: "All I know is that I\u2019ve been fighting those purple beasts for
-    as long as I can remember, though I don\u2019t know exactly {b}HOW{/b} long\u2026"
+    as long as I can remember..."
   description: 
   character: {fileID: 80792956}
   portrait: {fileID: 21300000, guid: 187bf604a01a8af4a967ce7ff50d85a7, type: 3}
@@ -1851,6 +1861,7 @@ MonoBehaviour:
   commandList:
   - {fileID: 89994291}
   - {fileID: 89994290}
+  - {fileID: 89994408}
   - {fileID: 89994289}
   suppressAllAutoSelections: 0
 --- !u!114 &89994295
@@ -2070,8 +2081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 22
   indentLevel: 0
-  storyText: I can amplify your spells to be very effective against the beasts. Let
-    us not waste any more time, the village is close!
+  storyText: 'I can amplify your spells to be very effective against the beasts. '
   description: 
   character: {fileID: 80792956}
   portrait: {fileID: 21300000, guid: 14645568dd8c52a419a9e6a2e3dbfbed, type: 3}
@@ -4122,6 +4132,87 @@ MonoBehaviour:
   description: 
   character: {fileID: 1974988266}
   portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &89994406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89994274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 124
+  indentLevel: 0
+  storyText: Let us not waste any more time, the village is close!
+  description: 
+  character: {fileID: 80792956}
+  portrait: {fileID: 21300000, guid: 14645568dd8c52a419a9e6a2e3dbfbed, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &89994407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89994274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 123
+  indentLevel: 0
+  storyText: "I would\u2019ve left this graveyard long ago, but I feel\u2026 incomplete. "
+  description: 
+  character: {fileID: 80792956}
+  portrait: {fileID: 21300000, guid: 187bf604a01a8af4a967ce7ff50d85a7, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &89994408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89994274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 125
+  indentLevel: 0
+  storyText: "Though I don\u2019t know exactly {b}HOW{/b} long\u2026"
+  description: 
+  character: {fileID: 80792956}
+  portrait: {fileID: 21300000, guid: 187bf604a01a8af4a967ce7ff50d85a7, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -12863,7 +12954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 260363358}
+  selectedFlowchart: {fileID: 89994321}
 --- !u!4 &372291338
 Transform:
   m_ObjectHideFlags: 1
