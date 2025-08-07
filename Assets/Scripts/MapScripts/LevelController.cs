@@ -318,7 +318,7 @@ public class LevelController : MonoBehaviour
         {
             //zone3Portals[11].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==100&&zone3Complete==false)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage>=100&&zone3Complete==false)
         {
             zones[2].SetActive(false);
             foreach (var portal in zone3Portals)

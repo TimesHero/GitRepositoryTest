@@ -33,6 +33,7 @@ public class GameHandler : MonoBehaviour
     public AudioSource audioPlayer; 
     public AudioSource gameMusic;
     public AudioSource finalMusicPlayer; 
+
     void Start()
     {
         input = FindAnyObjectByType<EventSystem>();
