@@ -654,6 +654,22 @@ PrefabInstance:
       propertyPath: portrait
       value: 
       objectReference: {fileID: 21300000, guid: 187bf604a01a8af4a967ce7ff50d85a7, type: 3}
+    - target: {fileID: 1334023167008670424, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: commandList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334023167008670424, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: 'commandList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1023498856}
+    - target: {fileID: 1334023167008670424, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: 'commandList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1023498837}
+    - target: {fileID: 1334023167008670424, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: 'commandList.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1023498836}
     - target: {fileID: 1650135671619234885, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: soundEffect
       value: 
@@ -739,17 +755,21 @@ PrefabInstance:
       value: 53.413025
       objectReference: {fileID: 0}
     - target: {fileID: 2186750484900612690, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186750484900612690, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: selectedCommands.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2186750484900612690, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: 'selectedBlocks.Array.data[0]'
       value: 
-      objectReference: {fileID: 1023498810}
+      objectReference: {fileID: 1023498840}
     - target: {fileID: 2186750484900612690, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: 'selectedCommands.Array.data[0]'
       value: 
-      objectReference: {fileID: 1023498808}
+      objectReference: {fileID: 1023498838}
     - target: {fileID: 2186750484900616104, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: blockName
       value: Start
@@ -798,6 +818,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b4a41c1a2c2806245a2bdab8e6763282, type: 3}
+    - target: {fileID: 4403330306018874843, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: commandList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403330306018874843, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: 'commandList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1023498855}
+    - target: {fileID: 4403330306018874843, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: 'commandList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1023498852}
+    - target: {fileID: 4403330306018874843, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: 'commandList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1023498847}
     - target: {fileID: 4921039361275839921, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: commandList.Array.size
       value: 5
@@ -842,6 +878,10 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 2146816365}
+    - target: {fileID: 5291495260078647324, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: storyText
+      value: The handwriting in this notebook looks so vastly different between entries.
+      objectReference: {fileID: 0}
     - target: {fileID: 5433306538860106412, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: text
       value: Likewise, Friend.
@@ -1078,6 +1118,10 @@ PrefabInstance:
       propertyPath: 'commandList.Array.data[10]'
       value: 
       objectReference: {fileID: 217283793}
+    - target: {fileID: 8532421573559040865, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      propertyPath: storyText
+      value: I suppose whoever wrote these notes was far ahead of your time...
+      objectReference: {fileID: 0}
     - target: {fileID: 8851302917903960164, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: selectedBlocks.Array.size
       value: 0
@@ -1189,6 +1233,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2186750484889881716, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1023498832}
+    - targetCorrespondingSourceObject: {fileID: 2186750484889881716, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1023498855}
+    - targetCorrespondingSourceObject: {fileID: 2186750484889881716, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1023498856}
     - targetCorrespondingSourceObject: {fileID: 8851302917914168898, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 964789283}
@@ -10344,7 +10394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1636301379}
+  selectedFlowchart: {fileID: 1023498831}
 --- !u!4 &372291338
 Transform:
   m_ObjectHideFlags: 1
@@ -34989,28 +35039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cb9773f2ca04e2bbf7a68ccfc23267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1023498808 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8148798132810077913, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
-  m_PrefabInstance: {fileID: 38439763}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023498804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1023498810 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6149567616717037920, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
-  m_PrefabInstance: {fileID: 38439763}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023498804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1023498830 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2186750484900616104, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
@@ -35064,6 +35092,126 @@ MonoBehaviour:
   targetObject: {fileID: 24764662}
   methodName: ActivateControls
   delay: 0
+--- !u!114 &1023498836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7429201673321933502, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+  m_PrefabInstance: {fileID: 38439763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023498804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1023498837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8658269569771458608, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+  m_PrefabInstance: {fileID: 38439763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023498804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1023498838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8532421573559040865, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+  m_PrefabInstance: {fileID: 38439763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023498804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1023498840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1334023167008670424, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+  m_PrefabInstance: {fileID: 38439763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023498804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1023498847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5511342470065731286, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+  m_PrefabInstance: {fileID: 38439763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023498804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1023498852 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2950697305168800280, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
+  m_PrefabInstance: {fileID: 38439763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023498804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1023498855
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023498804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 26
+  indentLevel: 0
+  storyText: "Not to mention some of these pages look older than others\u2026"
+  description: 
+  character: {fileID: 2146816365}
+  portrait: {fileID: 21300000, guid: 14645568dd8c52a419a9e6a2e3dbfbed, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1023498856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023498804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 27
+  indentLevel: 0
+  storyText: Maybe even before Limbo crossed paths with our realm.
+  description: 
+  character: {fileID: 2146816365}
+  portrait: {fileID: 21300000, guid: 14645568dd8c52a419a9e6a2e3dbfbed, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &1034133849
 GameObject:
   m_ObjectHideFlags: 0

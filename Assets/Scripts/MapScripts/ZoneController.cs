@@ -67,7 +67,7 @@ void Start()
                 
             }
 
-            if (capturePercentage>=100)
+            if (capturePercentage>99)
             {
                 percentageText.text = "Move to next Zone";
                 AudioManager.Instance.PlaySound(cappedSound); 
