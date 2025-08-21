@@ -131,7 +131,6 @@ public class TutorialController : MonoBehaviour
         }
         if (zones.gameObject.GetComponent<ZoneController>().Captured==true && capturedZones<1)
         {
-            Debug.Log("Faggot");
             capturedZones++;
             zones.SetActive(false);
             foreach (var portal in Portals)

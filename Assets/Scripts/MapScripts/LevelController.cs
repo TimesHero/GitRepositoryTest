@@ -12,7 +12,7 @@ public class LevelController : MonoBehaviour
     public GameObject[] zone1Portals;
     public GameObject[] zone2Portals;
     public GameObject[] zone3Portals;
-    private int capturedZones = 0;
+    public int capturedZones = 0;
     private int portalsSpawned = 0;
     public GameObject wayPoint;
     public GameObject hpWayPoint;
@@ -194,9 +194,12 @@ public class LevelController : MonoBehaviour
         if (zones[0].gameObject.GetComponent<ZoneController>().Captured==true && capturedZones<1)
         {
             zones[0].SetActive(false);
-            foreach (var portal in zone1Portals)
+            if (zone1Portals.Length > 0)
             {
-                Destroy(portal);
+                foreach (var portal in zone1Portals)
+                {
+                    Destroy(portal);
+                }
             }
             capturedZones++;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -258,9 +261,12 @@ public class LevelController : MonoBehaviour
         if (zones[1].gameObject.GetComponent<ZoneController>().Captured==true && capturedZones<2)
         {
             zones[1].SetActive(false);
-            foreach (var portal in zone2Portals)
+            if (zone2Portals.Length > 0)
             {
-                Destroy(portal);
+                foreach (var portal in zone2Portals)
+                {
+                    Destroy(portal);
+                }
             }
             capturedZones++;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -320,12 +326,16 @@ public class LevelController : MonoBehaviour
         {
             zone3Portals[11].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage>=100 && zone3Complete==false)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage>99 && zone3Complete==false)
         {
             zones[2].SetActive(false);
-            foreach (var portal in zone3Portals)
+            zone3Complete=true;
+            if (zone3Portals.Length > 0)
             {
-                Destroy(portal);
+                foreach (var portal in zone3Portals)
+                {
+                    Destroy(portal);
+                }
             }
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in enemies)
@@ -335,7 +345,6 @@ public class LevelController : MonoBehaviour
             Boss.SetActive(true);
             BossUI.SetActive(true);
             zoneUI.SetActive(false);
-            zone3Complete=true;
             playerActionMap.Disable();
             bossFlowchart.ExecuteBlock(finalBossSpawnBlock);
             battleMusic.Stop();
