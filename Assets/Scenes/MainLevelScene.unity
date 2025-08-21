@@ -756,11 +756,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2186750484900612690, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: selectedBlocks.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2186750484900612690, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: selectedCommands.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2186750484900612690, guid: d59dbda89a2f60342bc4364b33802cf2, type: 3}
       propertyPath: 'selectedBlocks.Array.data[0]'
@@ -35187,7 +35187,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1023498856
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

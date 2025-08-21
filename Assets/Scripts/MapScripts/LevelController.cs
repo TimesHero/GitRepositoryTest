@@ -140,7 +140,7 @@ public class LevelController : MonoBehaviour
         }
 
         //Test level 1------------------------------------------------------------------------------------------------
-        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
+        if (zones[0].gameObject.GetComponent<ZoneController>().capturePercentage==1 && portalsSpawned==0)
         {
             notebooks.SetActive(false);
             audioSource.Stop();
@@ -191,7 +191,7 @@ public class LevelController : MonoBehaviour
             //zone1Portals[14].SetActive(true);
         }
         
-        if (zones[0].gameObject.GetComponent<ZoneController>().Captured==true && capturedZones>0)
+        if (zones[0].gameObject.GetComponent<ZoneController>().Captured==true && capturedZones<1)
         {
             zones[0].SetActive(false);
             foreach (var portal in zone1Portals)
@@ -214,13 +214,14 @@ public class LevelController : MonoBehaviour
             notebooks.SetActive(true);
         }
         //Test Level 2--------------------------------------------------------------------------------------------------------
-        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==1&&portalsSpawned==0)
+        if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage == 1 && portalsSpawned == 0)
         {
             notebooks.SetActive(false);
             ambientMusic.Stop();
             battleMusic.Play();
             zone2Portals[0].SetActive(true);
             portalsSpawned++;
+            capturedZones = 1;
         }
         if (zones[1].gameObject.GetComponent<ZoneController>().capturePercentage==10)
         {
@@ -254,7 +255,7 @@ public class LevelController : MonoBehaviour
             //zone2Portals[10].SetActive(true);
             //zone2Portals[11].SetActive(true);
         }
-        if (zones[1].gameObject.GetComponent<ZoneController>().Captured==true && capturedZones>1)
+        if (zones[1].gameObject.GetComponent<ZoneController>().Captured==true && capturedZones<2)
         {
             zones[1].SetActive(false);
             foreach (var portal in zone2Portals)
@@ -277,7 +278,7 @@ public class LevelController : MonoBehaviour
             notebooks.SetActive(true);
         }
         //Test Level 3-------------------------------------------------------------------------------------------------------
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==1 && portalsSpawned==0)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage == 1 && portalsSpawned == 0)
         {
             notebooks.SetActive(false);
             portalsSpawned++;
@@ -285,6 +286,7 @@ public class LevelController : MonoBehaviour
             ambientMusic.Stop();
             battleMusic.Play();
             zone3Portals[0].SetActive(true);
+            capturedZones = 2;
         }
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==10)
         {

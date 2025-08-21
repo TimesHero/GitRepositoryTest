@@ -129,8 +129,10 @@ public class TutorialController : MonoBehaviour
             playerActionMap.Disable();
            
         }
-        if (zones.gameObject.GetComponent<ZoneController>().Captured==true && capturedZones==0)
+        if (zones.gameObject.GetComponent<ZoneController>().Captured==true && capturedZones<1)
         {
+            Debug.Log("Faggot");
+            capturedZones++;
             zones.SetActive(false);
             foreach (var portal in Portals)
             {
@@ -141,7 +143,6 @@ public class TutorialController : MonoBehaviour
             ambientMusic.Play();
             fungusFlowchart.ExecuteBlock(zoneCappedBlock);
             playerActionMap.Disable();
-            capturedZones++;
         }
 
     }

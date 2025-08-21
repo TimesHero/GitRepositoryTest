@@ -57,6 +57,10 @@ void Start()
                 tickInterval=0.8f;
                 capturePercentage += 1;
                 capturePercentage = Mathf.Clamp(capturePercentage, 0, 100); // Ensure it stays within 0-100
+                
+                Debug.Log(capturePercentage);
+                Debug.Log(Captured);
+
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0, 0.25f);
                 outlineParticles.startColor = new Color(1, 1, 0f, 0.5f);
                 uiColour.gameObject.GetComponent<Image>().color = new Color(1, 1, 0);
