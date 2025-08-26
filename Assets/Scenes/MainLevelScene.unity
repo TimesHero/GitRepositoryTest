@@ -10339,7 +10339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1636301379}
+  selectedFlowchart: {fileID: 217283709}
 --- !u!4 &372291338
 Transform:
   m_ObjectHideFlags: 1
@@ -25461,7 +25461,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &544388816
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
