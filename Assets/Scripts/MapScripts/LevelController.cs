@@ -102,7 +102,7 @@ public class LevelController : MonoBehaviour
             wayPoint.SetActive(false); 
         }
         //--------------HP WAYPOINT-------------------------------------
-        if (hpZones[capturedZones].gameObject.GetComponent<HealField>().playerColliding == false && player.GetComponent<PlayerHPManager>().HP <= player.GetComponent<PlayerHPManager>().HPMax / 3f && zone3Complete==false)
+        if (hpZones[capturedZones] != null && hpZones[capturedZones].gameObject.GetComponent<HealField>().playerColliding == false && player.GetComponent<PlayerHPManager>().HP <= player.GetComponent<PlayerHPManager>().HPMax / 3f && zone3Complete==false)
         {
             hpWayPointArrow.SetActive(true);  
             Vector3 hpZoneViewportPosition = Camera.main.WorldToViewportPoint(hpZones[capturedZones].transform.position);

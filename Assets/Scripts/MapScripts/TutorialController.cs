@@ -56,7 +56,7 @@ public class TutorialController : MonoBehaviour
             wayPoint.SetActive(false); 
         }
     }
-    if (hpZone.gameObject.GetComponent<HealField>().playerColliding == false && player.GetComponent<PlayerHPManager>().HP <= player.GetComponent<PlayerHPManager>().HPMax / 3f)
+    if (hpZone != null && hpZone.gameObject.GetComponent<HealField>().playerColliding == false && player.GetComponent<PlayerHPManager>().HP <= player.GetComponent<PlayerHPManager>().HPMax / 3f)
         {
             hpWayPointArrow.SetActive(true);  
             Vector3 hpZoneViewportPosition = Camera.main.WorldToViewportPoint(hpZone.transform.position);
