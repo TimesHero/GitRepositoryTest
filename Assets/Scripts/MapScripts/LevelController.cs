@@ -47,6 +47,7 @@ public class LevelController : MonoBehaviour
     public AudioClip endSong; 
     public GameObject captureFrame; 
     public GameObject notebooks; 
+    
 
     void Start()
     {
