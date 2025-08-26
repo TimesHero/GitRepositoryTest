@@ -47,7 +47,13 @@ public class LevelController : MonoBehaviour
     public AudioClip endSong; 
     public GameObject captureFrame; 
     public GameObject notebooks; 
-    
+     //PORTAL FLAGS
+    private bool z3Triggered5 = false;
+    private bool z3Triggered20 = false;
+    private bool z3Triggered30 = false;
+    private bool z3Triggered45 = false;
+    private bool z3Triggered60 = false;
+    private bool z3Triggered85 = false;
 
     void Start()
     {
@@ -295,37 +301,38 @@ public class LevelController : MonoBehaviour
             zone3Portals[0].SetActive(true);
             capturedZones = 2;
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==10)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage == 5 && !z3Triggered5)
         {
             zone3Portals[1].SetActive(true);
+            z3Triggered5 = true;
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==20)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==20  && !z3Triggered20)
         {
             zone3Portals[4].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==35)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==30  && !z3Triggered30)
         {
             zone3Portals[2].SetActive(true);
             zone3Portals[3].SetActive(true);
         }
-         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==50)
+         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==45  && !z3Triggered45)
         {
             zone3Portals[5].SetActive(true);
             zone3Portals[6].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==60)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==60  && !z3Triggered60)
         {
             //zone3Portals[7].SetActive(true);
             zone3Portals[8].SetActive(true);
         }
-        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==80)
+        if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==85 && !z3Triggered85)
         {
             zone3Portals[9].SetActive(true);
             //zone3Portals[10].SetActive(true);
         }
          if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage==95)
         {
-            zone3Portals[11].SetActive(true);
+            //zone3Portals[11].SetActive(true);
         }
         if (zones[2].gameObject.GetComponent<ZoneController>().capturePercentage>99 && zone3Complete==false)
         {
