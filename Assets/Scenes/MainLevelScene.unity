@@ -10394,7 +10394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1023498831}
+  selectedFlowchart: {fileID: 948197089}
 --- !u!4 &372291338
 Transform:
   m_ObjectHideFlags: 1
@@ -33336,7 +33336,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 948197088}
+  - {fileID: 948197103}
   selectedCommands: []
   variables: []
   description: 
@@ -68149,6 +68149,7 @@ MonoBehaviour:
   - {fileID: 987148209}
   - {fileID: 1144423075}
   - {fileID: 1536031324}
+  capturedZones: 0
   wayPoint: {fileID: 2087217751}
   hpWayPoint: {fileID: 1263994679}
   hpWayPointArrow: {fileID: 1068552905}
