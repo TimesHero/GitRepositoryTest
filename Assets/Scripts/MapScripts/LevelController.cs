@@ -353,6 +353,7 @@ public class LevelController : MonoBehaviour
         }
         if (Boss.GetComponent<EnemyHPManager>().bossDead==true&&finalCutsceneCalled==false&&Boss!=null)
         {
+            player.GetComponent<PlayerHPManager>().invincible = true;
             GameObject[] projectile = GameObject.FindGameObjectsWithTag("Projectile");
             foreach (GameObject proj in projectile)
             {
